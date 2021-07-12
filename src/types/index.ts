@@ -1,1 +1,5 @@
-// types
+interface Test {
+
+}
+
+export default Test

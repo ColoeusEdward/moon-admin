@@ -10,3 +10,5 @@ const theme = {
   color7: '#c6cdd8',
   color8: '#dee5f1'
 }
+
+export default theme
