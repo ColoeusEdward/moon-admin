@@ -1268,8 +1268,8 @@ crypto-random-string@^1.0.0:
 
 css-render@^0.15.3, css-render@^0.15.4, css-render@~0.15.4:
   version "0.15.4"
-  resolved "https://registry.yarnpkg.com/css-render/-/css-render-0.15.4.tgz#0c0fa8cdd52236041e417e31b73a83da4497c6d9"
-  integrity sha512-+OjgtyYwWmrKrGzBe8ZRhiQnRotMqY4+IIIARO/nuCwdEzjUq89L+X0FGAL49msCHG4CZr8bWsd1lCz6NlFGqA==
+  resolved "https://registry.nlark.com/css-render/download/css-render-0.15.4.tgz#0c0fa8cdd52236041e417e31b73a83da4497c6d9"
+  integrity sha1-DA+ozdUiNgQeQX4xtzqD2kSXxtk=
   dependencies:
     "@emotion/hash" "~0.8.0"
     "@types/node" "~14.14.31"
