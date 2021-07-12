@@ -6,6 +6,9 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@types/mockjs": "^1.0.4",
+    "axios": "^0.21.1",
+    "mockjs": "^1.1.0",
     "naive-ui": "^2.15.4",
     "vfonts": "^0.1.0",
     "vue": "^3.0.5",
