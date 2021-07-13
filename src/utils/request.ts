@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const service = axios.create({
-  timeout: 6000,
+  timeout: 6000
 })
 
 const err = (error: any) => {

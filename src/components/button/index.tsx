@@ -8,16 +8,10 @@ const MoonButton = defineComponent({
   name: 'MoonButton',
   props: selectOptions,
   setup() {
-    return {
-
-    }
+    return {}
   },
   render() {
-    return (
-      <div class={ `12` }>
-
-      </div>
-    )
+    return <div class={'12'}></div>
   }
 })
 

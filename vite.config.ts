@@ -4,8 +4,5 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 
 export default defineConfig({
   base: process.env.NODE_ENV === 'production' ? '/moon-admin/' : '/',
-  plugins: [
-    vue(),
-    vueJsx()
-  ]
+  plugins: [vue(), vueJsx()]
 })

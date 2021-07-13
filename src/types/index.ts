@@ -1,5 +1,3 @@
-interface Test {
-
-}
+interface Test {}
 
 export default Test
