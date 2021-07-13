@@ -10,6 +10,7 @@
       <n-button type="warning">Warning</n-button>
       <n-button type="error">Error</n-button>
     </n-space>
+    <moon-button text="6666" />
   </n-config-provider>
 </template>
 
@@ -17,11 +18,13 @@
   import { defineComponent } from 'vue'
   import { darkTheme, NSpace, NButton } from 'naive-ui'
   import HelloWorld from './components/HelloWorld.vue'
+  import MoonButton from './components/button'
 
   export default defineComponent({
     name: 'App',
     components: {
       HelloWorld,
+      MoonButton,
       NSpace,
       NButton
     },
