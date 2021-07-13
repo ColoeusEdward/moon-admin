@@ -9,7 +9,7 @@
   import { darkTheme, NConfigProvider } from "naive-ui"
 
   export default defineComponent({
-    name: "App",
+    name: 'App',
     components: {
       NConfigProvider
     },
