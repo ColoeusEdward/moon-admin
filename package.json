@@ -2,9 +2,10 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "lint": "eslint --fix --ext .ts,.tsx,.vue",
+    "eslint": "eslint --ext .ts,.tsx,.vue src --fix",
     "build": "vue-tsc --noEmit && vite build --mode production",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "precommit": "lint-staged"
   },
   "husky": {
     "hooks": {
@@ -12,9 +13,9 @@
     }
   },
   "lint-staged": {
-    "src/**": [
+    "**/*.{ts,tsx,vue}": [
       "prettier --config .prettierrc --write",
-      "lint",
+      "eslint --fix",
       "git add"
     ]
   },
