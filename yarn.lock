@@ -669,6 +669,53 @@
     "@typescript-eslint/types" "4.28.2"
     eslint-visitor-keys "^2.0.0"
 
+"@vicons/antd@^0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@vicons/antd/-/antd-0.10.0.tgz#17661ed654122a6450926f40ceba9fd67ae2e036"
+  integrity sha512-F+pVt2cYJDoJw5Wvu5YzvqnpCoUPeYh272R/ZVK+2H6U/G0LCDvEWNQHXkbLBpCtu9FAq/yac0NNfg1i0a1DGg==
+
+"@vicons/carbon@^0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@vicons/carbon/-/carbon-0.10.0.tgz#020dcb29f0d136e4b8ca5620d9849b35fc7ccc49"
+  integrity sha512-+WHe9WkbjGCDuGeRjVUyurlRv4ypjJ3dxITmSRsUJlOH+UKbzWSGVlgDD4xg1L18ss+iSeW6mWgmxXHi1FrjMw==
+
+"@vicons/fa@^0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@vicons/fa/-/fa-0.10.0.tgz#d91d5ca7cecbc7ca25e22f38c6b8340063826e32"
+  integrity sha512-Hcer9JeSsjFoglTG6DDDGljbHR7qkhHd0dYr1jasVVsOlGzdwLn2oi9Zke8RUD7d2WNcwUZx8FFmdUUWwV+9qw==
+
+"@vicons/fluent@^0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@vicons/fluent/-/fluent-0.10.0.tgz#b9967841bd8727e9297b17d9e414cd3e2454ae25"
+  integrity sha512-ZAIU3GzOQDJttzxpABiluYtIwFfWq/mLnSknNAZHBv4d1f18u61sfZohckz42Ax7m7JWmDZhXwmDJOjo/zb+Vw==
+
+"@vicons/ionicons4@^0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@vicons/ionicons4/-/ionicons4-0.10.0.tgz#73c0059b9765a22ad14306fefc8f2aa2728e4659"
+  integrity sha512-ES4PkHqojTWeQtXkZ+FunPx3E4GZgM7gVRO00/h0kQvR5BPjMum15Kh2cvvnUNb9i6JfUr+WXV44N3qwlfMN9g==
+
+"@vicons/ionicons5@^0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@vicons/ionicons5/-/ionicons5-0.10.0.tgz#94641a71850d9e251f1059b67da4c19326bce962"
+  integrity sha512-AgOAI15sXiasLKozj9Nkrxdda8BoaFN4TaprFCcHbBMLFOUwk6QLLHRngC+X5YhYXVjLqMbQ6FtEbrPSPYIZEA==
+
+"@vicons/material@^0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@vicons/material/-/material-0.10.0.tgz#1213a111f729476ac053f883155b69c2d5262f48"
+  integrity sha512-3r5ft90RcEMGAHNCRVuZBOV6CFpA8vzBNwaCbFZzCRhcdQqn/48t+Eywvu/o2BQl52eSRYhIUCW9PDh+j6rLbQ==
+
+"@vicons/tabler@^0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@vicons/tabler/-/tabler-0.10.0.tgz#2df708cb009e9d2f3668d1709718b54703a9181e"
+  integrity sha512-CjFcGP/T2GmoU3dJQDXiImsoo+kZTnO6S2VpMVpYHHlaFvpRiDShD/iiaLf+0U3zvmGyg8wyi49fjGN0Cn6NRw==
+
+"@vicons/utils@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@vicons/utils/-/utils-0.1.4.tgz#accea9226ff0078ebd80d00dcb63ef5e74b210ff"
+  integrity sha512-OHI19qVNN6i+uPQ+Y3f2s0dUxwsYnOCcKBW7XOU4yXXO1aU3ZoKpblCc3+4N0qmgoJs5rWKRAaMisipqEXJwAg==
+  dependencies:
+    "@xicons/utils" "^0.1.4"
+
 "@vitejs/plugin-vue-jsx@^1.1.6":
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/@vitejs/plugin-vue-jsx/-/plugin-vue-jsx-1.1.6.tgz#c9e7b63d1ebf537a24a0b4b3b31f4beb8055cef6"
@@ -829,6 +876,13 @@
   version "3.1.4"
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.1.4.tgz#c14c461ec42ea2c1556e86f60b0354341d91adc3"
   integrity sha512-6O45kZAmkLvzGLToBxEz4lR2W6kXohCtebV2UxjH9GXjd8X9AhEn68FN9eNanFtWNzvgw1hqd6HkPRVQalqf7Q==
+
+"@xicons/utils@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@xicons/utils/-/utils-0.1.4.tgz#cece50613b34d4b4c71e73bb0be92981067e11e1"
+  integrity sha512-uXxKDLz9abr80yJC05XSTq6wlyFcdW+N/1IYJkeHjzzXVc4VQ0sEYMoMMTjAH7HQBOyOkzOB4pf5NGF72lwa8Q==
+  dependencies:
+    css-render "^0.13.2"
 
 acorn-jsx@^5.2.0, acorn-jsx@^5.3.1:
   version "5.3.2"
@@ -1265,6 +1319,15 @@ crypto-random-string@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/crypto-random-string/download/crypto-random-string-1.0.0.tgz?cache=0&sync_timestamp=1617610790785&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcrypto-random-string%2Fdownload%2Fcrypto-random-string-1.0.0.tgz#a230f64f568310e1498009940790ec99545bca7e"
   integrity sha1-ojD2T1aDEOFJgAmUB5DsmVRbyn4=
+
+css-render@^0.13.2:
+  version "0.13.9"
+  resolved "https://registry.yarnpkg.com/css-render/-/css-render-0.13.9.tgz#56f28c180a83a10ec610a12a9ad9fec087ac9dc1"
+  integrity sha512-n3C4ZH59rveBrUlAD7n0Ze9/gUMKa4dlH1C9CWKpGcIHR/xRcIVXzBGy1iw8WWq2ySmn2/ZqOpySQNAK5Pb6sw==
+  dependencies:
+    "@emotion/hash" "~0.8.0"
+    "@types/node" "~14.14.31"
+    csstype "~3.0.5"
 
 css-render@^0.15.3, css-render@^0.15.4, css-render@~0.15.4:
   version "0.15.4"
