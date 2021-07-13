@@ -13,8 +13,9 @@
     }
   },
   "lint-staged": {
-    "src/*.{ts,tsx,vue}": [
-      "eslint --ext",
+    "src/**/*.{ts,tsx,vue}": [
+      "prettier --config .prettierrc --write",
+      "eslint --ext .ts,.tsx,.vue src --fix",
       "git add"
     ]
   },
