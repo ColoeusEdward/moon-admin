@@ -1,6 +1,6 @@
 {
-  "printWidth": 200, // 长度， 可用于控制代码换行
-  "tabWidth": 2, // 缩进
+  "printWidth": 200,
+  "tabWidth": 2,
   "useTabs": false,
   "semi": false,
   "vueIndentScriptAndStyle": true,
@@ -13,7 +13,6 @@
   "arrowParens": "always",
   "insertPragma": false,
   "requirePragma": false,
-  "trailingComma": "none",
   "proseWrap": "never",
   "htmlWhitespaceSensitivity": "strict",
   "endOfLine": "lf"

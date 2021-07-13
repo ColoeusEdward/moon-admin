@@ -12,12 +12,14 @@ const MoonButton = defineComponent({
   render() {
     const { text } = this
 
-    return <button id='moon-button-container'>
-      <span>{ text }</span>
-      <NIcon>
-        <AngleRight />
-      </NIcon>
-    </button>
+    return (
+      <button id="moon-button-container">
+        <span>{text}</span>
+        <NIcon>
+          <AngleRight />
+        </NIcon>
+      </button>
+    )
   }
 })
 
