@@ -1,17 +1,23 @@
 import { defineComponent, PropType } from 'vue'
+import { NIcon } from 'naive-ui'
+import AngleRight from '@vicons/fa/AngleRight'
 
 const selectOptions = {
-  text: String as PropType<string> // 按钮文本
+  text: [String, Number] as PropType<string | number> // 按钮文本
 }
 
 const MoonButton = defineComponent({
   name: 'MoonButton',
   props: selectOptions,
-  setup() {
-    return {}
-  },
   render() {
-    return <div class={'12'}></div>
+    const { text } = this
+
+    return <button id='moon-button-container'>
+      <span>{ text }</span>
+      <NIcon>
+        <AngleRight />
+      </NIcon>
+    </button>
   }
 })
 
