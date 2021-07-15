@@ -1,1 +1,0 @@
-import{d as n,i as o,o as t,c as a,w as e,b as s,r}from"./vendor.8858a1eb.js";var l=n({name:"Login",components:{NLayoutContent:o}});const u=s("h2",null,"this is login page",-1);l.render=function(n,o,s,l,i,c){const d=r("n-layout-content");return t(),a(d,null,{default:e((()=>[u])),_:1})};export default l;
