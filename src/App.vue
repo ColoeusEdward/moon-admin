@@ -1,16 +1,16 @@
 <template>
-<!--  <moon-header />-->
+  <!-- <moon-header /> -->
   <div>123</div>
 </template>
 
 <script lang="ts">
   import { defineComponent } from 'vue'
-  import MoonHeader from '@/components/layouts/header/index.vue'
+  // import MoonHeader from '@/layouts/header/index.vue'
 
   export default defineComponent({
     name: 'App',
     components: {
-      MoonHeader
+      // MoonHeader
     },
     setup() {
       return {}
