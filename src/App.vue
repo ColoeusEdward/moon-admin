@@ -1,22 +1,19 @@
 <template>
-  <n-config-provider :theme="darkTheme">
-    <router-view />
-  </n-config-provider>
+<!--  <moon-header />-->
+  <div>123</div>
 </template>
 
 <script lang="ts">
   import { defineComponent } from 'vue'
-  import { darkTheme, NConfigProvider } from 'naive-ui'
+  import MoonHeader from '@/components/layouts/header/index.vue'
 
   export default defineComponent({
     name: 'App',
     components: {
-      NConfigProvider
+      MoonHeader
     },
     setup() {
-      return {
-        darkTheme
-      }
+      return {}
     }
   })
 </script>

@@ -7,7 +7,7 @@ export default defineConfig({
   base: process.env.NODE_ENV === 'production' ? '/moon-admin/' : '/',
   resolve: {
     alias: {
-      '@/': path.resolve(__dirname, 'src/')
+      '@': path.resolve(__dirname, 'src/')
     }
   },
   plugins: [vue(), vueJsx()]
