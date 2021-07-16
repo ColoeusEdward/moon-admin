@@ -29,7 +29,7 @@ router.beforeEach(async (to: RouteLocationNormalized, from: RouteLocationNormali
       // 没有登录的时候跳转到登录界面
       // 携带上登陆成功之后需要跳转的页面完整路径
       next({
-        name: 'Login',
+        name: 'login',
         query: {
           redirect: to.fullPath
         }
