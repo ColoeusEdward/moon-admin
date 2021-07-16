@@ -1,17 +1,17 @@
 <template>
-  <moon-header-container :style="{ height: 200, backgroundColor: 'green' }" />
-  <!--  <router-view></router-view>-->
+  <!-- <moon-header-container :style="{ height: 200, backgroundColor: 'green' }" /> -->
+  <router-view></router-view>
   <!-- <div>123</div> -->
 </template>
 
 <script lang="ts">
   import { defineComponent } from 'vue'
-  import MoonHeaderContainer from '@/layouts/header/index.vue'
+  // import MoonHeaderContainer from '@/layouts/header/index.vue'
 
   export default defineComponent({
     name: 'App',
     components: {
-      MoonHeaderContainer
+      // MoonHeaderContainer
     }
   })
 </script>
@@ -23,6 +23,10 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 60px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
   }
 </style>
