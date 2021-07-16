@@ -1,5 +1,5 @@
 <template>
-  <header class="container">
+  <header class="moon-header-container">
     <div class="left">
       <slot name="left" />
     </div>
@@ -11,10 +11,31 @@
     </div>
   </header>
 </template>
-<script>
-  import { defineComponent } from 'vue'
+<script lang="ts">
+  import { defineComponent, PropType } from 'vue'
+  import moonHeaderContainerStyle from '@/layouts/header/index.cssr'
+  import MoonHeaderContainerStyle from '@/layouts/header/type'
+
+  const props = {
+    style: Object as PropType<MoonHeaderContainerStyle>
+  }
 
   export default defineComponent({
-    name: 'MoonHeader'
+    name: 'MoonHeaderContainer',
+    props,
+    setup(props) {
+      const initStyle = (): void => {
+        const { height, backgroundColor } =  props?.style as MoonHeaderContainerStyle
+
+        moonHeaderContainerStyle.mount({
+          props: {
+            height: typeof height === 'number' ? height + 'px' : height,
+            backgroundColor
+          }
+        })
+      }
+
+      initStyle()
+    }
   })
 </script>
