@@ -16,9 +16,11 @@ const moonHeaderContainerStyle = cB(
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: props?.backgroundColor ?? '#fff',
     width: '100%',
-    height: props?.height ?? '70px'
+    height: props?.height ?? '70px',
+    backgroundColor: props?.backgroundColor ?? '#fff',
+    borderBottom: '1px solid #E7E8F2',
+    overflow: 'hidden'
   })
 )
 

@@ -8,18 +8,39 @@ const plugin = bem({
 
 c.use(plugin)
 
-const { cB } = plugin
+const { cB, cE } = plugin
 
-const moonHeaderContainerStyle = cB(
+const moonLogoStyle = cB(
   'logo',
   ({ props }) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    padding: '0 20px',
+    width: props?.width ??'229px',
+    height: props?.height ?? '70px',
     backgroundColor: props?.backgroundColor ?? '#fff',
-    width: '270px',
-    height: props?.height ?? '70px'
-  })
+    borderRight: '1px solid #E7E8F2',
+    overflow: 'hidden'
+  }),
+  [
+    cE(
+      'image',
+      () => ({
+        height: '30px'
+      })
+    ),
+    cE(
+      'name',
+      () => ({
+        fontFamily: 'Helvetica Neue',
+        fontStyle: 'normal',
+        fontWeight: 'bold',
+        fontSize: '18px',
+        color: '#25233A'
+      })
+    )
+  ]
 )
 
-export default moonHeaderContainerStyle
+export default moonLogoStyle
