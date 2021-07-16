@@ -1,6 +1,6 @@
 <template>
-   <moon-header-container :style="{ height: 200, backgroundColor: 'green' }" />
-<!--  <router-view></router-view>-->
+  <moon-header-container :style="{ height: 200, backgroundColor: 'green' }" />
+  <!--  <router-view></router-view>-->
   <!-- <div>123</div> -->
 </template>
 

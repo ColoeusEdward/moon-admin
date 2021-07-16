@@ -3,10 +3,11 @@
   "scripts": {
     "dev": "vite",
     "eslint": "eslint --ext .ts,.tsx,.vue src --fix",
-    "format": "prettier --write 'src/**/*.ts' 'src/**/*.vue' 'src/**/*.tsx'",
+    "format": "prettier --write src/**/*.{vue,ts,tsx}",
     "build": "vue-tsc --noEmit && vite build --mode production",
     "serve": "vite preview",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "pre-commit": "lint-staged"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,vue}": [

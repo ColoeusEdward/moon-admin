@@ -25,7 +25,7 @@
     props,
     setup(props) {
       const initStyle = (): void => {
-        const { height, backgroundColor } =  props?.style as MoonHeaderContainerStyle
+        const { height, backgroundColor } = props?.style as MoonHeaderContainerStyle
 
         moonHeaderContainerStyle.mount({
           props: {
