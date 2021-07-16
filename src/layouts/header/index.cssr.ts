@@ -3,20 +3,22 @@ import bem from '@css-render/plugin-bem'
 
 const c = CssRender()
 const plugin = bem({
-  blockPrefix: '.header-'
+  blockPrefix: '.moon-'
 })
 
 c.use(plugin)
 
 const { cB, cE } = plugin
 
-const style = cB(
-  'container',
-  () => ({
+const moonHeaderContainerStyle = cB(
+  'header-container',
+  ({ props }) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#fff'
+    backgroundColor: props?.backgroundColor ?? '#fff',
+    width: '100%',
+    height: props?.height ?? '70px'
   }),
   [
     cE(
@@ -33,3 +35,5 @@ const style = cB(
     )
   ]
 )
+
+export default moonHeaderContainerStyle
