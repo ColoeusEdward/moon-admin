@@ -8,11 +8,11 @@
           <div class="title">Welcome to</div>
           <div class="title">ADMIN</div>
           <div class="username">USERNAME</div>
-          <n-input v-model:value="value" type="input" placeholder="基本的 Input" clearable />
+          <n-input v-model:value="value" size="large" type="input" placeholder="没错，就是你的用户名" clearable />
           <div class="password">PASSWORD</div>
-          <n-input type="password" show-password-toggle placeholder="密码" :maxlength="8" clearable />
+          <n-input size="large" type="password" show-password-toggle placeholder="密码是什么来着" :maxlength="8" clearable />
           <div class="submit">
-            <n-button type="info">LOG IN</n-button>
+            <n-button type="info" @click="handleLogin">LOG IN</n-button>
           </div>
           <div class="forgot">Forgot your password?</div>
         </div>
@@ -43,7 +43,17 @@
 <script setup lang="ts">
   import { ref } from 'vue'
   import { NButton, NInput } from 'naive-ui'
+  import { useRouter } from 'vue-router'
+  import type { Router } from 'vue-router'
   const value = ref(null)
+
+  // 登陆处理
+  const router: Router = useRouter()
+  const handleLogin = (): void => {
+    console.log('here')
+    localStorage.setItem('token', 'mock-token')
+    router.push({ path: 'home' })
+  }
 </script>
 
 <style lang="scss" scoped>
@@ -89,6 +99,9 @@
           .password {
             font-weight: bold;
             margin: 10px 0;
+          }
+          .n-input {
+            border-radius: 5px;
           }
           .submit {
             width: 100%;
