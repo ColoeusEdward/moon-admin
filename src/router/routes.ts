@@ -61,7 +61,7 @@ const frameIn: RouteRecordRaw[] = [
 const frameOut: RouteRecordRaw[] = [
   // 登录
   {
-    path: '/Login',
+    path: '/login',
     name: 'login',
     component: components['login']
   }

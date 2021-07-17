@@ -4,12 +4,13 @@
     <div class="login-card">
       <div class="login-card-left">
         <div class="content">
-          <div class="logo">这里是logo</div>
+          <div class="logo">MOON_STUDIO</div>
           <div class="title">Welcome to</div>
+          <div class="title">ADMIN</div>
           <div class="username">USERNAME</div>
-          <n-input v-model:value="value" type="input" placeholder="基本的 Input" />
+          <n-input v-model:value="value" type="input" placeholder="基本的 Input" clearable />
           <div class="password">PASSWORD</div>
-          <n-input v-model:value="value" type="input" placeholder="基本的 Input" />
+          <n-input type="password" show-password-toggle placeholder="密码" :maxlength="8" clearable />
           <div class="submit">
             <n-button type="info">LOG IN</n-button>
           </div>
@@ -56,7 +57,7 @@
     &-card {
       position: relative;
       display: flex;
-      width: 1200px;
+      width: 1300px;
       height: 800px;
       min-height: 780px;
       border-radius: 25px;
@@ -71,16 +72,33 @@
           align-items: center;
           justify-content: center;
           flex-wrap: wrap;
-          width: 80%;
+          width: 70%;
           height: 50%;
           .logo,
           .title,
           .username,
-          .password,
-          .submit,
-          .forgot {
+          .password {
             width: 100%;
             text-align: left;
+          }
+          .title {
+            font-size: 50px;
+            font-weight: bold;
+          }
+          .username,
+          .password {
+            font-weight: bold;
+            margin: 10px 0;
+          }
+          .submit {
+            width: 100%;
+            margin: 20px 0;
+            .n-button {
+              width: 100%;
+            }
+          }
+          .forgot {
+            width: 100%;
           }
         }
       }
