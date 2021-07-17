@@ -1,6 +1,6 @@
 <template>
   <header class="moon-header-container">
-    <moon-logo />
+    <moon-logo :logo-image="logoImage" :logo-name="logoName" :logo-style="logoStyle" />
     <!--    <div class="navigation">-->
     <!--      <slot name="navigation" />-->
     <!--    </div>-->

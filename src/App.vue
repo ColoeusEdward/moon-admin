@@ -1,5 +1,5 @@
 <template>
-  <!-- <moon-header-container /> -->
+  <!--  <moon-header-container :logo-style="{ backgroundColor: 'red' }" logo-name="111" :style="{ backgroundColor: 'green' }" />-->
   <router-view></router-view>
   <!-- <div>123</div> -->
 </template>

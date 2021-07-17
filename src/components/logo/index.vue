@@ -27,7 +27,7 @@
   export default defineComponent({
     name: 'MoonLogo',
     props,
-    setup() {
+    setup(props) {
       const initStyle = (): void => {
         const style: MoonLogoStyle = props?.logoStyle
 
