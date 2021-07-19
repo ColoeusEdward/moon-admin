@@ -5,6 +5,9 @@
     <!--      <slot name="navigation" />-->
     <!--    </div>-->
   </header>
+  <router-view v-slot="{ Component }">
+    <component :is="Component" />
+  </router-view>
 </template>
 <script lang="ts">
   import { defineComponent, PropType } from 'vue'

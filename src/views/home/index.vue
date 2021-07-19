@@ -8,12 +8,6 @@
     <n-button type="error">Error</n-button>
   </n-space>
 </template>
-<script lang="ts">
-  import { defineComponent } from 'vue'
+<script lang="ts" setup>
   import { NSpace, NButton } from 'naive-ui'
-
-  export default defineComponent({
-    name: 'Home',
-    components: { NButton, NSpace }
-  })
 </script>
