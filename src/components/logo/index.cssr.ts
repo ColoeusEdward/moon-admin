@@ -17,7 +17,7 @@ const moonLogoStyle = cB(
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: '0 20px',
-    width: props?.width ??'229px',
+    width: props?.width ?? '229px',
     height: props?.height ?? '70px',
     backgroundColor: props?.backgroundColor ?? '#fff',
     borderRight: '1px solid #E7E8F2',
