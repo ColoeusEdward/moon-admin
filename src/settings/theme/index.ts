@@ -1,14 +1,11 @@
-// FIXME: 主题变量，后续可能存在一定优化
+/**
+ * 读取modules里边
+ */
+const files = import.meta.globEager('./modules/*.ts')
+const themeModules: { [key: string]: ModuleTree<unknown> } = {}
+Object.keys(files).forEach((path) => {
+  const fileName = path.split('/')[2]
+  themeModules[fileName.replace(/(\.\/|\.ts)/g, '')] = files[path].default
+})
 
-const theme = {
-  color1: '#0d54fc',
-  color2: '#3e3ff4',
-  color3: '#4198f7',
-  color4: '#49c496',
-  color5: '#263545',
-  color6: '#88949e',
-  color7: '#c6cdd8',
-  color8: '#dee5f1'
-}
-
-export default theme
+export default themeModules

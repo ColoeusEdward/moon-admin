@@ -1,9 +1,6 @@
 <template>
   <header class="moon-header-container">
     <moon-logo :logo-image="logoImage" :logo-name="logoName" :logo-style="logoStyle" />
-    <!--    <div class="navigation">-->
-    <!--      <slot name="navigation" />-->
-    <!--    </div>-->
   </header>
   <router-view v-slot="{ Component }">
     <component :is="Component" />

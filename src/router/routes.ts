@@ -27,7 +27,7 @@ const frameIn: RouteRecordRaw[] = [
   {
     path: '/',
     redirect: { name: 'home' },
-    component: () => import('@/layouts/header/index.vue'),
+    component: () => import('@/layouts/index.vue'),
     children: [
       // 首页
       {
