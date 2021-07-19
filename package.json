@@ -21,6 +21,7 @@
     "mockjs": "^1.1.0",
     "naive-ui": "^2.15.4",
     "nprogress": "^0.2.0",
+    "pinia": "^2.0.0-beta.5",
     "vfonts": "^0.1.0",
     "vue": "^3.0.5",
     "vue-router": "^4.0.10",

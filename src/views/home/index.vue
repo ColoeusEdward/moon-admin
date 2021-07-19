@@ -1,13 +1,16 @@
 <template>
   <n-space>
-    <n-button>Default</n-button>
-    <n-button type="primary">Primary</n-button>
-    <n-button type="info">Info</n-button>
-    <n-button type="success">Success</n-button>
-    <n-button type="warning">Warning</n-button>
-    <n-button type="error">Error</n-button>
+    <n-button @click="changeTheme">切换主题</n-button>
   </n-space>
 </template>
 <script lang="ts" setup>
   import { NSpace, NButton } from 'naive-ui'
+  import { useThemeStore } from '@/store/modules/theme'
+
+  const themeStore = useThemeStore()
+
+  // 切换默认主题
+  const changeTheme = () => {
+    themeStore.darkTheme = !themeStore.darkTheme
+  }
 </script>

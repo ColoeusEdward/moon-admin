@@ -1,19 +1,16 @@
 <template>
-  <!--  <moon-header-container :logo-style="{ backgroundColor: 'red' }" logo-name="111" :style="{ backgroundColor: 'green' }" />-->
-  <router-view></router-view>
-  <!-- <div>123</div> -->
+  <n-config-provider :theme="getTheme">
+    <router-view></router-view>
+  </n-config-provider>
 </template>
 
-<script lang="ts">
-  import { defineComponent } from 'vue'
-  // import MoonHeaderContainer from '@/layouts/header/index.vue'
+<script lang="ts" setup>
+  import { computed } from 'vue'
+  import { NConfigProvider, darkTheme } from 'naive-ui'
+  import { useThemeStore } from '@/store/modules/theme'
 
-  export default defineComponent({
-    name: 'App',
-    components: {
-      // MoonHeaderContainer
-    }
-  })
+  const themeStore = useThemeStore()
+  const getTheme = computed(() => (themeStore.darkTheme ? darkTheme : undefined))
 </script>
 
 <style>
