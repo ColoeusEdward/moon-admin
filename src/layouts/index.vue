@@ -16,7 +16,7 @@
   </n-config-provider>
 </template>
 
-<script type="ts" setup>
+<script lang="ts" setup>
   //组件引入
   import MoonHeaderContainer from '@/layouts/header/index.vue'
   import MoonSider from '@/layouts/sider/index.vue'
@@ -27,13 +27,12 @@
 
   const defaultTheme = themeOverrides['fin-wave']
 </script>
-<style type="scss" scoped>
+<style lang="scss" scoped>
   .moon-layout-theme-config {
     height: 100%;
     position: relative;
-  }
-
-  .moon-layout-container {
-    min-height: 100%;
+    .moon-layout-container {
+      min-height: 100%;
+    }
   }
 </style>

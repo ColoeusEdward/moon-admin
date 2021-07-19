@@ -4,16 +4,12 @@
   <!--  </div>-->
 </template>
 
-<script setup type="ts">
+<script setup lang="ts">
   import { NMenu, NIcon } from 'naive-ui'
   // import moonSiderStyle from './index.cssr'
   import { h } from 'vue'
 
-  import {
-    BookOutline as BookIcon,
-    PersonOutline as PersonIcon,
-    WineOutline as WineIcon
-  } from '@vicons/ionicons5'
+  import { BookOutline as BookIcon, PersonOutline as PersonIcon, WineOutline as WineIcon } from '@vicons/ionicons5'
 
   function renderIcon(icon) {
     return () => h(NIcon, null, { default: () => h(icon) })

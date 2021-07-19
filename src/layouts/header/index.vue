@@ -2,9 +2,6 @@
   <header class="moon-header-container">
     <moon-logo :logo-image="logoImage" :logo-name="logoName" :logo-style="logoStyle" />
   </header>
-  <router-view v-slot="{ Component }">
-    <component :is="Component" />
-  </router-view>
 </template>
 <script lang="ts">
   import { defineComponent, PropType } from 'vue'
