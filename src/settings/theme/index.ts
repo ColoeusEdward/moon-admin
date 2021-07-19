@@ -2,13 +2,14 @@
  * 读取modules里边
  */
 
-export const themeList: string[] = ['#0d54fc', '#3e3ff4', '#4198f7', '#49c496', '#263545', '#88949e', '#c6cdd8', '#dee5f1']
+import { GlobalThemeOverrides } from 'naive-ui'
 
-const themeSetting = {
-  //深色主题
-  darkTheme: false,
-  //主题色列表
-  themeList
-}
+const files = import.meta.globEager('./modules/*.ts')
+const themeModules: { [key: string]: GlobalThemeOverrides } = {}
+Object.keys(files).forEach((path) => {
+  const fileName = path.split('/')[2]
+  themeModules[fileName.replace(/(\.\/|\.ts)/g, '')] = files[path].default
+})
+console.log(123, themeModules)
 
-export default themeSetting
+export default themeModules
