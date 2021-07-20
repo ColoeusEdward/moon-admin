@@ -19,8 +19,7 @@ const moonLogoStyle = cB(
     padding: '0 20px',
     width: props?.width ?? '229px',
     height: props?.height ?? '70px',
-    backgroundColor: props?.backgroundColor ?? '#fff',
-    borderRight: '1px solid #E7E8F2',
+    backgroundColor: props?.backgroundColor ?? '',
     overflow: 'hidden'
   }),
   [
@@ -36,8 +35,7 @@ const moonLogoStyle = cB(
         fontFamily: 'Helvetica Neue',
         fontStyle: 'normal',
         fontWeight: 'bold',
-        fontSize: '18px',
-        color: '#25233A'
+        fontSize: '18px'
       })
     )
   ]

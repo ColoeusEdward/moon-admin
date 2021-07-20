@@ -1,6 +1,5 @@
 interface MoonHeaderContainerStyle {
   height?: string | number
-  backgroundColor?: string
 }
 
 interface MoonLogoStyle extends MoonHeaderContainerStyle{

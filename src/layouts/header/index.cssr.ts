@@ -18,8 +18,8 @@ const moonHeaderContainerStyle = cB(
     alignItems: 'center',
     width: '100%',
     height: props?.height ?? '70px',
-    backgroundColor: props?.backgroundColor ?? '#fff',
-    borderBottom: '1px solid #E7E8F2',
+    backgroundColor: props?.backgroundColor ?? '',
+    borderBottom: '1px solid var(--border-color)',
     overflow: 'hidden'
   })
 )

@@ -24,17 +24,16 @@
     props,
     setup(props) {
       const initStyle = (): void => {
-        const style: MoonHeaderContainerStyle = props?.style
+        const style = props?.style as MoonHeaderContainerStyle
 
         if (!style) {
           moonHeaderContainerStyle.mount()
         } else {
-          const { height, backgroundColor } = style
+          const { height } = style
 
           moonHeaderContainerStyle.mount({
             props: {
-              height: typeof height === 'number' ? height + 'px' : height,
-              backgroundColor
+              height: typeof height === 'number' ? height + 'px' : height
             }
           })
         }

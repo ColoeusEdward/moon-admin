@@ -29,18 +29,17 @@
     props,
     setup(props) {
       const initStyle = (): void => {
-        const style: MoonLogoStyle = props?.logoStyle
+        const style = props?.logoStyle as MoonLogoStyle
 
         if (!style) {
           moonLogoStyle.mount()
         } else {
-          const { height, width, backgroundColor } = style
+          const { height, width } = style
 
           moonLogoStyle.mount({
             props: {
               height: typeof height === 'number' ? height + 'px' : height,
-              width: typeof width === 'number' ? width + 'px' : width,
-              backgroundColor
+              width: typeof width === 'number' ? width + 'px' : width
             }
           })
         }

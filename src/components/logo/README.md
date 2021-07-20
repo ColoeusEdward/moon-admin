@@ -12,6 +12,5 @@
 
 | 名称 | 类型 | 默认值 | 说明 |
 | --- | --- | --- | --- |
-| backgroudColor | `string` | `#fff` | 头部logo组件背景色 |
 | height | `string \| number` | `70px` | 头部logo组件高度 |
 | width | `string \| number` | `270px` | 头部logo组件宽度 |
