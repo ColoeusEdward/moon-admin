@@ -11,14 +11,13 @@ c.use(plugin)
 const { cB } = plugin
 
 const moonHeaderContainerStyle = cB(
-  'header-container',
+  'header',
   ({ props }) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
-    height: props?.height ?? '70px',
-    backgroundColor: props?.backgroundColor ?? '',
+    height: '70px',
     borderBottom: '1px solid var(--border-color)',
     overflow: 'hidden'
   })

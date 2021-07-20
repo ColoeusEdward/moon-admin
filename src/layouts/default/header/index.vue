@@ -1,5 +1,5 @@
 <template>
-  <header class="moon-header-container">
+  <header class="moon-header">
     <moon-logo />
     <moon-navigation />
   </header>
@@ -11,7 +11,7 @@
   import moonHeaderContainerStyle from '@/layouts/default/header/index.cssr'
 
   export default defineComponent({
-    name: 'MoonHeaderContainer',
+    name: 'MoonHeader',
     components: {
       MoonLogo,
       MoonNavigation
