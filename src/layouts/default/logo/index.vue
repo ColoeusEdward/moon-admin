@@ -7,12 +7,15 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent, PropType } from 'vue'
+  import { defineComponent } from 'vue'
   import Logo from '@/assets/images/logo.png'
+  import moonLogoStyle from '@/layouts/default/logo/index.cssr'
 
   export default defineComponent({
     name: 'MoonLogo',
     setup() {
+      moonLogoStyle.mount()
+
       return {
         logo: Logo
       }
