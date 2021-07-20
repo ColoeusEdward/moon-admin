@@ -22,10 +22,7 @@
   import MoonSider from '@/layouts/sider/index.vue'
   import { NConfigProvider, NLayout, NLayoutHeader, NLayoutSider, NLayoutContent } from 'naive-ui'
 
-  //主体引入
-  import themeOverrides from '@/settings/theme'
-
-  const defaultTheme = themeOverrides['fin-wave']
+  const defaultTheme = {}
 </script>
 <style lang="scss" scoped>
   .moon-layout-theme-config {

@@ -10,6 +10,5 @@ Object.keys(files).forEach((path) => {
   const fileName = path.split('/')[2]
   themeModules[fileName.replace(/(\.\/|\.ts)/g, '')] = files[path].default
 })
-console.log(123, themeModules)
 
 export default themeModules
