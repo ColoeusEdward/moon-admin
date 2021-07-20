@@ -1,3 +1,4 @@
+import layoutModules from '@/settings/layout'
 import type { Component } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
 
@@ -27,7 +28,7 @@ const frameIn: RouteRecordRaw[] = [
   {
     path: '/',
     redirect: { name: 'home' },
-    component: () => import('@/layouts/index.vue'),
+    component: () => import(`../layouts/${layoutModules}/index.vue`),
     children: [
       // 首页
       {
