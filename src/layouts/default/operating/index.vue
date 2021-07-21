@@ -13,7 +13,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
   import { defineComponent } from 'vue'
   import { Settings } from '@vicons/tabler'
   import { Alert16Regular } from '@vicons/fluent'
@@ -28,5 +28,3 @@
     }
   })
 </script>
-
-<style lang="scss" scoped></style>

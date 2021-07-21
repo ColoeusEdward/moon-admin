@@ -6,6 +6,7 @@
     </slot>
   </div>
 </template>
+
 <script lang="ts">
   import { defineComponent } from 'vue'
   import Logo from '@/assets/images/logo.png'

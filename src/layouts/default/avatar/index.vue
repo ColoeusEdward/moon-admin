@@ -11,7 +11,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
   import { defineComponent } from 'vue'
   import { ArrowDropDownRound } from '@vicons/material'
   import { NIcon } from 'naive-ui'

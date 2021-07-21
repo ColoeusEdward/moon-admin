@@ -4,6 +4,7 @@
     <moon-navigation />
   </header>
 </template>
+
 <script lang="ts">
   import { defineComponent } from 'vue'
   import MoonLogo from '@/layouts/default/logo/index.vue'
