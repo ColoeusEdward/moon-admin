@@ -10,21 +10,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
-import moonCardStyle from '@/components/card/index.cssr'
+  import { defineComponent, PropType } from 'vue'
+  import moonCardStyle from '@/components/card/index.cssr'
 
-const props = {
-  title: {
-    type: String as PropType<string>,
-    default: 'card-title'
+  const props = {
+    title: {
+      type: String as PropType<string>,
+      default: 'card-title'
+    }
   }
-}
 
-export default defineComponent({
-  name: 'MoonCard',
-  props,
-  setup() {
-    console.log(moonCardStyle.mount())
-  }
-})
+  export default defineComponent({
+    name: 'MoonCard',
+    props,
+    setup() {
+      moonCardStyle.mount()
+    }
+  })
 </script>
