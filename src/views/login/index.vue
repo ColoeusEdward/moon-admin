@@ -51,7 +51,6 @@
   // 登陆处理
   const router: Router = useRouter()
   const handleLogin = (): void => {
-    console.log('here')
     localStorage.setItem('token', 'mock-token')
     router.push({ path: 'home' })
   }
