@@ -1,7 +1,7 @@
 {
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --open",
     "eslint": "eslint --ext .ts,.tsx,.vue src --fix",
     "format": "prettier --write src/**/*.{vue,ts,tsx}",
     "build": "vue-tsc --noEmit && vite build --mode production",
