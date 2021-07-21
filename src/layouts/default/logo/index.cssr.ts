@@ -34,7 +34,8 @@ const moonLogoStyle = cB(
         fontFamily: 'Helvetica Neue',
         fontStyle: 'normal',
         fontWeight: 'bold',
-        fontSize: '18px'
+        fontSize: '18px',
+        color: '#25233A'
       })
     )
   ]

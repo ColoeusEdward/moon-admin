@@ -16,8 +16,9 @@ const moonNavigationStyle = cB(
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: 'calc(100% - 310px)',
-    padding: '0 20px'
+    width: 'calc(100% - 330px)',
+    padding: '0 30px',
+    cursor: 'pointer'
   }),
   [
     cE(
@@ -26,14 +27,16 @@ const moonNavigationStyle = cB(
         fontFamily: 'Helvetica Neue',
         fontStyle: 'normal',
         fontWeight: 500,
-        fontSize: '16px'
+        fontSize: '16px',
+        color: '#33343D'
       })
     ),
     cE(
       'userinfo',
       () => ({
         display: 'flex',
-        justifyContent: 'right'
+        justifyContent: 'flex-end',
+        alignItems: 'center'
       })
     )
   ]
