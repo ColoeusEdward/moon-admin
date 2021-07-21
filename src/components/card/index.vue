@@ -1,6 +1,6 @@
 <template>
   <div class="moon-card">
-    <header class="moon-card__header">
+    <header v-if="isHeader" class="moon-card__header">
       <h3>{{ title }}</h3>
     </header>
     <slot>
@@ -17,6 +17,10 @@
     title: {
       type: String as PropType<string>,
       default: 'card-title'
+    },
+    isHeader: {
+      type: Boolean as PropType<boolean>,
+      default: true
     }
   }
 
