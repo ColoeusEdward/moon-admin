@@ -1,12 +1,10 @@
 <template>
   <div class="moon-navigation">
-    <slot name="navigation">
-      <div class="moon-navigation__path">Overview</div>
-      <div class="moon-navigation__userinfo">
-        <moon-operating />
-        <moon-avatar />
-      </div>
-    </slot>
+    <div class="moon-navigation__path">Overview</div>
+    <div class="moon-navigation__userinfo">
+      <moon-operating />
+      <moon-avatar />
+    </div>
   </div>
 </template>
 

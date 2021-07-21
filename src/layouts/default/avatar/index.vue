@@ -22,7 +22,7 @@
     name: 'MoonAvatar',
     components: { ArrowDropDownRound, NIcon },
     setup() {
-      console.log(moonAvatarStyle.mount())
+      moonAvatarStyle.mount()
 
       return {
         avatarImage: Avatar

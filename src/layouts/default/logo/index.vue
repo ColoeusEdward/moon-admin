@@ -1,9 +1,7 @@
 <template>
   <div class="moon-logo">
-    <slot name="logo">
-      <img class="moon-logo__image" :src="logo" alt="" />
-      <span class="moon-logo__name">MoonAdmin</span>
-    </slot>
+    <img class="moon-logo__image" :src="logo" alt="" />
+    <span class="moon-logo__name">MoonAdmin</span>
   </div>
 </template>
 
