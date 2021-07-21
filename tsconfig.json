@@ -22,6 +22,8 @@
     // --strictNullChecks和 --strictFunctionTypes和--strictPropertyInitialization。
     "strict": true,
 
+    "noImplicitAny": false,
+
     // 生成相应的 .map文件。
     "sourceMap": true,
 
