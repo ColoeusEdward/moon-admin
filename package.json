@@ -10,9 +10,7 @@
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx,vue}": [
-      
-    ]
+    "src/**/*.{ts,tsx,vue}": []
   },
   "dependencies": {
     "axios": "^0.21.1",
