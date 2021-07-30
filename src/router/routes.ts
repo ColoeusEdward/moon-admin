@@ -27,18 +27,18 @@ Object.keys(modules).forEach((key: string) => {
 const frameIn: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: { name: 'home' },
+    redirect: { name: 'dash' },
     component: () => import(`../layouts/${layoutModules}/index.vue`),
     children: [
       // 首页
       {
-        path: 'home',
-        name: 'home',
+        path: 'dash',
+        name: 'dash',
         meta: {
           title: '首页',
-          auth: true
+          auth: false
         },
-        component: components['home']
+        component: components['dash']
       },
       // 刷新页面 必须保留
       {

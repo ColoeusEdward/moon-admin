@@ -1,5 +1,5 @@
 <template>
-  <n-drawer v-model:show="showSettingDrawer" :width="360" placement="right">
+  <n-drawer :show="showSettingDrawer" :width="360" placement="right">
     <n-drawer-content title="设置">
       <n-space>
         <n-button @click="changeTheme">切换主题</n-button>
@@ -13,9 +13,10 @@
   import { useThemeStore } from '@/store/modules/theme'
 
   type Props = {
-    showSettingDrawer: Boolean
+    showSettingDrawer: boolean
   }
   const props = defineProps<Props>()
+  // const show = props.showSettingDrawer
 
   // 切换默认主题
   const themeStore = useThemeStore()

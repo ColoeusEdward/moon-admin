@@ -22,7 +22,6 @@ router.beforeEach(async (to: RouteLocationNormalized, from: RouteLocationNormali
     // 这里暂时将cookie里是否存有token作为验证是否登录的条件
     // 请根据自身业务需要修改
     const token = localStorage.getItem('token')
-
     if (token && token !== 'undefined') {
       next()
     } else {

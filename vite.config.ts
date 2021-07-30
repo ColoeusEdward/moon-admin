@@ -11,4 +11,14 @@ export default defineConfig({
     }
   },
   plugins: [vue(), vueJsx()]
+  , server: {
+    port: 3333
+  }
+  , build: process.env.NODE_ENV === 'production' ? {} : {
+    rollupOptions: {
+      output: {
+        sourcemap: true
+      }
+    }
+  }
 })
