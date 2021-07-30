@@ -7,3 +7,12 @@ declare module '*.vue' {
 }
 
 declare module 'mockjs'
+
+// declare module 'vue' {
+//   interface Vue {
+//       $router: VueRouter;
+//       $route: Route;
+//       $store: Store<any>;
+//       $api: any;
+//   }
+// }
