@@ -6,8 +6,10 @@ import { store } from './store'
 import 'vfonts/Lato.css'
 // 等宽字体
 import 'vfonts/FiraCode.css'
+import VueGridLayout from 'vue-grid-layout'
 
 const app = createApp(App)
 app.use(store)
 app.use(router)
+app.use(VueGridLayout)
 app.mount('#app')
