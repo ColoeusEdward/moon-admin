@@ -28,7 +28,7 @@ const moonNavigationStyle = cB(
         fontStyle: 'normal',
         fontWeight: 500,
         fontSize: '16px',
-        color: '#33343D'
+        color: '#eee'
       })
     ),
     cE(

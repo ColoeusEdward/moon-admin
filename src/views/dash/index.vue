@@ -6,12 +6,12 @@
       <div class="columns">
         <div v-for="item in layout" :key="item.i" class="layoutItem">
           <b>{{ item.i }}</b
-          >: [{{ item.x }}, {{ item.y }}, {{ item.w }}, {{ item.h }}]
+          >: [{{ item.x }}, {{ item.y }}, {{ item.w }}, {{ item.h }},{{ item.type }}]
         </div>
       </div>
     </div>
     <grid-layout v-model:layout="layout" :col-num="12" :row-height="30" :is-draggable="gridConfig.draggable" :is-resizable="gridConfig.resizable" :vertical-compact="gridConfig.compact" :use-css-transforms="true">
-      <grid-item v-for="item in layout" :key="item.i" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i">
+      <grid-item v-for="item in layout" :key="item.i" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i" :class="item.type">
         <span class="text">{{ item.i }}</span>
         <!-- <span class="remove" @click="removeItem(item.i)">x</span> -->
       </grid-item>
@@ -28,7 +28,7 @@
 
   // const value = ref(null)
   const testLayout = [
-    { x: 0, y: 0, w: 2, h: 2, i: '0' },
+    { x: 0, y: 0, w: 2, h: 2, i: '0', type: 'btn' },
     { x: 2, y: 0, w: 2, h: 4, i: '1' },
     { x: 4, y: 0, w: 2, h: 5, i: '2' },
     { x: 6, y: 0, w: 2, h: 3, i: '3' },
@@ -68,5 +68,82 @@
   .dash {
     width: 100%;
     height: 100%;
+  }
+
+  .content {
+    width: 100%;
+  }
+  .vue-grid-layout {
+    background: #0b0b0e;
+  }
+  .layoutJSON {
+    background: #0b0b0e;
+    border: 1px solid black;
+    margin-top: 10px;
+    padding: 10px;
+  }
+  .columns {
+    -moz-columns: 120px;
+    -webkit-columns: 120px;
+    columns: 120px;
+  }
+  .vue-resizable-handle {
+    z-index: 5000;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    bottom: 0;
+    right: 0;
+    background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pg08IS0tIEdlbmVyYXRvcjogQWRvYmUgRmlyZXdvcmtzIENTNiwgRXhwb3J0IFNWRyBFeHRlbnNpb24gYnkgQWFyb24gQmVhbGwgKGh0dHA6Ly9maXJld29ya3MuYWJlYWxsLmNvbSkgLiBWZXJzaW9uOiAwLjYuMSAgLS0+DTwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DTxzdmcgaWQ9IlVudGl0bGVkLVBhZ2UlMjAxIiB2aWV3Qm94PSIwIDAgNiA2IiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjojZmZmZmZmMDAiIHZlcnNpb249IjEuMSINCXhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiDQl4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjZweCIgaGVpZ2h0PSI2cHgiDT4NCTxnIG9wYWNpdHk9IjAuMzAyIj4NCQk8cGF0aCBkPSJNIDYgNiBMIDAgNiBMIDAgNC4yIEwgNCA0LjIgTCA0LjIgNC4yIEwgNC4yIDAgTCA2IDAgTCA2IDYgTCA2IDYgWiIgZmlsbD0iIzAwMDAwMCIvPg0JPC9nPg08L3N2Zz4=');
+    background-position: bottom right;
+    padding: 0 3px 3px 0;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    box-sizing: border-box;
+    cursor: se-resize;
+  }
+  .vue-grid-item {
+    &.btn:active {
+      background-color: #3f5772;
+    }
+    &.vue-grid-placeholder {
+      background-color: #000;
+    }
+  }
+  .vue-grid-item:not(.vue-grid-placeholder) {
+    background: #45c19c;
+    border: 1px solid #35495e;
+    border-radius: 20px;
+    color: #fff;
+  }
+  .vue-grid-item.resizing {
+    opacity: 0.9;
+    border: 10px solid #fff;
+  }
+  .vue-grid-item.static {
+    background: #cce;
+  }
+  .vue-grid-item .text {
+    font-size: 24px;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 24px;
+  }
+  .vue-grid-item .minMax {
+    font-size: 12px;
+  }
+  .vue-grid-item .add {
+    cursor: pointer;
+  }
+  .remove {
+    position: absolute;
+    right: 2px;
+    top: 0;
+    cursor: pointer;
   }
 </style>

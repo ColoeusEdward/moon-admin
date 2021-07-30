@@ -7,7 +7,7 @@
 
 <script lang="ts">
   import { defineComponent } from 'vue'
-  import Logo from '@/assets/images/logo.png'
+  import Logo from '@/assets/images/logo.webp'
   import moonLogoStyle from '@/layouts/default/logo/index.cssr'
 
   export default defineComponent({

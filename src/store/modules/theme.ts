@@ -7,7 +7,7 @@ interface themeListState {
 export const useThemeStore = defineStore({
   id: 'theme',
   state: (): themeListState => ({
-    darkTheme: false
+    darkTheme: true
   }),
   getters: {
     getTheme(): boolean {

@@ -11,7 +11,7 @@
       </n-icon>
     </div>
   </div>
-  <moon-setting-drawer :show-setting-drawer="showSettingDrawer" />
+  <moon-setting-drawer v-model:show-setting-drawer="showSettingDrawer" />
 </template>
 
 <script lang="ts">
@@ -26,7 +26,7 @@
     name: 'MoonOperating',
     components: { Settings, Alert16Regular, NIcon, MoonSettingDrawer },
     setup() {
-      const showSettingDrawer = ref(false)
+      let showSettingDrawer = ref(false)
 
       moonOperatingStyle.mount()
 

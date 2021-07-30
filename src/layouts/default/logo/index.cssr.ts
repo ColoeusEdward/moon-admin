@@ -25,7 +25,7 @@ const moonLogoStyle = cB(
     cE(
       'image',
       () => ({
-        height: '30px'
+        height: '70px'
       })
     ),
     cE(
@@ -35,7 +35,7 @@ const moonLogoStyle = cB(
         fontStyle: 'normal',
         fontWeight: 'bold',
         fontSize: '18px',
-        color: '#25233A'
+        color: '#eee'
       })
     )
   ]
