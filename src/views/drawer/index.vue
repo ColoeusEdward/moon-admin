@@ -15,7 +15,7 @@
   type Props = {
     showSettingDrawer: boolean
   }
-  const props = defineProps<Props>()
+  defineProps<Props>()
   // const show = props.showSettingDrawer
 
   // 切换默认主题

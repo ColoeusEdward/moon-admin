@@ -4,7 +4,7 @@
     <div class="layoutJSON">
       Displayed as <code>[x, y, w, h]</code>:
       <div class="columns">
-        <div class="layoutItem" v-for="item in layout" :key="item.i">
+        <div v-for="item in layout" :key="item.i" class="layoutItem">
           <b>{{ item.i }}</b
           >: [{{ item.x }}, {{ item.y }}, {{ item.w }}, {{ item.h }}]
         </div>
