@@ -1562,6 +1562,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bent@npm:^7.3.12":
+  version: 7.3.12
+  resolution: "bent@npm:7.3.12"
+  dependencies:
+    bytesish: ^0.4.1
+    caseless: ~0.12.0
+    is-stream: ^2.0.0
+  checksum: b0c08f6fa204baec0841021f5cff49aba929bbff28089bbac0d446122aa5f8e10b1b6837310b0800717cbf431c984bead2ed130bec35045d4ea688d896458d54
+  languageName: node
+  linkType: hard
+
 "big.js@npm:^5.2.2":
   version: 5.2.2
   resolution: "big.js@npm:5.2.2"
@@ -1614,6 +1625,13 @@ __metadata:
   bin:
     browserslist: cli.js
   checksum: 3dffc86892d2dcfcfc66b52519b7e5698ae070b4fc92ab047e760efc4cae0474e9e70bbe10d769c8d3491b655ef3a2a885b88e7196c83cc5dc0a46dfdba8b70c
+  languageName: node
+  linkType: hard
+
+"bytesish@npm:^0.4.1":
+  version: 0.4.4
+  resolution: "bytesish@npm:0.4.4"
+  checksum: 50a6c9423f66fff984676ee1d3c5f12d2a23830cb5de81abc597415aa2f51cc617b251d660eede10b8e45bf3a3a5c31d4be467ec69888f31ccc66e90cb586ad5
   languageName: node
   linkType: hard
 
@@ -1670,6 +1688,13 @@ __metadata:
   version: 1.0.30001243
   resolution: "caniuse-lite@npm:1.0.30001243"
   checksum: 912cf885036847a8b6972cd65170d9f355a08b08cfd6b06bcaa8de965755ee5b35a4bbe4eb73844aac313a42e2038ae0971a5b4c9b94d631db2f073c906ce1d6
+  languageName: node
+  linkType: hard
+
+"caseless@npm:~0.12.0":
+  version: 0.12.0
+  resolution: "caseless@npm:0.12.0"
+  checksum: b43bd4c440aa1e8ee6baefee8063b4850fd0d7b378f6aabc796c9ec8cb26d27fb30b46885350777d9bd079c5256c0e1329ad0dc7c2817e0bb466810ebb353751
   languageName: node
   linkType: hard
 
@@ -4247,6 +4272,7 @@ fsevents@~2.3.2:
     "@vitejs/plugin-vue-jsx": ^1.1.7
     "@vue/compiler-sfc": 3.1.5
     axios: ^0.21.1
+    bent: ^7.3.12
     css-render: ^0.15.4
     eslint: ^7.30.0
     eslint-config-prettier: ^8.3.0
@@ -4259,6 +4285,7 @@ fsevents@~2.3.2:
     nprogress: ^0.2.0
     pinia: 2.0.0-beta.5
     prettier: ^2.3.2
+    rxjs: ^7.3.0
     sass: ^1.35.2
     sass-loader: ^12.1.0
     typescript: ^4.3.5
@@ -4286,6 +4313,15 @@ fsevents@~2.3.2:
   dependencies:
     tslib: ^1.9.0
   checksum: bc334edef1bb8bbf56590b0b25734ba0deaf8825b703256a93714308ea36dff8a11d25533671adf8e104e5e8f256aa6fdfe39b2e248cdbd7a5f90c260acbbd1b
+  languageName: node
+  linkType: hard
+
+"rxjs@npm:^7.3.0":
+  version: 7.3.0
+  resolution: "rxjs@npm:7.3.0"
+  dependencies:
+    tslib: ~2.1.0
+  checksum: e63adb8808ea6c299a020d56d2af92bcf71efe641adf838499932e29b8f5fd5ff00873653ad48ba3ecf6c9fc11c3c595acf995e8d456f9d8cb85c7d37a1fd72e
   languageName: node
   linkType: hard
 
@@ -4711,6 +4747,13 @@ fsevents@~2.3.2:
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
   checksum: dbe628ef87f66691d5d2959b3e41b9ca0045c3ee3c7c7b906cc1e328b39f199bb1ad9e671c39025bd56122ac57dfbf7385a94843b1cc07c60a4db74795829acd
+  languageName: node
+  linkType: hard
+
+"tslib@npm:~2.1.0":
+  version: 2.1.0
+  resolution: "tslib@npm:2.1.0"
+  checksum: aa189c8179de0427b0906da30926fd53c59d96ec239dff87d6e6bc831f608df0cbd6f77c61dabc074408bd0aa0b9ae4ec35cb2c15f729e32f37274db5730cb78
   languageName: node
   linkType: hard
 

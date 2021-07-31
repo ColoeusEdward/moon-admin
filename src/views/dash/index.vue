@@ -112,8 +112,9 @@
   }
   .vue-grid-item:not(.vue-grid-placeholder) {
     background: #45c19c;
-    border: 1px solid #35495e;
-    border-radius: 20px;
+    border: 1px solid #45c19c;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    border-radius: 5px;
     color: #fff;
   }
   .vue-grid-item.resizing {

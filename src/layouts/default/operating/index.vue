@@ -11,11 +11,11 @@
       </n-icon>
     </div>
   </div>
-  <moon-setting-drawer v-model:show-setting-drawer="showSettingDrawer" />
+  <moon-setting-drawer />
 </template>
 
 <script lang="ts">
-  import { defineComponent, ref } from 'vue'
+  import { defineComponent, ref, provide } from 'vue'
   import { Settings } from '@vicons/tabler'
   import { Alert16Regular } from '@vicons/fluent'
   import { NIcon } from 'naive-ui'
@@ -26,15 +26,18 @@
     name: 'MoonOperating',
     components: { Settings, Alert16Regular, NIcon, MoonSettingDrawer },
     setup() {
-      let showSettingDrawer = ref(false)
+      const showSettingDrawer = ref(false)
 
       moonOperatingStyle.mount()
+      const handleSettingDrawer = () => {
+        showSettingDrawer.value = !showSettingDrawer.value
+      }
+
+      provide('showSettingDrawer', showSettingDrawer)
 
       return {
         showSettingDrawer,
-        handleSettingDrawer: () => {
-          showSettingDrawer.value = !showSettingDrawer.value
-        }
+        handleSettingDrawer
       }
     }
   })

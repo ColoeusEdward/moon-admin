@@ -12,16 +12,16 @@
     "upup": "yarn upgrade-interactive"
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx,vue}": [
-
-    ]
+    "src/**/*.{ts,tsx,vue}": []
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "bent": "^7.3.12",
     "mockjs": "^1.1.0",
     "naive-ui": "^2.15.4",
     "nprogress": "^0.2.0",
     "pinia": "2.0.0-beta.5",
+    "rxjs": "^7.3.0",
     "vfonts": "^0.1.0",
     "vue": "3.1.5",
     "vue-grid-layout": "3.0.0-beta1",
