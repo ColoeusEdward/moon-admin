@@ -11,7 +11,7 @@
 
 <script lang="ts">
   import { defineComponent, PropType } from 'vue'
-  import moonCardStyle from '@/components/card/index.cssr'
+  import moonCardStyle from '@/components/MoonCard/index.cssr'
 
   const props = {
     title: {

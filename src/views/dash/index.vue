@@ -67,7 +67,7 @@
 <style lang="scss" scoped>
   .dash {
     width: 100%;
-    height: 100%;
+    height: 90vh;
   }
 
   .content {

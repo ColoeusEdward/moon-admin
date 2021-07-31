@@ -40,6 +40,15 @@ const frameIn: RouteRecordRaw[] = [
         },
         component: components['dash']
       },
+      {
+        path: 'home',
+        name: 'home',
+        meta: {
+          title: 'ls首页',
+          auth: false
+        },
+        component: components['home']
+      },
       // 刷新页面 必须保留
       {
         path: 'refresh',
