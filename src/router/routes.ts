@@ -31,24 +31,24 @@ const frameIn: RouteRecordRaw[] = [
     component: () => import(`../layouts/${layoutModules}/index.vue`),
     children: [
       // 首页
-      {
-        path: 'dash',
-        name: 'dash',
-        meta: {
-          title: '首页',
-          auth: false
-        },
-        component: components['dash']
-      },
-      {
-        path: 'home',
-        name: 'home',
-        meta: {
-          title: 'ls首页',
-          auth: false
-        },
-        component: components['home']
-      },
+      // {
+      //   path: 'dash',
+      //   name: 'dash',
+      //   meta: {
+      //     title: '首页',
+      //     auth: false
+      //   },
+      //   component: components['dash']
+      // },
+      // {
+      //   path: 'home',
+      //   name: 'home',
+      //   meta: {
+      //     title: 'ls首页',
+      //     auth: false
+      //   },
+      //   component: components['home']
+      // },
       // 刷新页面 必须保留
       {
         path: 'refresh',
@@ -64,6 +64,16 @@ const frameIn: RouteRecordRaw[] = [
     ]
   }
 ]
+
+for (const k in components) {
+  frameIn[0] &&
+    frameIn[0].children &&
+    frameIn[0].children.push({
+      path: k,
+      name: k,
+      component: components[k]
+    })
+}
 
 /**
  * 在主框架之外显示

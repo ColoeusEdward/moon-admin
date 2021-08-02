@@ -1,59 +1,51 @@
 <template>
   <!-- <n-layout-content> -->
   <div class="dash">
-    <div class="layoutJSON">
-      Displayed as <code>[x, y, w, h]</code>:
-      <div class="columns">
-        <div v-for="item in layout" :key="item.i" class="layoutItem">
-          <b>{{ item.i }}</b
-          >: [{{ item.x }}, {{ item.y }}, {{ item.w }}, {{ item.h }},{{ item.type }}]
-        </div>
-      </div>
-    </div>
-    <grid-layout v-model:layout="layout" :col-num="12" :row-height="30" :is-draggable="gridConfig.draggable" :is-resizable="gridConfig.resizable" :vertical-compact="gridConfig.compact" :use-css-transforms="true">
-      <grid-item v-for="item in layout" :key="item.i" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i" :class="item.type">
-        <span class="text">{{ item.i }}</span>
-        <!-- <span class="remove" @click="removeItem(item.i)">x</span> -->
-      </grid-item>
-    </grid-layout>
+    <n-spin :show="spinShow">
+      <grid-layout v-model:layout="layout" :col-num="12" :row-height="30" :is-draggable="gridConfig.draggable" :is-resizable="gridConfig.resizable" :vertical-compact="gridConfig.compact" :use-css-transforms="true">
+        <grid-item v-for="item in layout" :key="item.i" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i" :class="item.type" @click="handleItemClick(item.i)">
+          <span v-if="item.type == 'btn'" class="text">{{ item.text || item.i }}</span>
+          <!-- <span class="remove" @click="removeItem(item.i)">x</span> -->
+        </grid-item>
+      </grid-layout>
+    </n-spin>
   </div>
   <!-- </n-layout-content> -->
 </template>
 
 <script setup lang="ts">
-  // import { ref } from 'vue'
-  // import { NButton, NInput } from 'naive-ui'
+  import useSimpleBtn from './simpleBtn'
+  import { ref } from 'vue'
+  import { NSpin } from 'naive-ui'
   // import { useRouter } from 'vue-router'
   // import type { Router } from 'vue-router'
 
   // const value = ref(null)
-  const testLayout = [
-    { x: 0, y: 0, w: 2, h: 2, i: '0', type: 'btn' },
-    { x: 2, y: 0, w: 2, h: 4, i: '1' },
-    { x: 4, y: 0, w: 2, h: 5, i: '2' },
-    { x: 6, y: 0, w: 2, h: 3, i: '3' },
-    { x: 8, y: 0, w: 2, h: 3, i: '4' },
-    { x: 10, y: 0, w: 2, h: 3, i: '5' },
-    { x: 0, y: 5, w: 2, h: 5, i: '6' },
-    { x: 2, y: 5, w: 2, h: 5, i: '7' },
-    { x: 4, y: 5, w: 2, h: 5, i: '8' },
-    { x: 6, y: 4, w: 2, h: 4, i: '9' },
-    { x: 8, y: 4, w: 2, h: 4, i: '10' },
-    { x: 10, y: 4, w: 2, h: 4, i: '11' },
-    { x: 0, y: 10, w: 2, h: 5, i: '12' },
-    { x: 2, y: 10, w: 2, h: 5, i: '13' },
-    { x: 4, y: 8, w: 2, h: 4, i: '14' },
-    { x: 6, y: 8, w: 2, h: 4, i: '15' },
-    { x: 8, y: 10, w: 2, h: 5, i: '16' },
-    { x: 10, y: 4, w: 2, h: 2, i: '17' },
-    { x: 0, y: 9, w: 2, h: 3, i: '18' },
-    { x: 2, y: 6, w: 2, h: 2, i: '19' }
+  //每行最长20
+  // let sbr = reactive(sb)
+  const sb = useSimpleBtn()
+  const spinShow = ref(false)
+
+  const layout = [
+    { x: 0, y: 0, w: 2, h: 2, i: '0', type: 'btn', text: '释放式上传', click: sb.recordRelease },
+    { x: 2, y: 0, w: 2, h: 2, i: '1', type: 'btn', text: '释放MP4', click: sb.mp4Release },
+    { x: 4, y: 0, w: 2, h: 5, i: '2', type: 'btn' },
+    { x: 6, y: 0, w: 2, h: 3, i: '3', type: 'btn' },
+    { x: 8, y: 0, w: 2, h: 3, i: '4', type: 'btn' },
+    { x: 10, y: 0, w: 2, h: 3, i: '5', type: 'btn' },
+    { x: 0, y: 2, w: 2, h: 4, i: '6', type: 'list', text: '查看record' }
   ]
-  let layout = JSON.parse(JSON.stringify(testLayout))
   let gridConfig = {
     draggable: true,
     resizable: true,
     compact: true
+  }
+
+  // method
+  const handleItemClick = async (i) => {
+    spinShow.value = true
+    layout[i].click && (await layout[i].click())
+    spinShow.value = false
   }
 
   // 登陆处理
@@ -111,11 +103,15 @@
     }
   }
   .vue-grid-item:not(.vue-grid-placeholder) {
-    background: #45c19c;
-    border: 1px solid #45c19c;
+    user-select: none;
+    background: #3ba786;
+    border: 1px solid #3ba786;
     box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
     border-radius: 5px;
     color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   .vue-grid-item.resizing {
     opacity: 0.9;
@@ -127,13 +123,13 @@
   .vue-grid-item .text {
     font-size: 24px;
     text-align: center;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    height: 24px;
+    // position: absolute;
+    // top: 0;
+    // bottom: 0;
+    // left: 0;
+    // right: 0;
+    // margin: auto;
+    height: 32px;
   }
   .vue-grid-item .minMax {
     font-size: 12px;

@@ -20,9 +20,12 @@
   //组件引入
   import MoonHeaderContainer from '@/layouts/default/header/index.vue'
   import MoonSider from '@/layouts/default/sider/index.vue'
-  import { NConfigProvider, NLayout, NLayoutHeader, NLayoutSider, NLayoutContent } from 'naive-ui'
+  import { NConfigProvider, NLayout, NLayoutHeader, NLayoutSider, NLayoutContent, useMessage } from 'naive-ui'
 
   const defaultTheme = {}
+  // defaultTheme.value = darkTheme
+  window.$msg = useMessage()
+  // console.log("window.$msg", window.$msg)
 </script>
 <style lang="scss" scoped>
   .moon-layout-theme-config {

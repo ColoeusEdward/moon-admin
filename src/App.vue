@@ -1,16 +1,19 @@
 <template>
   <n-config-provider style="width: 100%; height: 100%" :theme="getTheme">
-    <router-view></router-view>
+    <n-message-provider>
+      <router-view></router-view>
+    </n-message-provider>
   </n-config-provider>
 </template>
 
 <script lang="ts" setup>
   import { computed } from 'vue'
-  import { NConfigProvider, darkTheme } from 'naive-ui'
+  import { NConfigProvider, darkTheme, NMessageProvider } from 'naive-ui'
   import { useThemeStore } from '@/store/modules/theme'
 
   const themeStore = useThemeStore()
   const getTheme = computed(() => (themeStore.darkTheme ? darkTheme : undefined))
+  // const getTheme = darkTheme
 </script>
 
 <style>
