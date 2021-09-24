@@ -5,7 +5,7 @@
         <moon-header-container />
       </n-layout-header>
       <n-layout has-sider position="absolute" style="top: 71px">
-        <n-layout-sider bordered show-trigger collapse-mode="width" :collapsed-width="64" :width="270" :native-scrollbar="false">
+        <n-layout-sider bordered show-trigger collapse-mode="width" :collapsed-width="64" :width="270" :native-scrollbar="false" @collapse="collapsed = true" @expand="collapsed = false"  :collapsed="collapsed">
           <moon-sider />
         </n-layout-sider>
         <n-layout-content>
@@ -17,22 +17,25 @@
 </template>
 
 <script lang="ts" setup>
-  //组件引入
-  import MoonHeaderContainer from '@/layouts/default/header/index.vue'
-  import MoonSider from '@/layouts/default/sider/index.vue'
-  import { NConfigProvider, NLayout, NLayoutHeader, NLayoutSider, NLayoutContent, useMessage } from 'naive-ui'
+import { ref,provide } from 'vue'
+//组件引入
+import MoonHeaderContainer from '@/layouts/default/header/index.vue'
+import MoonSider from '@/layouts/default/sider/index.vue'
+import { NConfigProvider, NLayout, NLayoutHeader, NLayoutSider, NLayoutContent, useMessage } from 'naive-ui'
 
-  const defaultTheme = {}
-  // defaultTheme.value = darkTheme
-  window.$msg = useMessage()
-  // console.log("window.$msg", window.$msg)
+const defaultTheme = {}
+let collapsed = ref(true)
+provide('collapsed',collapsed)
+// defaultTheme.value = darkTheme
+window.$msg = useMessage()
+// console.log("window.$msg", window.$msg)
 </script>
 <style lang="scss" scoped>
-  .moon-layout-theme-config {
-    height: 100%;
-    position: relative;
-    .moon-layout-container {
-      min-height: 100%;
-    }
+.moon-layout-theme-config {
+  height: 100%;
+  position: relative;
+  .moon-layout-container {
+    min-height: 100%;
   }
+}
 </style>

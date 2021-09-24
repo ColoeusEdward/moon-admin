@@ -10,9 +10,18 @@
 
 export interface BasicResponseModel<T = any> {
   code: number
-  message: string
-  result: T
+  msg: string
+  data: T
 }
+
+interface dataObj<T = any> {
+  code: number,
+  msg: string,
+  data: T
+}
+export type baseData = string | dataObj
+
+
 export interface BasicPageParams {
   pageNumber: number
   pageSize: number

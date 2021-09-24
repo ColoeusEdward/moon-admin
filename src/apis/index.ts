@@ -1,25 +1,48 @@
-import { axios } from '../utils/request'
+import request from '../utils/request'
+import { BasicResponseModel } from './BasicResponseModel'
 
 export function ip() {
-  return axios({
+  return request({
     url: 'http://pv.sohu.com/cityjson?ie=utf-8',
     method: 'get'
   })
 }
 
 export function RecordRelease() {
-  return axios({
+  return request({
     url: '/koa/mv_upload/record_release',
     method: 'get'
   })
 }
 
 export function Mp4Release() {
-  return axios({
+  return request({
     url: '/koa/mv_upload/record_release_mp4',
     method: 'get'
   })
 }
+
+export function show_record(data?) {
+  return request<string>({
+    url: '/koa/mv_upload/show_record',
+    method: 'get'
+  })
+}
+
+export function record_size_list(data?) {
+  return request<string>({
+    url: '/koa/mv_upload/record_size_list',
+    method: 'get'
+  })
+}
+
+export function left_storage(data?) {
+  return request<string>({
+    url: '/koa/mv_upload/left_storage',
+    method: 'get'
+  })
+}
+
 
 // 'POST /mv_upload/record_free': record_free,
 //   'GET /mv_upload/record_release': record_release,
