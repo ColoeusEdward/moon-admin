@@ -16,7 +16,7 @@
   const themeStore = useThemeStore() // 切换默认主题
 
   //data
-  const show = inject('showSettingDrawer')
+  const show:any = inject('showSettingDrawer')
 
   //method
   const changeTheme = () => {

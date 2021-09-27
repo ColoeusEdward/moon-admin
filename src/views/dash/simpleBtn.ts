@@ -7,7 +7,7 @@
  * @FilePath: \moon-admin\src\views\dash\simpleBtn.ts
  * 可以输入预定的版权声明、个性签名、空行等
  */
-import { RecordRelease, Mp4Release, show_record, record_size_list, left_storage } from '@/apis/index'
+import { RecordRelease, Mp4Release, show_record, record_size_list, left_storage, rmFile, record_free } from '@/apis/index'
 
 export default function useSimpleBtn() {
   const recordRelease = async () => {
@@ -64,6 +64,28 @@ export default function useSimpleBtn() {
     window.open('https://bbs.nga.cn/thread.php?fid=414')
   }
 
+  const goOneDrive = () => {
+    window.open('https://meamoe.ml/mydrive/')
+  }
+
+  const goAria = () => {
+    window.open('https://meamoe.ml/aria2/home/#!/downloading')
+  }
+
+  const handleDeleteFile = async (inputStr) => {
+    let nstr = inputStr.value.replace(/\n/g, ',')
+    return await rmFile({ fileName: nstr })
+  }
+
+  const recordFree = async (inputStr, target) => {
+    let nstr = inputStr.value.split('\n')
+    let data = {
+      name_list: nstr
+      , target: target.value
+    }
+    return await record_free(data)
+  }
+
   return {
     recordRelease,
     mp4Release
@@ -72,6 +94,10 @@ export default function useSimpleBtn() {
     , getRecordSizeList
     , getLeftStore
     , goGameNga
+    , goOneDrive
+    , goAria
+    , handleDeleteFile
+    , recordFree
   }
 }
 

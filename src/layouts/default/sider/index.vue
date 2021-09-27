@@ -11,7 +11,7 @@ import { h, ref,inject } from 'vue'
 
 import { BookOutline as BookIcon, PersonOutline as PersonIcon, WineOutline as WineIcon } from '@vicons/ionicons5'
 
-let collapsed = inject('collapsed')
+let collapsed:any = inject('collapsed')
 
 
 function renderIcon(icon) {

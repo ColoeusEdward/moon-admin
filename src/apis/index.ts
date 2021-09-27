@@ -43,6 +43,23 @@ export function left_storage(data?) {
   })
 }
 
+export function rmFile(data?) {
+  return request<string>({
+    url: '/koa/mv_upload/rmFile',
+    method: 'post',
+    data:data
+  })
+}
+
+export function record_free(data?) {
+  return request<string>({
+    url: '/koa/mv_upload/record_free',
+    method: 'post',
+    data:data
+  })
+}
+
+
 
 // 'POST /mv_upload/record_free': record_free,
 //   'GET /mv_upload/record_release': record_release,

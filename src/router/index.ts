@@ -1,12 +1,13 @@
 import { createRouter, createWebHistory, NavigationGuardNext, RouteLocationNormalized, RouteRecordNormalized } from 'vue-router'
 import routes from './routes'
+import define from '@/utils/define'
 
 // 进度条
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
 const router = createRouter({
-  history: createWebHistory(process.env.NODE_ENV === 'production' ? '/moon-admin/' : '/'),
+  history: createWebHistory(process.env.NODE_ENV === 'production' ? define.root : '/'),
   routes
 })
 

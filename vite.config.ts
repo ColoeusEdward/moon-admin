@@ -6,7 +6,7 @@ import define from './src/utils/define'
 
 
 export default defineConfig({
-  base: process.env.NODE_ENV === 'production' ? '/moon-admin/' : '/',
+  base: process.env.NODE_ENV === 'production' ? define.root : '/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src/')
@@ -22,6 +22,11 @@ export default defineConfig({
       output: {
         sourcemap: true
       }
+    }
+  }
+  , define: {
+    'process.env': {
+      NODE_ENV:process.env.NODE_ENV
     }
   }
 })

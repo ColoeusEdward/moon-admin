@@ -8,7 +8,7 @@
           <div class="title">Welcome to</div>
           <div class="title">ADMIN</div>
           <div class="username">USERNAME</div>
-          <n-input v-model:value="value" size="large" type="input" placeholder="没错，就是你的用户名" clearable />
+          <n-input v-model:value="value" size="large" placeholder="没错，就是你的用户名" clearable />
           <div class="password">PASSWORD</div>
           <n-input size="large" type="password" show-password-toggle placeholder="密码是什么来着" :maxlength="8" clearable />
           <div class="submit">

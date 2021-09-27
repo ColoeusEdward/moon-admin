@@ -2,8 +2,8 @@
   <!-- <n-layout-content> -->
   <div class="dash">
     <n-spin :show="spinShow">
-      <grid-layout ref="gridLayout" v-model:layout="layout" :col-num="12" :row-height="30" :is-draggable="gridConfig.draggable" :is-resizable="gridConfig.resizable" :vertical-compact="gridConfig.compact" :use-css-transforms="true">
-        <grid-item :ref="'gridItem'+item.i" v-for="item in layout" :key="item.i" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i" :class="item.type+'Item'" class="btn" @mousedown="record_mouse_time" @mouseup="handleItemClick(item.i)">
+      <grid-layout ref="gridLayoutR" v-model:layout="layout" :col-num="12" :row-height="30" :is-draggable="gridConfig.draggable" :is-resizable="gridConfig.resizable" :vertical-compact="gridConfig.compact" :use-css-transforms="true">
+        <grid-item :ref="'gridItem'+item.i" v-for="item in layout" :key="item.i" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i" :class="item.type+'Item'" :style="ui.gridItemStyle(item)" class="btn" @mousedown="record_mouse_time" @mouseup="handleItemClick(item.i)">
 
           <span v-if="item.type == 'btn'" class="text">{{ item.text || item.i }}</span>
 
@@ -50,6 +50,15 @@
             </n-tooltip>
           </div>
 
+          <div v-if="item.type == 'input'" class="input">
+            <div style="color:#fff;width:100%;margin-bottom:10px;">{{item.text}}</div>
+            <div class="inputBody" v-if="item.expend">
+              <n-input style="fontSize:16px;" @mouseup.stop v-model:value="inputContent" type="textarea" placeholder="多项用回车分割" clearable />
+              <n-input style="margin-bottom:10px;" v-if="targetInputList.indexOf(item.text)!=-1" v-model:value="targetInputContent" placeholder="上传地址" clearable />
+              <n-button style="width:90%;height:40px;" type="primary" @mouseup.stop="handleInputBtn(item)">提交</n-button>
+            </div>
+          </div>
+
           <!-- <span class="remove" @click="removeItem(item.i)">x</span> -->
         </grid-item>
       </grid-layout>
@@ -60,36 +69,45 @@
 
 <script setup lang="ts">
 // import { Copy } from '@vicons/ionicons5'
-import { ContentCopyFilled,RefreshOutlined } from '@vicons/material'
+import { ContentCopyFilled, RefreshOutlined } from '@vicons/material'
 import useSimpleBtn from './simpleBtn'
-import { ref } from 'vue'
-import { NSpin, NIcon, useMessage, NTooltip } from 'naive-ui'
-import { getCurrentInstance, onMounted } from 'vue'
-let { ctx: that } = getCurrentInstance()
+import uiFn from './ui'
+import { ref,reactive, onMounted  } from 'vue'
+import { NSpin, NIcon, useMessage, NTooltip, NInput, NButton, NScrollbar } from 'naive-ui'
+// import GridLayout from 'vue-grid-layout'
+// const { ctx: that } = getCurrentInstance() as any
 const msg = useMessage()
 // import { useRouter } from 'vue-router'
 // import type { Router } from 'vue-router'
-
+// const gridLayoutR:{value?:{layoutUpdate:()=>any}} = ref({})
+const gridLayoutR = ref({layoutUpdate:()=>{}})
 // const value = ref(null)
 //每行最长20
 // let sbr = reactive(sb)
 let origin_layout = []
 let mouse_time = 0 //鼠标按住时间
 const sb = useSimpleBtn()
+const ui = uiFn()
 
 const spinShow = ref(false) //loading显示
+let inputContent = ref('')
+let targetInputContent = ref('')
+const targetInputList = ['自由上传文件']
 
-let layout = [
+let layout: any = [
   { x: 0, y: 0, w: 2, h: 2, i: '0', type: 'btn', text: '释放式上传' },
   { x: 2, y: 0, w: 2, h: 2, i: '1', type: 'btn', text: '释放MP4' },
-  { x: 4, y: 0, w: 2, h: 2, i: '2', type: 'btn', text: '命令行' },
+  { x: 4, y: 0, w: 1, h: 3, i: '2', type: 'icon', text: '命令行', src: 'https://www.freeiconspng.com/uploads/command-line-icon-1.png' },
+  { x: 5, y: 0, w: 1, h: 3, i: '11', type: 'icon', text: 'aria2', src: 'https://raw.githubusercontent.com/mayswind/AriaNg-Native/master/assets/AriaNg.ico' },
   { x: 6, y: 0, w: 2, h: 3, i: '3', type: 'btn' },
-  { x: 8, y: 0, w: 3, h: 3, i: '4', type: 'btn' },
-  { x: 11, y: 0, w: 1, h: 3, i: '5', type: 'iconbtn', text: '复原',iconComp:RefreshOutlined },
+  { x: 8, y: 0, w: 2, h: 2, i: '4', type: 'input', text: '自由上传文件', expend: false },
+  { x: 11, y: 0, w: 1, h: 3, i: '5', type: 'iconbtn', text: '复原', iconComp: RefreshOutlined },
   { x: 0, y: 2, w: 2, h: 4, i: '6', type: 'list', text: '查看剩余空间' },
-  { x: 2, y: 2, w: 2, h: 2, i: '7', type: 'btn', text: 'dd' },
+  { x: 2, y: 2, w: 2, h: 2, i: '7', type: 'input', text: '删除文件', expend: false },
   { x: 4, y: 2, w: 2, h: 4, i: '8', type: 'list', text: '查看文件大小' },
-  { x: 6, y: 2, w: 1, h: 3, i: '9', type: 'icon', text: '游踪', src: 'http://tva1.sinaimg.cn/large/002Imx2Egy1gurh4vnejzj6069069wet02.jpg' }
+  { x: 6, y: 2, w: 1, h: 3, i: '9', type: 'icon', text: '游踪', src: 'http://tva1.sinaimg.cn/large/002Imx2Egy1gurh4vnejzj6069069wet02.jpg' },
+  { x: 7, y: 2, w: 1, h: 3, i: '10', type: 'icon', text: 'onedrive网盘', src: 'http://tva1.sinaimg.cn/large/002Imx2Egy1gurs5ouowwj6069069dg202.jpg' }
+  // { x: 8, y: 2, w: 2, h: 2, i: '12', type: 'input', text: '自由上传文件', expend: false }
 ]
 let gridConfig = {
   draggable: true,
@@ -101,25 +119,32 @@ let gridConfig = {
 const showLeftStore = async (i) => {
   //展示record列表
   let list = await sb.getLeftStore()
-  layout[i].list = list
+  let item = layout.find((e) => {
+    return e.i == i
+  })
+  item.list = list
 }
 const showRecordSizeClick = async (i) => {
   //展示record列表
   let list = await sb.getRecordSizeList()
-  layout[i].list = list
+  let item = layout.find((e) => {
+    return e.i == i
+  })
+  item.list = list
 }
-const size_recover = async (i) => {
+const size_recover = async () => {
   //复原布局
   layout.forEach((e, i) => {
     for (var key in e) {
-      if(key=='iconComp') return
+      if (key == 'iconComp') return
       e[key] = origin_layout[i][key]
     }
   })
-  that.$refs.gridLayout.layoutUpdate()
+  // that.$refs.gridLayout.layoutUpdate
+  gridLayoutR.value?.layoutUpdate()
 }
 const controlClick = async (i) => {
-  let list = []
+  let list = [() => {}]
   list[0] = async () => {
     await sb.recordRelease()
   }
@@ -141,18 +166,13 @@ const controlClick = async (i) => {
   list[9] = async () => {
     sb.goGameNga()
   }
-  list[i] && (await list[i]())
-}
-
-const controlGridItemSize = (i) => {
-  console.log('control', i)
-  let list = []
-  list[6] = list[8] = () => {
-    layout[i].w = 4
-    layout[i].h = 18
-    return true
+  list[10] = async () => {
+    sb.goOneDrive()
   }
-  list[i] && list[i]() && that.$refs.gridLayout.layoutUpdate()
+  list[11] = async () => {
+    sb.goAria()
+  }
+  list[i] && (await list[i]())
 }
 
 const record_mouse_time = () => {
@@ -167,7 +187,7 @@ const handleItemClick = async (i) => {
     return
   }
   console.log('i', i)
-  controlGridItemSize(i)
+  ui.controlGridItemSize(i, layout, gridLayoutR)
   spinShow.value = true
   await controlClick(i)
   spinShow.value = false
@@ -183,7 +203,10 @@ const handleListRowClick = async (name) => {
 }
 
 const listTitleStyle = (item) => {
-  let style = {}
+  let style = {
+    borderBottom: '',
+    marginTop: ''
+  }
   if (item.list) {
     style.borderBottom = '1px solid #fff'
   } else {
@@ -193,15 +216,36 @@ const listTitleStyle = (item) => {
 }
 
 const listRowNameStyle = (le) => {
-  let style = {}
+  let style = {
+    color:''
+  }
   if (le.search('32G') != -1) {
     style.color = 'blue'
   }
   return style
 }
 
+const handleInputBtn = async (item) => {
+  let fnObj = {
+    删除文件: async () => {
+      return await sb.handleDeleteFile(inputContent)
+    },
+    自由上传文件: async () => {
+      return inputContent.value && targetInputContent.value && (await sb.recordFree(inputContent, targetInputContent))
+    }
+  }
+  spinShow.value = true
+  fnObj[item.text] && (await fnObj[item.text]())
+  spinShow.value = false
+}
+
 // hook ------------------------------------------------------------------------------------------------------------------------
 onMounted(() => {
+  // console.log("refs", that)
+  // console.log("that.proxy", that.proxy)
+  console.log("gridLayoutR", gridLayoutR)
+
+  ui.setLayoutColor(layout)
   origin_layout = JSON.parse(JSON.stringify(layout))
 })
 
@@ -217,6 +261,7 @@ onMounted(() => {
 .dash {
   width: 100%;
   height: 90vh;
+  transition: all 0.2s ease;
 }
 
 .content {
@@ -253,7 +298,7 @@ onMounted(() => {
 }
 .vue-grid-item {
   &.btn:active {
-    background-color: #3f5772;
+    background-color: #3f5772 !important;
   }
   &.vue-grid-placeholder {
     background-color: #000;
@@ -262,7 +307,7 @@ onMounted(() => {
 .vue-grid-item:not(.vue-grid-placeholder) {
   user-select: none;
   background: #3ba786;
-  border: 1px solid #3ba786;
+  // border: 1px solid #3ba786;
   box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
   border-radius: 5px;
   color: #fff;
@@ -291,7 +336,7 @@ onMounted(() => {
     height: 32px;
   }
   &.listItem {
-    transition: all 0.2s ease;
+    // transition: all 0.2s ease;
   }
   .list {
     width: 100%;
@@ -326,8 +371,13 @@ onMounted(() => {
         height: 100%;
         width: 100%;
         border-radius: 14px;
+        background-color: none;
       }
     }
+  }
+
+  .input {
+    font-size: 24px;
   }
 
   .iconbtn,
@@ -340,8 +390,14 @@ onMounted(() => {
   }
 
   .iconbtn {
-
   }
+}
+.btn {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transition-property: width, height, transform;
+  transition-timing-function: ease;
 }
 .vue-grid-item .minMax {
   font-size: 12px;
