@@ -7,9 +7,12 @@
  * @FilePath: \moon-admin\src\views\dash\simpleBtn.ts
  * 可以输入预定的版权声明、个性签名、空行等
  */
-import { RecordRelease, Mp4Release, show_record, record_size_list, left_storage, rmFile, record_free } from '@/apis/index'
+import { RecordRelease, Mp4Release, show_record, record_size_list, left_storage, rmFile, record_free, deploy } from '@/apis/index'
 
 export default function useSimpleBtn() {
+  const upLoadData = {}
+
+
   const recordRelease = async () => {
     // debugger
     await RecordRelease()
@@ -35,14 +38,8 @@ export default function useSimpleBtn() {
     data && (list = data.split('\n').slice(0, -1))
 
     list.forEach(e => {
-      // console.log("e.split('\t')", e.split('\t'))
       let le = e.split('\t')
       tempList.push(le)
-      // let idx = e.search('K')//先找字符k
-      // idx == -1 && (idx = e.search('M'))//k找不到再找M
-      // if (idx!=-1) {
-
-      // }
     })
     // console.log("lsit", list,tempList)
     return tempList
@@ -86,6 +83,33 @@ export default function useSimpleBtn() {
     return await record_free(data)
   }
 
+  const handleUpload = (handleClick, mouse_time) => {
+    let time = new Date().getTime()
+    // console.log("handleDeployUpload",mouse_time)
+    if (time - mouse_time >= 200) {
+      return
+    }
+    handleClick()
+  }
+
+  const deployUpload = async (fileList) => {
+    let fileItem = fileList[0]
+    let fdata = new FormData()
+    // debugger
+    fdata.append('files',fileItem.file)
+    await deploy(fdata)
+  }
+  const handleUploadUdpate = (fileList, i) => {
+    let list = [() => { }]
+    list[12] = () => {
+      deployUpload(fileList)
+    }
+    list[i] && list[i]()
+    fileList = []
+    // let file = fileList[0]
+
+  }
+
   return {
     recordRelease,
     mp4Release
@@ -98,6 +122,9 @@ export default function useSimpleBtn() {
     , goAria
     , handleDeleteFile
     , recordFree
+    , handleUpload
+    , handleUploadUdpate
+    , upLoadData
   }
 }
 

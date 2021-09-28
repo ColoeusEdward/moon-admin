@@ -1,5 +1,5 @@
 <template>
-  <n-config-provider style="width: 100%; height: 100%" :theme="getTheme">
+  <n-config-provider style="width: 100%; height: 100%;" :theme="getTheme">
     <n-message-provider>
       <router-view></router-view>
     </n-message-provider>

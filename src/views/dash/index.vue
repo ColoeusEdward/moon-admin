@@ -7,6 +7,14 @@
 
           <span v-if="item.type == 'btn'" class="text">{{ item.text || item.i }}</span>
 
+          <n-upload ref="deployUpload" :default-upload="false" abstract v-if="item.type == 'upload'" action="2" :headers="{'naive-info': 'hello!'}" :data="sb.upLoadData" :on-update:file-list="(list)=>{sb.handleUploadUdpate(list,item.i)}">
+            <n-upload-trigger #="{handleClick}" abstract>
+              <div class="upload" @mouseup.stop="sb.handleUpload(handleClick,mouse_time)">
+                <span class="text">{{ item.text || item.i }}</span>
+              </div>
+            </n-upload-trigger>
+          </n-upload>
+
           <div v-if="item.type == 'iconbtn'" class="iconbtn">
             <n-tooltip placement="bottom" trigger="hover">
               <template #trigger>
@@ -20,7 +28,7 @@
           </div>
 
           <div v-if="item.type == 'list'" class="list">
-            <div style="color:#f5f5d5;width:100%;margin-bottom:10px;" :style="listTitleStyle(item)">{{item.text}}</div>
+            <div style="color:#f5f5d5;width:100%;margin-bottom:10px;" :style="ui.listTitleStyle(item)">{{item.text}}</div>
             <c-scrollbar width="100%" height="640px" direction='y' v-if="item.list">
               <div class="listRow" v-for="(le,li) in item.list" @mouseup.stop="handleListRowClick(le)">
                 <div class="name sizeName" v-if="item.text=='查看文件大小'" style="text-align:left;">
@@ -30,7 +38,7 @@
                   <span>{{le[1]}}</span>
                 </div>
                 <!-- <div class="name" v-if="item.text=='查看record'">{{le}}</div> -->
-                <div class="name" :style="listRowNameStyle(le)" v-else>{{le}}</div>
+                <div class="name" :style="ui.listRowNameStyle(le)" v-else>{{le}}</div>
                 <n-icon size="30">
                   <ContentCopyFilled />
                 </n-icon>
@@ -69,25 +77,34 @@
 
 <script setup lang="ts">
 // import { Copy } from '@vicons/ionicons5'
+import { ref, reactive, onMounted, defineAsyncComponent } from 'vue'
 import { ContentCopyFilled, RefreshOutlined } from '@vicons/material'
 import useSimpleBtn from './simpleBtn'
 import uiFn from './ui'
-import { ref,reactive, onMounted  } from 'vue'
-import { NSpin, NIcon, useMessage, NTooltip, NInput, NButton, NScrollbar } from 'naive-ui'
+import { CScrollbar } from 'c-scrollbar'
+// import { GridLayout, GridItem } from 'vue-grid-layout'
+import { NSpin, NIcon, useMessage, NTooltip, NInput, NButton, NScrollbar, NUpload, NUploadTrigger } from 'naive-ui'
 // import GridLayout from 'vue-grid-layout'
 // const { ctx: that } = getCurrentInstance() as any
 const msg = useMessage()
 // import { useRouter } from 'vue-router'
 // import type { Router } from 'vue-router'
 // const gridLayoutR:{value?:{layoutUpdate:()=>any}} = ref({})
-const gridLayoutR = ref({layoutUpdate:()=>{}})
+const gridLayoutR = ref({ layoutUpdate: () => {} })
+const deployUpload = ref<InstanceType<typeof NUpload>>()
 // const value = ref(null)
 //每行最长20
 // let sbr = reactive(sb)
 let origin_layout = []
-let mouse_time = 0 //鼠标按住时间
+// let mouse_time = 0 //鼠标按住时间
+const mouse_time = ref(0) //鼠标按住时间
 const sb = useSimpleBtn()
 const ui = uiFn()
+const deploySlotProps = {
+  handleClick: () => {
+    console.log('ffff')
+  }
+}
 
 const spinShow = ref(false) //loading显示
 let inputContent = ref('')
@@ -101,6 +118,7 @@ let layout: any = [
   { x: 5, y: 0, w: 1, h: 3, i: '11', type: 'icon', text: 'aria2', src: 'https://raw.githubusercontent.com/mayswind/AriaNg-Native/master/assets/AriaNg.ico' },
   { x: 6, y: 0, w: 2, h: 3, i: '3', type: 'btn' },
   { x: 8, y: 0, w: 2, h: 2, i: '4', type: 'input', text: '自由上传文件', expend: false },
+  { x: 10, y: 0, w: 1, h: 3, i: '12', type: 'upload', text: '部署' },
   { x: 11, y: 0, w: 1, h: 3, i: '5', type: 'iconbtn', text: '复原', iconComp: RefreshOutlined },
   { x: 0, y: 2, w: 2, h: 4, i: '6', type: 'list', text: '查看剩余空间' },
   { x: 2, y: 2, w: 2, h: 2, i: '7', type: 'input', text: '删除文件', expend: false },
@@ -116,6 +134,9 @@ let gridConfig = {
 }
 
 //function ------------------------------------------------------------------------------------------------------------------------
+const handleClick = async () => {
+  console.log('clickccc')
+}
 const showLeftStore = async (i) => {
   //展示record列表
   let list = await sb.getLeftStore()
@@ -176,14 +197,17 @@ const controlClick = async (i) => {
 }
 
 const record_mouse_time = () => {
-  mouse_time = new Date().getTime()
+  // mouse_time = new Date().getTime()
+  mouse_time.value = new Date().getTime()
 }
 
 // method ------------------------------------------------------------------------------------------------------------------------
 
 const handleItemClick = async (i) => {
   let time = new Date().getTime()
-  if (time - mouse_time >= 200) {
+  console.log('mouse_time', mouse_time)
+  // if (time - mouse_time >= 200) {
+  if (time - mouse_time.value >= 200) {
     return
   }
   console.log('i', i)
@@ -200,29 +224,6 @@ const handleListRowClick = async (name) => {
   const clipboardObj = navigator.clipboard
   await clipboardObj.writeText(name)
   msg.success('复制成功')
-}
-
-const listTitleStyle = (item) => {
-  let style = {
-    borderBottom: '',
-    marginTop: ''
-  }
-  if (item.list) {
-    style.borderBottom = '1px solid #fff'
-  } else {
-    style.marginTop = '20%'
-  }
-  return style
-}
-
-const listRowNameStyle = (le) => {
-  let style = {
-    color:''
-  }
-  if (le.search('32G') != -1) {
-    style.color = 'blue'
-  }
-  return style
 }
 
 const handleInputBtn = async (item) => {
@@ -243,8 +244,8 @@ const handleInputBtn = async (item) => {
 onMounted(() => {
   // console.log("refs", that)
   // console.log("that.proxy", that.proxy)
-  console.log("gridLayoutR", gridLayoutR)
-
+  // console.log('gridLayoutR', gridLayoutR)
+  // console.log('deployUpload', deployUpload)
   ui.setLayoutColor(layout)
   origin_layout = JSON.parse(JSON.stringify(layout))
 })
@@ -390,6 +391,13 @@ onMounted(() => {
   }
 
   .iconbtn {
+  }
+  .upload {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 .btn {

@@ -8,7 +8,7 @@ import 'vfonts/Lato.css'
 // 等宽字体
 import 'vfonts/FiraCode.css'
 import VueGridLayout from 'vue-grid-layout'
-import CScrollbar from 'c-scrollbar';
+// import CScrollbar from 'c-scrollbar';
 
 console.log('components', components)
 
@@ -16,7 +16,7 @@ const app = createApp(App)
 app.use(store)
 app.use(router)
 app.use(VueGridLayout)
-app.use(CScrollbar)
+// app.use(CScrollbar)
 
 //注册全局组件
 for (const key in components) {

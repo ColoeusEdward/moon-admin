@@ -29,7 +29,7 @@ export default function ui() {
       fn && fn(item)
       return true
     }
-    let list:any[] = []
+    let list: any[] = []
     list[6] = list[8] = temp
     list[7] = () => {
       let item = layout.find((e) => {
@@ -52,10 +52,37 @@ export default function ui() {
     list[i] && list[i]() && gridLayout.value?.layoutUpdate()
   }
 
+  const listTitleStyle = (item) => {
+    let style = {
+      borderBottom: '',
+      marginTop: ''
+    }
+    if (item.list) {
+      style.borderBottom = '1px solid #fff'
+    } else {
+      style.marginTop = '20%'
+    }
+    return style
+  }
+
+  const listRowNameStyle = (le) => {
+    let style = {
+      color: ''
+    }
+    if (le.search('32G') != -1) {
+      style.color = 'blue'
+    }
+    return style
+  }
+
+
+
   return {
     randomStickerColor
     , setLayoutColor
     , gridItemStyle
     , controlGridItemSize
+    , listTitleStyle
+    , listRowNameStyle
   }
 }

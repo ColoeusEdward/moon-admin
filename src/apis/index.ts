@@ -59,6 +59,14 @@ export function record_free(data?) {
   })
 }
 
+export function deploy(data?) {
+  return request<string>({
+    url: '/koa/mv_upload/deploy',
+    method: 'post',
+    data:data
+  })
+}
+
 
 
 // 'POST /mv_upload/record_free': record_free,

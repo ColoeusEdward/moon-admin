@@ -17,16 +17,36 @@ export default defineConfig({
     port: 3333
     , open: false
   }
-  , build: process.env.NODE_ENV === 'production' ? {} : {
-    rollupOptions: {
-      output: {
-        sourcemap: true
+  , build: process.env.NODE_ENV === 'production' ?
+    {
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes('node_modules') && id.includes('c-scrollbar')) {
+              return 'c-scrollbar'
+            }
+            else if (id.includes('node_modules') && id.includes('vicons')) {
+              return 'vicons'
+            } 
+            else if (id.includes('node_modules') && id.includes('naive-ui')) {
+              return 'naive-ui'
+            } 
+            else if (id.includes('node_modules')) {
+              return 'vendor'
+            }
+          }
+        }
+      }
+    } : {
+      rollupOptions: {
+        output: {
+          sourcemap: true
+        }
       }
     }
-  }
   , define: {
     'process.env': {
-      NODE_ENV:process.env.NODE_ENV
+      NODE_ENV: process.env.NODE_ENV
     }
   }
 })
