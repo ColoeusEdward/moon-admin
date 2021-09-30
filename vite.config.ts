@@ -14,6 +14,10 @@ export default defineConfig({
   },
   plugins: [vue(), vueJsx()]
   , server: {
+    fs: {
+      // 可以为项目根目录的上一级提供服务
+      allow: ['.']
+    },
     port: 3333
     , open: false
   }

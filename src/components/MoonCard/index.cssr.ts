@@ -39,6 +39,12 @@ const moonCardStyle = cB(
         color: '#01058A'
       })
     )
+    ,cE(
+      'fuck',
+      () => ({
+        color:'blue'
+      })
+    )
   ]
 )
 

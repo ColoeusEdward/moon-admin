@@ -1,17 +1,21 @@
 <template>
   <!--  <div class="moon-sider-container">-->
-  <NMenu :options="menuOptions" v-bind="{ ...menuProps }" :collapsed="collapsed" />
+  <NMenu @update:value="jump.handleChange" :options="menuOptions" v-bind="{ ...menuProps }" :collapsed="collapsed" />
   <!--  </div>-->
 </template>
 
 <script setup lang="ts">
 import { NMenu, NIcon } from 'naive-ui'
 // import moonSiderStyle from './index.cssr'
-import { h, ref,inject } from 'vue'
+import { h, ref, inject } from 'vue'
 
 import { BookOutline as BookIcon, PersonOutline as PersonIcon, WineOutline as WineIcon } from '@vicons/ionicons5'
+import { DataExplorationOutlined } from '@vicons/material'
+import useJump from './jump'
 
-let collapsed:any = inject('collapsed')
+const jump = useJump()
+
+let collapsed: any = inject('collapsed')
 
 
 function renderIcon(icon) {
@@ -34,11 +38,11 @@ const menuOptions = [
   {
     label: '1973年的弹珠玩具',
     key: 'pinball-1973',
-    icon: renderIcon(BookIcon),
+    icon: renderIcon(DataExplorationOutlined),
     children: [
       {
-        label: '鼠',
-        key: 'rat'
+        label: '无限嵌套表格',
+        key: 'table'
       }
     ]
   },
