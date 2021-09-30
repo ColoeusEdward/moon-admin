@@ -3,13 +3,12 @@
   <div class="dash">
     <n-spin :show="spinShow">
       <grid-layout ref="gridLayoutR" v-model:layout="layout" :col-num="12" :row-height="30" :is-draggable="gridConfig.draggable" :is-resizable="gridConfig.resizable" :vertical-compact="gridConfig.compact" :use-css-transforms="true">
-        <grid-item :ref="'gridItem'+item.i" v-for="item in layout" :key="item.i" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i" :class="item.type+'Item'" :style="ui.gridItemStyle(item)" class="btn" @mousedown="record_mouse_time" @mouseup="handleItemClick(item.i)">
-
+        <grid-item :ref="'gridItem' + item.i" v-for="item in layout" :key="item.i" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i" :class="item.type + 'Item'" :style="ui.gridItemStyle(item)" class="btn" @mousedown="record_mouse_time" @mouseup="handleItemClick(item.i)">
           <span v-if="item.type == 'btn'" class="text">{{ item.text || item.i }}</span>
 
-          <n-upload ref="deployUpload" :default-upload="false" abstract v-if="item.type == 'upload'" action="2" :headers="{'naive-info': 'hello!'}" :data="sb.upLoadData" :on-update:file-list="(list)=>{sb.handleUploadUdpate(list,item.i)}">
-            <n-upload-trigger #="{handleClick}" abstract>
-              <div class="upload" @mouseup.stop="sb.handleUpload(handleClick,mouse_time)">
+          <n-upload ref="deployUpload" :default-upload="false" abstract v-if="item.type == 'upload'" action="2" :headers="{ 'naive-info': 'hello!' }" :data="sb.upLoadData" :on-update:file-list="(list) => { sb.handleUploadUdpate(list, item.i) }">
+            <n-upload-trigger #="{ handleClick }" abstract>
+              <div class="upload" @mouseup.stop="sb.handleUpload(handleClick, mouse_time)">
                 <span class="text">{{ item.text || item.i }}</span>
               </div>
             </n-upload-trigger>
@@ -23,22 +22,20 @@
                   <!-- <refresh-outlined /> -->
                 </n-icon>
               </template>
-              <span>{{item.text}}</span>
+              <span>{{ item.text }}</span>
             </n-tooltip>
           </div>
 
           <div v-if="item.type == 'list'" class="list">
-            <div style="color:#f5f5d5;width:100%;margin-bottom:10px;" :style="ui.listTitleStyle(item)">{{item.text}}</div>
-            <c-scrollbar width="100%" height="640px" direction='y' v-if="item.list">
+            <div style="color:#f5f5d5;width:100%;margin-bottom:10px;" :style="ui.listTitleStyle(item)">{{ item.text }}</div>
+            <c-scrollbar width="100%" height="640px" direction="y" v-if="item.list">
               <div class="listRow" v-for="(le,li) in item.list" @mouseup.stop="handleListRowClick(le)">
-                <div class="name sizeName" v-if="item.text=='查看文件大小'" style="text-align:left;">
-                  <div style="color:blue;">
-                    {{le[0]}}
-                  </div>
-                  <span>{{le[1]}}</span>
+                <div class="name sizeName" v-if="item.text == '查看文件大小'" style="text-align:left;">
+                  <div style="color:blue;">{{ le[0] }}</div>
+                  <span>{{ le[1] }}</span>
                 </div>
                 <!-- <div class="name" v-if="item.text=='查看record'">{{le}}</div> -->
-                <div class="name" :style="ui.listRowNameStyle(le)" v-else>{{le}}</div>
+                <div class="name" :style="ui.listRowNameStyle(le)" v-else>{{ le }}</div>
                 <n-icon size="30">
                   <ContentCopyFilled />
                 </n-icon>
@@ -50,19 +47,19 @@
             <n-tooltip placement="bottom" trigger="hover">
               <template #trigger>
                 <div class="imgCon">
-                  <img :src="item.src" :alt="item.text">
+                  <img :src="item.src" :alt="item.text" />
                   <!-- <div class="img" :style="{backgroundImgae:`url(${item.src})`;}" /> -->
                 </div>
               </template>
-              <span>{{item.text}}</span>
+              <span>{{ item.text }}</span>
             </n-tooltip>
           </div>
 
           <div v-if="item.type == 'input'" class="input">
-            <div style="color:#fff;width:100%;margin-bottom:10px;">{{item.text}}</div>
+            <div style="color:#fff;width:100%;margin-bottom:10px;">{{ item.text }}</div>
             <div class="inputBody" v-if="item.expend">
               <n-input style="fontSize:16px;" @mouseup.stop v-model:value="inputContent" type="textarea" placeholder="多项用回车分割" clearable />
-              <n-input style="margin-bottom:10px;" v-if="targetInputList.indexOf(item.text)!=-1" v-model:value="targetInputContent" placeholder="上传地址" clearable />
+              <n-input style="margin-bottom:10px;" v-if="targetInputList.indexOf(item.text) != -1" v-model:value="targetInputContent" placeholder="上传地址" clearable />
               <n-button style="width:90%;height:40px;" type="primary" @mouseup.stop="handleInputBtn(item)">提交</n-button>
             </div>
           </div>
@@ -82,15 +79,16 @@ import { ContentCopyFilled, RefreshOutlined } from '@vicons/material'
 import useSimpleBtn from './simpleBtn'
 import uiFn from './ui'
 import { CScrollbar } from 'c-scrollbar'
+
 // import { GridLayout, GridItem } from 'vue-grid-layout'
-import { NSpin, NIcon, useMessage, NTooltip, NInput, NButton, NScrollbar, NUpload, NUploadTrigger } from 'naive-ui'
+import { NSpin, NIcon, useMessage, NTooltip, NInput, NButton, NUpload, NUploadTrigger } from 'naive-ui'
 // import GridLayout from 'vue-grid-layout'
 // const { ctx: that } = getCurrentInstance() as any
 const msg = useMessage()
 // import { useRouter } from 'vue-router'
 // import type { Router } from 'vue-router'
 // const gridLayoutR:{value?:{layoutUpdate:()=>any}} = ref({})
-const gridLayoutR = ref({ layoutUpdate: () => {} })
+const gridLayoutR = ref({ layoutUpdate: () => { } })
 const deployUpload = ref<InstanceType<typeof NUpload>>()
 // const value = ref(null)
 //每行最长20
@@ -165,7 +163,7 @@ const size_recover = async () => {
   gridLayoutR.value?.layoutUpdate()
 }
 const controlClick = async (i) => {
-  let list = [() => {}]
+  let list = [() => { }]
   list[0] = async () => {
     await sb.recordRelease()
   }
@@ -289,7 +287,7 @@ onMounted(() => {
   height: 20px;
   bottom: 0;
   right: 0;
-  background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pg08IS0tIEdlbmVyYXRvcjogQWRvYmUgRmlyZXdvcmtzIENTNiwgRXhwb3J0IFNWRyBFeHRlbnNpb24gYnkgQWFyb24gQmVhbGwgKGh0dHA6Ly9maXJld29ya3MuYWJlYWxsLmNvbSkgLiBWZXJzaW9uOiAwLjYuMSAgLS0+DTwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DTxzdmcgaWQ9IlVudGl0bGVkLVBhZ2UlMjAxIiB2aWV3Qm94PSIwIDAgNiA2IiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjojZmZmZmZmMDAiIHZlcnNpb249IjEuMSINCXhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiDQl4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjZweCIgaGVpZ2h0PSI2cHgiDT4NCTxnIG9wYWNpdHk9IjAuMzAyIj4NCQk8cGF0aCBkPSJNIDYgNiBMIDAgNiBMIDAgNC4yIEwgNCA0LjIgTCA0LjIgNC4yIEwgNC4yIDAgTCA2IDAgTCA2IDYgTCA2IDYgWiIgZmlsbD0iIzAwMDAwMCIvPg0JPC9nPg08L3N2Zz4=');
+  background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pg08IS0tIEdlbmVyYXRvcjogQWRvYmUgRmlyZXdvcmtzIENTNiwgRXhwb3J0IFNWRyBFeHRlbnNpb24gYnkgQWFyb24gQmVhbGwgKGh0dHA6Ly9maXJld29ya3MuYWJlYWxsLmNvbSkgLiBWZXJzaW9uOiAwLjYuMSAgLS0+DTwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DTxzdmcgaWQ9IlVudGl0bGVkLVBhZ2UlMjAxIiB2aWV3Qm94PSIwIDAgNiA2IiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjojZmZmZmZmMDAiIHZlcnNpb249IjEuMSINCXhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiDQl4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjZweCIgaGVpZ2h0PSI2cHgiDT4NCTxnIG9wYWNpdHk9IjAuMzAyIj4NCQk8cGF0aCBkPSJNIDYgNiBMIDAgNiBMIDAgNC4yIEwgNCA0LjIgTCA0LjIgNC4yIEwgNC4yIDAgTCA2IDAgTCA2IDYgTCA2IDYgWiIgZmlsbD0iIzAwMDAwMCIvPg0JPC9nPg08L3N2Zz4=");
   background-position: bottom right;
   padding: 0 3px 3px 0;
   background-repeat: no-repeat;
@@ -309,7 +307,8 @@ onMounted(() => {
   user-select: none;
   background: #3ba786;
   // border: 1px solid #3ba786;
-  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
   border-radius: 5px;
   color: #fff;
   display: flex;
