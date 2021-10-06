@@ -1,0 +1,14 @@
+.dd{
+  color: red;
+}
+.redRow{
+  color: blue;
+}
+
+:global{
+  .myChild{
+    .normal{
+      color: blueviolet;
+    }
+  }
+}

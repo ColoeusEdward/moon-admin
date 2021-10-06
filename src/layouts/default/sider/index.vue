@@ -44,6 +44,10 @@ const menuOptions = [
         label: '无限嵌套表格',
         key: 'table'
       }
+      ,{
+        label: 'tsx页面',
+        key: 'tsx'
+      }
     ]
   },
   {

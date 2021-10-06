@@ -27,7 +27,7 @@ export default function useEvent(data: myRowData[], spinShow: Ref<boolean>, colu
   const sendRequest = async () => {
     console.log(`send request width key:${curExpItem?.key}`,);
     spinShow.value = true
-    await sleep(2000)
+    await sleep(1000)
     spinShow.value = false
     curExpItem!.child = [{
       key: uuidv4(),

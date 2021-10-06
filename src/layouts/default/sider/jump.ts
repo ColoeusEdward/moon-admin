@@ -3,6 +3,7 @@ export default function userJump() {
   const router = useRouter()
   const routeList = {
     'table': '/tableInTable'
+    , 'tsx': '/testJsx'
   }
   const handleChange = (key, item) => {
     console.log(key, item);

@@ -66,13 +66,19 @@ const eventHandle = useEvent(data, spinShow, JSON.parse(JSON.stringify(columns))
   .n-data-table-td.n-data-table-td--last-col {
     padding: 2px 2px !important;
   }
-}
 
-:deep(.rowChoose) {
-  td {
-    background-color: #2a947d !important;
+  &.rowChoose {
+    td {
+      background-color: #2a947d !important;
+    }
   }
 }
+
+// :deep(.rowChoose) {
+//   td {
+//     background-color: #2a947d !important;
+//   }
+// }
 
 // :deep(.redName) {
 //   color: red !important;

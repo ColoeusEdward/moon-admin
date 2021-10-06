@@ -3,11 +3,11 @@ import type { Component } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
 
 // 把views文件夹下的所有vue文件自动生成映射关系
-const modules = import.meta.glob('../views/**/**.vue')
+const modules = import.meta.glob('../views/**/**.{vue,tsx}')
 const components: { [key: string]: Component } = {}
 
 Object.keys(modules).forEach((key: string) => {
-  const nameMatch: string[] | null = key.match(/^\.\.\/views\/(.+)\.vue/)
+  const nameMatch: string[] | null = key.match(/^\.\.\/views\/(.+)\.(vue|tsx)/)
 
   if (!nameMatch) {
     return
@@ -30,6 +30,7 @@ const frameIn: RouteRecordRaw[] = [
     redirect: { name: 'dash' },
     component: () => import(`../layouts/${layoutModules}/index.vue`),
     children: [
+
       // 首页
       // {
       //   path: 'dash',
