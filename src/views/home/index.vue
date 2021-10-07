@@ -5,6 +5,9 @@
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+  import MoonCard from '@/components/MoonCard/index.vue'
+</script>
+
 
 <style scoped></style>

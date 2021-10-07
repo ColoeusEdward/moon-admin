@@ -48,6 +48,10 @@ const menuOptions = [
         label: 'tsx页面',
         key: 'tsx'
       }
+      ,{
+        label: 'echart页面',
+        key: 'echart'
+      }
     ]
   },
   {

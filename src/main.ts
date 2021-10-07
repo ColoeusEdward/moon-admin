@@ -10,7 +10,7 @@ import 'vfonts/FiraCode.css'
 import VueGridLayout from 'vue-grid-layout'
 // import CScrollbar from 'c-scrollbar';
 
-console.log('components', components)
+// console.log('components', components)
 
 const app = createApp(App)
 app.use(store)
@@ -18,9 +18,9 @@ app.use(router)
 app.use(VueGridLayout)
 // app.use(CScrollbar)
 
-//注册全局组件
+//注册全局组件, 但为了方便分割打包,取消全局组件注册
 for (const key in components) {
   app.component(key, defineAsyncComponent(components[key]))
 }
-
+// app.component(key, defineAsyncComponent(components[key]))
 app.mount('#app')

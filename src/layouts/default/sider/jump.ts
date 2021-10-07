@@ -4,6 +4,7 @@ export default function userJump() {
   const routeList = {
     'table': '/tableInTable'
     , 'tsx': '/testJsx'
+    , 'echart': '/testEchart'
   }
   const handleChange = (key, item) => {
     console.log(key, item);

@@ -75,6 +75,7 @@ for (const k in components) {
       component: components[k]
     })
 }
+console.log(`frameIn[0].children`,frameIn[0].children);
 
 /**
  * 在主框架之外显示

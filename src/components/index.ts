@@ -1,5 +1,5 @@
 // 把componets文件夹下的所有index.vue文件自动生成映射关系,不想作为全局组件注册的就不要用index作为名字
-const modules = import.meta.glob('../components/**/index.(vue|tsx)')
+const modules = import.meta.glob('../components/**/index.{vue,tsx}')
 const components = {}
 // debugger
 Object.keys(modules).forEach((key: string) => {

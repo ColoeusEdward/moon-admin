@@ -29,18 +29,25 @@ export default defineConfig({
             if (id.includes('node_modules') && id.includes('c-scrollbar')) {
               return 'c-scrollbar'
             }
+            else if (id.includes('node_modules') && id.includes('vue-echarts')) {
+              return 'vue-echarts'
+            }
             else if (id.includes('node_modules') && id.includes('vicons')) {
               return 'vicons'
-            } 
+            }
             else if (id.includes('node_modules') && id.includes('naive-ui')) {
               return 'naive-ui'
-            } 
+            }
+            else if (id.includes('node_modules') && id.includes('echarts')) {
+              return 'echarts'
+            }
             else if (id.includes('node_modules')) {
               return 'vendor'
             }
           }
         }
       }
+      ,chunkSizeWarningLimit:600
     } : {
       rollupOptions: {
         output: {

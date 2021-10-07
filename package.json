@@ -19,6 +19,7 @@
     "axios": "^0.21.1",
     "bent": "^7.3.12",
     "c-scrollbar": "^1.0.1",
+    "echarts": "^5.2.1",
     "mockjs": "^1.1.0",
     "naive-ui": "^2.19.2",
     "nprogress": "^0.2.0",
@@ -27,6 +28,7 @@
     "uuid": "^8.3.2",
     "vfonts": "^0.1.0",
     "vue": "3.2.13",
+    "vue-echarts": "^6.0.0",
     "vue-grid-layout": "3.0.0-beta1",
     "vue-router": "^4.0.11"
   },
