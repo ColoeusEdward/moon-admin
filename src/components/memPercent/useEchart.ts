@@ -1,31 +1,32 @@
 
 
 const option = {
-  // title: {
-  //   text: "Traffic Sources",
-  //   left: "center"
-  // },
+  title: {
+    text: "内存用量",
+    left: "center"
+    , textStyle: {
+      color: '#fff'
+    }
+  },
   // tooltip: {
   //   trigger: "item",
   //   formatter: "{a} <br/>{b} : {c} ({d}%)"
   // },
-  legend: {
-    orient: "vertical",
-    left: "left",
-    data: ["Direct", "Email", "Ad Networks", "Video Ads", "Search Engines"]
-  },
-  series: [
+  // legend: {
+  //   orient: "vertical",
+  //   left: "left",
+  //   data: ["已用", "剩余"]
+  // },
+  color: ['#b03a5b', '#91cc75']
+  , series: [
     {
-      name: "Traffic Sources",
+      name: "Memory",
       type: "pie",
-      radius: "55%",
-      center: ["50%", "60%"],
+      radius: "80%",
+      center: ["50%", "55%"],
       data: [
-        { value: 335, name: "Direct" },
-        { value: 310, name: "Email" },
-        { value: 234, name: "Ad Networks" },
-        { value: 135, name: "Video Ads" },
-        { value: 1548, name: "Search Engines" }
+        { value: 10, name: "已用" },
+        { value: 10, name: "剩余" },
       ],
       emphasis: {
         itemStyle: {
@@ -33,6 +34,11 @@ const option = {
           shadowOffsetX: 0,
           shadowColor: "rgba(0, 0, 0, 0.5)"
         }
+      }
+      , label: {
+        position: 'inner'
+        , formatter: '{b}: {d}%'
+        , fontSize: 16
       }
     }
   ]

@@ -5,20 +5,21 @@ import { use } from "echarts/core";
 import { CanvasRenderer } from "echarts/renderers";
 import { PieChart } from "echarts/charts";
 import {
-  // TitleComponent,
+  TitleComponent,
   // TooltipComponent,
-  LegendComponent
+  // LegendComponent
 } from "echarts/components";
 import VChart, { THEME_KEY } from "vue-echarts";
+import useGetData from './useGetData'
+import useEvent from './useEvent'
 
 use([
   CanvasRenderer,
   PieChart,
-  // TitleComponent,
+  TitleComponent,
   // TooltipComponent,
-  LegendComponent
+  // LegendComponent
 ]);
-
 
 interface Props {
   test?: number,
@@ -30,6 +31,9 @@ type Emit = {
 
 const echartPar = useEchart()
 const option = reactive(echartPar.option)
+const getData = useGetData(option)
+getData.getMemData()
+const event = useEvent()
 
 const memPercent: FunctionalComponent<Props, Emit> =
   // const mytestChild =
@@ -38,7 +42,7 @@ const memPercent: FunctionalComponent<Props, Emit> =
     Object.assign(style, props.style)
 
     return (
-      <div>
+      <div class={style.con} onClick={() => event.handleClick(getData.getMemData)}>
         <VChart class={style.chart} option={option} />
       </div>
     )

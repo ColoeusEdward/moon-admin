@@ -49,6 +49,15 @@ export default function ui() {
       item.expend = true
       return true
     }
+    // list[14] = () => {
+    //   let item = layout.find((e) => {
+    //     return e.i == i
+    //   })
+    //   item.w = 4
+    //   item.h = 7
+    //   item.expend = true
+    //   return true
+    // }
     list[i] && list[i]() && gridLayout.value?.layoutUpdate()
   }
 

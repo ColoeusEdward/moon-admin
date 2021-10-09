@@ -69,6 +69,10 @@ export default function useSimpleBtn() {
     window.open('https://meamoe.ml/aria2/home/#!/downloading')
   }
 
+  const goDownDir = () => {
+    window.open('https://meamoe.ml/record/')
+  }
+
   const handleDeleteFile = async (inputStr) => {
     let nstr = inputStr.value.replace(/\n/g, ',')
     return await rmFile({ fileName: nstr })
@@ -96,7 +100,7 @@ export default function useSimpleBtn() {
     let fileItem = fileList[0]
     let fdata = new FormData()
     // debugger
-    fdata.append('files',fileItem.file)
+    fdata.append('files', fileItem.file)
     await deploy(fdata)
   }
   const handleUploadUdpate = (fileList, i) => {
@@ -125,6 +129,7 @@ export default function useSimpleBtn() {
     , handleUpload
     , handleUploadUdpate
     , upLoadData
+    , goDownDir
   }
 }
 

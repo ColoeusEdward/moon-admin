@@ -67,6 +67,14 @@ export function deploy(data?) {
   })
 }
 
+export function memPercent(data?) {
+  return request<string>({
+    url: '/koa/mv_upload/memPercent',
+    method: 'get',
+    data:data
+  })
+}
+
 
 
 // 'POST /mv_upload/record_free': record_free,
