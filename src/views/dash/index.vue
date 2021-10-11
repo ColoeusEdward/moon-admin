@@ -113,6 +113,7 @@ let inputContent = ref('')
 let targetInputContent = ref('')
 const targetInputList = ['自由上传文件']
 
+
 let layout: any = [
   { x: 0, y: 0, w: 2, h: 2, i: '0', type: 'btn', text: '释放式上传' },
   { x: 2, y: 0, w: 2, h: 2, i: '1', type: 'btn', text: '释放MP4' },
@@ -127,7 +128,7 @@ let layout: any = [
   { x: 4, y: 2, w: 2, h: 4, i: '8', type: 'list', text: '查看文件大小' },
   { x: 6, y: 2, w: 1, h: 3, i: '9', type: 'icon', text: '游踪', src: 'http://tva1.sinaimg.cn/large/002Imx2Egy1gurh4vnejzj6069069wet02.jpg' },
   { x: 7, y: 2, w: 1, h: 3, i: '10', type: 'icon', text: 'onedrive网盘', src: 'http://tva1.sinaimg.cn/large/002Imx2Egy1gurs5ouowwj6069069dg202.jpg' }
-  ,{ x: 10, y: 2, w: 1, h: 3, i: '13', type: 'icon', text: '下载文件夹', src: 'https://pic.pngbag.com/00/38/87/e6f8228e8d4d53d7.jpg' }
+  ,{ x: 10, y: 2, w: 1, h: 3, i: '13', type: 'icon', text: '下载文件夹', src: 'https://img.icons8.com/ios-glyphs/452/downloads-folder.png' }
   ,{ x: 8, y: 2, w: 2, h: 6, i: '14', type: 'chart',comp:'memPercent' }
   // { x: 8, y: 2, w: 2, h: 2, i: '12', type: 'input', text: '自由上传文件', expend: false }
 ]

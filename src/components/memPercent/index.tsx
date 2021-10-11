@@ -28,22 +28,21 @@ interface Props {
 type Emit = {
   childClick: () => void;
 }
-
 const echartPar = useEchart()
 const option = reactive(echartPar.option)
 const getData = useGetData(option)
 getData.getMemData()
 const event = useEvent()
 
+
 const memPercent: FunctionalComponent<Props, Emit> =
   // const mytestChild =
   (props, ctx) => {
     const { slots, emit } = ctx
     Object.assign(style, props.style)
-
     return (
-      <div class={style.con} onClick={() => event.handleClick(getData.getMemData)}>
-        <VChart class={style.chart} option={option} />
+      <div class={style.con} v-resize={event.handleDivResize} onClick={() => event.handleClick(getData.getMemData)}>
+        <VChart class={style.chart} option={option} autoresize />
       </div>
     )
   }
