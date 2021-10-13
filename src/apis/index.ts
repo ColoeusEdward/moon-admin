@@ -83,6 +83,13 @@ export function uploadTemp(data?) {
   })
 }
 
+export function rollBackVue(data?) {
+  return request<string>({
+    url: '/koa/mv_upload/rollBackVue',
+    method: 'get',
+    data:data
+  })
+}
 
 
 // 'POST /mv_upload/record_free': record_free,

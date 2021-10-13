@@ -7,7 +7,7 @@
  * @FilePath: \moon-admin\src\views\dash\simpleBtn.ts
  * 可以输入预定的版权声明、个性签名、空行等
  */
-import { RecordRelease, Mp4Release, show_record, record_size_list, left_storage, rmFile, record_free, deploy } from '@/apis/index'
+import { RecordRelease, Mp4Release, show_record, record_size_list, left_storage, rmFile, record_free, deploy,uploadTemp,rollBackVue } from '@/apis/index'
 
 export default function useSimpleBtn() {
   const upLoadData = {}
@@ -100,18 +100,41 @@ export default function useSimpleBtn() {
     handleClick()
   }
 
+  const rollBackVueConfirm = (dialog) => {
+    dialog.warning({
+      title: '警告',
+      content: '你确定？',
+      positiveText: '确定',
+      negativeText: '不确定',
+      onPositiveClick: () => {
+        rollBackVue()
+      },
+      onNegativeClick: () => {
+        
+      }
+    })
+  }
+
   const deployUpload = async (fileList) => {
     let fileItem = fileList[0]
     let fdata = new FormData()
     // debugger
     fdata.append('files', fileItem.file)
     await deploy(fdata)
+    alert('部署成功')
+  }
+  const tempUpload = async (fileList) => {
+    let fileItem = fileList[0]
+    let fdata = new FormData()
+    fdata.append('files', fileItem.file)
+    await uploadTemp(fdata)
   }
   const handleUploadUdpate = (fileList, i) => {
     let list = [() => { }]
     list[12] = () => {
       deployUpload(fileList)
     }
+    list[15] = () => tempUpload(fileList)
     list[i] && list[i]()
     fileList = []
     // let file = fileList[0]
@@ -135,6 +158,7 @@ export default function useSimpleBtn() {
     , upLoadData
     , goDownDir
     , goOldUp
+    ,rollBackVueConfirm
   }
 }
 

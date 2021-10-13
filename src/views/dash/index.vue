@@ -1,6 +1,6 @@
 <template>
   <!-- <n-layout-content> -->
-  <div class="dash" >
+  <div class="dash">
     <n-spin :show="spinShow">
       <grid-layout ref="gridLayoutR" v-model:layout="layout" :col-num="12" :row-height="30" :is-draggable="gridConfig.draggable" :is-resizable="gridConfig.resizable" :vertical-compact="gridConfig.compact" :use-css-transforms="true">
         <grid-item :ref="'gridItem' + item.i" v-for="item in layout" :key="item.i" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i" :class="item.type + 'Item'" :style="ui.gridItemStyle(item)" class="btn" @mousedown="record_mouse_time" @mouseup="handleItemClick(item.i)">
@@ -58,13 +58,13 @@
           <div v-if="item.type == 'input'" class="input">
             <div style="color:#fff;width:100%;margin-bottom:10px;">{{ item.text }}</div>
             <div class="inputBody" v-if="item.expend">
-              <n-input style="fontSize:16px;" @mouseup.stop v-model:value="inputContent" type="textarea" placeholder="多项用回车分割" clearable />
+              <n-input style="font-size:16px;" @mouseup.stop v-model:value="inputContent" type="textarea" placeholder="多项用回车分割" clearable />
               <n-input style="margin-bottom:10px;" v-if="targetInputList.indexOf(item.text) != -1" v-model:value="targetInputContent" placeholder="上传地址" clearable />
               <n-button style="width:90%;height:40px;" type="primary" @mouseup.stop="handleInputBtn(item)">提交</n-button>
             </div>
           </div>
 
-          <div  v-if="item.type == 'chart'" class="chart">
+          <div v-if="item.type == 'chart'" class="chart">
             <component :is="item.comp" />
           </div>
 
@@ -85,10 +85,11 @@ import uiFn from './ui'
 import { CScrollbar } from 'c-scrollbar'
 
 // import { GridLayout, GridItem } from 'vue-grid-layout'
-import { NSpin, NIcon, useMessage, NTooltip, NInput, NButton, NUpload, NUploadTrigger } from 'naive-ui'
+import { NSpin, NIcon, useMessage, NTooltip, NInput, NButton, NUpload, NUploadTrigger, useDialog } from 'naive-ui'
 // import GridLayout from 'vue-grid-layout'
 // const { ctx: that } = getCurrentInstance() as any
 const msg = useMessage()
+const dialog = useDialog()
 // import { useRouter } from 'vue-router'
 // import type { Router } from 'vue-router'
 // const gridLayoutR:{value?:{layoutUpdate:()=>any}} = ref({})
@@ -128,10 +129,11 @@ let layout: any = [
   { x: 4, y: 2, w: 2, h: 4, i: '8', type: 'list', text: '查看文件大小' },
   { x: 6, y: 2, w: 1, h: 3, i: '9', type: 'icon', text: '游踪', src: 'http://tva1.sinaimg.cn/large/002Imx2Egy1gurh4vnejzj6069069wet02.jpg' },
   { x: 7, y: 2, w: 1, h: 3, i: '10', type: 'icon', text: 'onedrive网盘', src: 'http://tva1.sinaimg.cn/large/002Imx2Egy1gurs5ouowwj6069069dg202.jpg' }
-  ,{ x: 10, y: 2, w: 1, h: 3, i: '13', type: 'icon', text: '下载文件夹', src: 'https://img.icons8.com/ios-glyphs/452/downloads-folder.png' }
-  ,{ x: 8, y: 2, w: 2, h: 6, i: '14', type: 'chart',comp:'memPercent' }
-  ,{ x: 2, y: 4, w: 2, h: 2, i: '15', type: 'upload', text: '上传至temp' }
-  ,{ x: 11, y: 2, w: 1, h: 3, i: '16', type: 'icon', text: '老upup', src: 'https://static.thenounproject.com/png/3108223-200.png' }
+  , { x: 10, y: 2, w: 1, h: 3, i: '13', type: 'icon', text: '下载文件夹', src: 'https://img.icons8.com/ios-glyphs/452/downloads-folder.png' }
+  , { x: 8, y: 2, w: 2, h: 6, i: '14', type: 'chart', comp: 'memPercent' }
+  , { x: 2, y: 4, w: 2, h: 2, i: '15', type: 'upload', text: '上传至temp' }
+  , { x: 11, y: 2, w: 1, h: 3, i: '16', type: 'icon', text: '老upup', src: 'https://static.thenounproject.com/png/3108223-200.png' }
+  , { x: 11, y: 3, w: 1, h: 3, i: '17', type: 'btn', text: '回退' }
   // { x: 8, y: 2, w: 2, h: 2, i: '12', type: 'input', text: '自由上传文件', expend: false }
 ]
 let gridConfig = {
@@ -205,6 +207,9 @@ const controlClick = async (i) => {
   }
   list[16] = async () => {
     sb.goOldUp()
+  }
+  list[17] = async () => {
+    sb.rollBackVueConfirm(dialog)
   }
   list[i] && (await list[i]())
 }
@@ -378,7 +383,7 @@ onMounted(() => {
     }
   }
 
-  .chart{
+  .chart {
     width: 100%;
     height: 100%;
   }
