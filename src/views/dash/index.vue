@@ -1,6 +1,6 @@
 <template>
   <!-- <n-layout-content> -->
-  <div class="dash">
+  <div class="dash" >
     <n-spin :show="spinShow">
       <grid-layout ref="gridLayoutR" v-model:layout="layout" :col-num="12" :row-height="30" :is-draggable="gridConfig.draggable" :is-resizable="gridConfig.resizable" :vertical-compact="gridConfig.compact" :use-css-transforms="true">
         <grid-item :ref="'gridItem' + item.i" v-for="item in layout" :key="item.i" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i" :class="item.type + 'Item'" :style="ui.gridItemStyle(item)" class="btn" @mousedown="record_mouse_time" @mouseup="handleItemClick(item.i)">

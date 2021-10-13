@@ -12,6 +12,7 @@ import {
 import VChart, { THEME_KEY } from "vue-echarts";
 import useGetData from './useGetData'
 import useEvent from './useEvent'
+// import { addListener, removeListener } from 'resize-detector'
 
 use([
   CanvasRenderer,
@@ -33,17 +34,38 @@ const option = reactive(echartPar.option)
 const getData = useGetData(option)
 getData.getMemData()
 const event = useEvent()
-
-
+// const fuck = ref<InstanceType<typeof VChart>>()
+let vch = ref<InstanceType<typeof VChart>>()
+let me = ref<HTMLElement>()
+// event.checkRef(vch)
+console.time('未挂载')
 const memPercent: FunctionalComponent<Props, Emit> =
   // const mytestChild =
   (props, ctx) => {
-    const { slots, emit } = ctx
+    const { emit } = ctx
     Object.assign(style, props.style)
+
     return (
-      <div class={style.con} v-resize={event.handleDivResize} onClick={() => event.handleClick(getData.getMemData)}>
-        <VChart class={style.chart} option={option} autoresize />
+      <div class={style.con} v-getComp={(el) => {me.value=el;memounted()}} onClick={() => event.handleClick(getData.getMemData)}>
+        <VChart v-getComp={(el) => {vch.value=el;mounted()}} class={style.chart} option={option} autoresize />
       </div>
     )
   }
 export default memPercent;
+
+const mounted = async () => {
+  console.timeEnd('未挂载')
+  console.log(`已挂载`,);
+  console.log({vch});
+  // await sleep(50)
+  // vch.value?.resize()
+
+  // console.log(`vch`,);
+}
+
+const memounted = () => {
+  console.log(`me`,me.value);
+  // addListener(me!.value!,() => {
+  //   console.log(`fuck`,);
+  // })
+}
