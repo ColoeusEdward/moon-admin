@@ -75,6 +75,14 @@ export function memPercent(data?) {
   })
 }
 
+export function uploadTemp(data?) {
+  return request<string>({
+    url: '/koa/mv_upload/uploadTemp',
+    method: 'post',
+    data:data
+  })
+}
+
 
 
 // 'POST /mv_upload/record_free': record_free,

@@ -41,6 +41,9 @@ export default defineConfig({
             else if (id.includes('node_modules') && id.includes('echarts')) {
               return 'echarts'
             }
+            else if (id.includes('node_modules') && id.includes('rxjs')) {
+              return 'rxjs'
+            }
             else if (id.includes('node_modules')) {
               return 'vendor'
             }

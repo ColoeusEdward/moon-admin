@@ -130,6 +130,8 @@ let layout: any = [
   { x: 7, y: 2, w: 1, h: 3, i: '10', type: 'icon', text: 'onedrive网盘', src: 'http://tva1.sinaimg.cn/large/002Imx2Egy1gurs5ouowwj6069069dg202.jpg' }
   ,{ x: 10, y: 2, w: 1, h: 3, i: '13', type: 'icon', text: '下载文件夹', src: 'https://img.icons8.com/ios-glyphs/452/downloads-folder.png' }
   ,{ x: 8, y: 2, w: 2, h: 6, i: '14', type: 'chart',comp:'memPercent' }
+  ,{ x: 2, y: 4, w: 2, h: 2, i: '15', type: 'upload', text: '上传至temp' }
+  ,{ x: 11, y: 2, w: 1, h: 3, i: '16', type: 'icon', text: '老upup', src: 'https://static.thenounproject.com/png/3108223-200.png' }
   // { x: 8, y: 2, w: 2, h: 2, i: '12', type: 'input', text: '自由上传文件', expend: false }
 ]
 let gridConfig = {
@@ -200,6 +202,9 @@ const controlClick = async (i) => {
   }
   list[13] = async () => {
     sb.goDownDir()
+  }
+  list[16] = async () => {
+    sb.goOldUp()
   }
   list[i] && (await list[i]())
 }

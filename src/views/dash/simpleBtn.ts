@@ -73,6 +73,10 @@ export default function useSimpleBtn() {
     window.open('https://meamoe.ml/record/')
   }
 
+  const goOldUp = () => {
+    window.open('https://meamoe.ml/upload/upload.html')
+  }
+
   const handleDeleteFile = async (inputStr) => {
     let nstr = inputStr.value.replace(/\n/g, ',')
     return await rmFile({ fileName: nstr })
@@ -130,6 +134,7 @@ export default function useSimpleBtn() {
     , handleUploadUdpate
     , upLoadData
     , goDownDir
+    , goOldUp
   }
 }
 

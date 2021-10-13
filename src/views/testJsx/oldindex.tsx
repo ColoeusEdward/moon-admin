@@ -1,4 +1,4 @@
-import { getCurrentInstance, CSSProperties, FunctionalComponent, defineComponent, withScopeId, reactive } from 'vue'
+import {ref, getCurrentInstance, CSSProperties, FunctionalComponent, defineComponent, withScopeId, reactive } from 'vue'
 import { NDataTable } from 'naive-ui'
 import useTableData from './tableData'
 // import './index.scss'
@@ -8,7 +8,7 @@ import mytestChild from './child/child'
 import indexStyle from './index.cssr'
 defineComponent(mytestChild)
 defineComponent(mytestChild2)
-
+const c2 = ref<FunctionalComponent>()
 interface Props {
   test?: number,
   style?: CSSProperties
@@ -42,7 +42,7 @@ const mytest: FunctionalComponent<Props, Emit> =
       <div class='moon-testjsx'>
         <div>css module 可以做到样式穿透, 考虑继续使用tsx方案</div>
         <mytestChild  />
-        <mytestChild2 />
+        <mytestChild2 v-getComp={(el) => {c2.value=el;console.log(`c2`,c2.value);}}  />
         {/* {mytestChild({style:indexStlye})} */}
         <NDataTable columns={tableData.columns} data={data} rowClassName='redRow' />
         fuckyou
