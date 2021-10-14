@@ -78,11 +78,13 @@
 
 <script setup lang="ts">
 // import { Copy } from '@vicons/ionicons5'
+import {GridLayout,GridItem} from 'vue3-grid-layout'
 import { ref, reactive, onMounted, defineAsyncComponent } from 'vue'
 import { ContentCopyFilled, RefreshOutlined } from '@vicons/material'
 import useSimpleBtn from './simpleBtn'
 import uiFn from './ui'
 import { CScrollbar } from 'c-scrollbar'
+
 
 // import { GridLayout, GridItem } from 'vue-grid-layout'
 import { NSpin, NIcon, useMessage, NTooltip, NInput, NButton, NUpload, NUploadTrigger, useDialog } from 'naive-ui'

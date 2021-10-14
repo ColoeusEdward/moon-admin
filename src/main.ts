@@ -11,7 +11,6 @@ import { io } from "socket.io-client";
 import 'vfonts/Lato.css'
 // 等宽字体
 import 'vfonts/FiraCode.css'
-import VueGridLayout from 'vue-grid-layout'
 import { buildSocket } from './utils/buildSocket'
 import define from './utils/define'
 
@@ -35,7 +34,7 @@ const socket = io(define.wsUrl,{
 const app = createApp(App)
 app.use(store)
 app.use(router)
-app.use(VueGridLayout)
+// app.use(VueGridLayout)
 // app.use(CScrollbar)
 
 buildSocket(socket)

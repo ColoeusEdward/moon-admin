@@ -3447,13 +3447,6 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"mitt@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "mitt@npm:2.1.0"
-  checksum: 5b0f698cbff2e47cc3b81b991f1230fadd429bdf4a2d9051d936059ad8090e36932694f299dd52434365463e6c52075026fb2161adcfd52b234b6f5392a514d2
-  languageName: node
-  linkType: hard
-
 "mkdirp@npm:^1.0.3, mkdirp@npm:^1.0.4":
   version: 1.0.4
   resolution: "mkdirp@npm:1.0.4"
@@ -4205,9 +4198,9 @@ fsevents@~2.3.2:
     vite: 2.5.10
     vue: 3.2.13
     vue-echarts: ^6.0.0
-    vue-grid-layout: 3.0.0-beta1
     vue-router: ^4.0.11
     vue-tsc: ^0.3.0
+    vue3-grid-layout: ^1.0.0
   languageName: unknown
   linkType: soft
 
@@ -5082,21 +5075,6 @@ typescript@^4.4.3:
   languageName: node
   linkType: hard
 
-"vue-grid-layout@npm:3.0.0-beta1":
-  version: 3.0.0-beta1
-  resolution: "vue-grid-layout@npm:3.0.0-beta1"
-  dependencies:
-    "@interactjs/actions": ^1.10.2
-    "@interactjs/auto-start": ^1.10.2
-    "@interactjs/dev-tools": ^1.10.2
-    "@interactjs/interactjs": ^1.10.2
-    "@interactjs/modifiers": ^1.10.2
-    element-resize-detector: ^1.2.1
-    mitt: ^2.1.0
-  checksum: a126e7bf5f9d6c0342a330c8347e9b92f68ea4a9d3a8649bc83d0938702ba7642e1fe425aa1a1ee7cb9b46af987020f9ce06798f78c8b9f7293d47d235392dc5
-  languageName: node
-  linkType: hard
-
 "vue-router@npm:^4.0.11":
   version: 4.0.11
   resolution: "vue-router@npm:4.0.11"
@@ -5118,6 +5096,21 @@ typescript@^4.4.3:
   bin:
     vue-tsc: bin/vue-tsc.js
   checksum: f8cf410ab455eb2fd66b2266dfc0ca2ad160b444dc3e3cffde4664b9b65136da636fb9a4aa7d09866e05c3eb874b816bcce2a7938867fadbaa6ad082b9684311
+  languageName: node
+  linkType: hard
+
+"vue3-grid-layout@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "vue3-grid-layout@npm:1.0.0"
+  dependencies:
+    "@interactjs/actions": ^1.10.2
+    "@interactjs/auto-start": ^1.10.2
+    "@interactjs/dev-tools": ^1.10.2
+    "@interactjs/interactjs": ^1.10.2
+    "@interactjs/modifiers": ^1.10.2
+    element-resize-detector: ^1.2.1
+    lodash: ^4.17.21
+  checksum: efd0b5a4ecb4aed56b331983679e8523ac7727ceda4dc4ca3569ab25e046adcc3bb721709cfe89479483902fd849880def1068f27a2226a04879195b10fd35f8
   languageName: node
   linkType: hard
 
