@@ -158,7 +158,7 @@ export default function useSimpleBtn() {
     , upLoadData
     , goDownDir
     , goOldUp
-    ,rollBackVueConfirm
+    , rollBackVueConfirm
   }
 }
 

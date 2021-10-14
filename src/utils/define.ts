@@ -1,9 +1,11 @@
 const APIURl = 'https://meamoe.ml'
 const root = '/site/up/'
+const wsUrl = 'wss://meamoe.ml'
 
 export default {
   APIURl
   ,root
+  ,wsUrl
 }
 
 

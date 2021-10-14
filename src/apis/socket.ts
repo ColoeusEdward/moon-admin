@@ -1,0 +1,2 @@
+import {inject} from 'vue'
+

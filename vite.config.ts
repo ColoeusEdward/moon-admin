@@ -47,6 +47,9 @@ export default defineConfig({
             else if (id.includes('node_modules') && id.includes('pinia')) {
               return 'pinia'
             }
+            else if (id.includes('node_modules') && id.includes('socket.io')) {
+              return 'socket.io'
+            }
             else if (id.includes('node_modules')) {
               return 'vendor'
             }
