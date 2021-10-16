@@ -34,8 +34,8 @@ const socket = io(define.wsUrl,{
 const app = createApp(App)
 app.use(store)
 app.use(router)
-// app.use(VueGridLayout)
-// app.use(CScrollbar)
+
+
 
 buildSocket(socket)
 
@@ -50,3 +50,4 @@ for(const key in directive){
 }
 
 app.mount('#app')
+

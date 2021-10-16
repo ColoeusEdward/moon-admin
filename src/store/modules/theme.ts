@@ -1,7 +1,11 @@
+import { useLoadingBar,LoadingBarProviderInst } from 'naive-ui'
+
 import { defineStore } from 'pinia'
+
 interface themeListState {
   //深色主题
   darkTheme: boolean
+  loadingBar?: LoadingBarProviderInst
 }
 
 export const useThemeStore = defineStore({
@@ -14,5 +18,10 @@ export const useThemeStore = defineStore({
       return this.darkTheme
     }
   },
-  actions: {}
+  actions: {
+    setLoadingBar(bar){
+      console.log({bar});
+      this.loadingBar = bar
+    }
+  }
 })

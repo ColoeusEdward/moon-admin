@@ -1,4 +1,4 @@
-import { Ref, inject, getCurrentInstance, CSSProperties, FunctionalComponent, defineComponent, withScopeId, reactive } from 'vue'
+import { Ref, getCurrentInstance, CSSProperties, FunctionalComponent, defineComponent, withScopeId, reactive } from 'vue'
 import childStyle from './child.module.scss'
 
 import childNum from './useChildNum'
