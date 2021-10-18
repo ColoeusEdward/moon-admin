@@ -136,6 +136,7 @@ let layout: any = [
   , { x: 2, y: 4, w: 2, h: 2, i: '15', type: 'upload', text: '上传至temp' }
   , { x: 11, y: 2, w: 1, h: 3, i: '16', type: 'icon', text: '老upup', src: 'https://static.thenounproject.com/png/3108223-200.png' }
   , { x: 11, y: 3, w: 1, h: 3, i: '17', type: 'btn', text: '回退' }
+  , { x: 0, y: 4, w: 2, h: 2, i: '18', type: 'btn', text: '更新证书' } 
   // { x: 8, y: 2, w: 2, h: 2, i: '12', type: 'input', text: '自由上传文件', expend: false }
 ]
 let gridConfig = {
@@ -212,6 +213,9 @@ const controlClick = async (i) => {
   }
   list[17] = async () => {
     sb.rollBackVueConfirm(dialog)
+  }
+  list[18] = async () => {
+    sb.eccUpdate(dialog)
   }
   list[i] && (await list[i]())
 }

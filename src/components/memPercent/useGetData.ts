@@ -1,7 +1,7 @@
 
 import { useSocketStore } from '@/store/modules/socket'
 const socketStore =  useSocketStore()
-window.$socket.emit('getMem')
+// window.$socket.emit('getMem')
 
 
 

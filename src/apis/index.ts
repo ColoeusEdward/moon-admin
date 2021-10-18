@@ -91,6 +91,14 @@ export function rollBackVue(data?) {
   })
 }
 
+export function updateEcc(data?) {
+  return request<string>({
+    url: '/koa/newCen/updateEcc',
+    method: 'get',
+    data:data
+  })
+}
+
 
 // 'POST /mv_upload/record_free': record_free,
 //   'GET /mv_upload/record_release': record_release,

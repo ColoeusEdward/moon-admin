@@ -10,6 +10,14 @@ export function buildSocket(socket){
   socket.on('getMem',(res) => {
     socketStore.memPercent = res
   })
+  // socket.io.on("reconnect", (attempt) => {
+  //   console.log(`reconnect触发`,);
+  //   socket.emit('getMem')
+  // });
+  socket.on("connect", () => {
+    console.log(`connect触发`,);
+    socket.emit('getMem')
+  });
 
   window.$socket = socket
 }
