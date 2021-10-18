@@ -15,7 +15,7 @@ export default function useGetData(option) {
     option.series[0].data[0].value = memData[0]
     option.series[0].data[1].value = memData[1]
   }
-
+  // socketStore.setMemPercent([2,2])
   return {
     getMemData
   }

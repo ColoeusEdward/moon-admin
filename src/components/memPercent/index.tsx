@@ -32,13 +32,12 @@ type Emit = {
 const echartPar = useEchart()
 const option = reactive(echartPar.option)
 const getData = useGetData(option)
-getData.getMemData()
 const event = useEvent()
 // const fuck = ref<InstanceType<typeof VChart>>()
 let vch = ref<InstanceType<typeof VChart>>()
 let me = ref<HTMLElement>()
 // event.checkRef(vch)
-console.time('未挂载')
+console.time('挂载时间')
 const memPercent: FunctionalComponent<Props, Emit> =
   // const mytestChild =
   (props, ctx) => {
@@ -54,9 +53,9 @@ const memPercent: FunctionalComponent<Props, Emit> =
 export default memPercent;
 
 const mounted = async () => {
-  console.timeEnd('未挂载')
-  console.log(`已挂载`,);
+  console.timeEnd('挂载时间')
   console.log({vch});
+  window.$socket.emit('getMemOnce')
   // await sleep(50)
   // vch.value?.resize()
 
@@ -64,7 +63,7 @@ const mounted = async () => {
 }
 
 const memounted = () => {
-  console.log(`me`,me.value);
+  // console.log(`me`,me.value);
   // addListener(me!.value!,() => {
   //   console.log(`fuck`,);
   // })

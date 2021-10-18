@@ -12,10 +12,14 @@ export const useSocketStore = defineStore({
     ,memPercent:[1,1]
   }),
   getters: {
+    
   },
   actions: {
     setNum(value){
       this.num = value
+    }
+    ,setMemPercent(value){
+      this.memPercent =value
     }
   }
 })

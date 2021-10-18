@@ -1,5 +1,6 @@
 
-
+// import { useSocketStore } from '@/store/modules/socket'
+// const socketStore =  useSocketStore()
 const option = {
   title: {
     text: "内存用量",
