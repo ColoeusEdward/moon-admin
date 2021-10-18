@@ -286,7 +286,7 @@ onMounted(() => {
 .dash {
   width: 100%;
   height: 90vh;
-  transition: all 0.2s ease;
+  // transition: all 0.2s ease;
 }
 
 .content {
@@ -434,8 +434,8 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  transition-property: width, height, transform;
-  transition-timing-function: ease;
+  transition-property: width, height, transform !important;
+  transition-timing-function: ease !important;
 }
 .vue-grid-item .minMax {
   font-size: 12px;
