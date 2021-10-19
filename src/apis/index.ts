@@ -59,11 +59,12 @@ export function record_free(data?) {
   })
 }
 
-export function deploy(data?) {
+export function deploy(data?,handleUploadEvent?) {
   return request<string>({
     url: '/koa/mv_upload/deploy',
     method: 'post',
     data:data
+    ,onUploadProgress:handleUploadEvent
   })
 }
 
@@ -75,11 +76,12 @@ export function memPercent(data?) {
   })
 }
 
-export function uploadTemp(data?) {
+export function uploadTemp(data?,handleUploadEvent?) {
   return request<string>({
     url: '/koa/mv_upload/uploadTemp',
     method: 'post',
     data:data
+    ,onUploadProgress:handleUploadEvent
   })
 }
 

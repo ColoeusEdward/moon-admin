@@ -39,7 +39,7 @@ const option = {
       , label: {
         position: 'inner'
         , formatter: '{b}: {d}%'
-        , fontSize: 16
+        , fontSize: 14
       }
     }
   ]

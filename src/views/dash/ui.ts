@@ -13,7 +13,7 @@ export default function ui() {
   const gridItemStyle = (item) => {
     let style = {
       backgroundColor: item.bgColor
-      , border: `1px solid ${item.bgColor}`
+      // , border: `1px solid ${item.bgColor}`
     }
     return style
   }

@@ -1,0 +1,25 @@
+.con{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  .bar{
+    transition: all 0.2s ease;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: #00000066;
+    // left: -100%;
+  }
+  .complete{
+    transition: all 1s ease;
+    color: #fff;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #2d334c;
+    // top: -100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

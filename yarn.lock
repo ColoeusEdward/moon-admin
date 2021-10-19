@@ -1213,10 +1213,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/devtools-api@npm:^6.0.0-beta.14, @vue/devtools-api@npm:^6.0.0-beta.15":
+"@vue/devtools-api@npm:^6.0.0-beta.14":
   version: 6.0.0-beta.15
   resolution: "@vue/devtools-api@npm:6.0.0-beta.15"
   checksum: 7769e72bd4d04d2d3e80fcdca277aa41011af6d39c82031de5bba1457ff13e01b06d04d466b660dee796846560b8a2553c88bdb76b8fe42a1e08435e4cca6a23
+  languageName: node
+  linkType: hard
+
+"@vue/devtools-api@npm:^6.0.0-beta.19":
+  version: 6.0.0-beta.19
+  resolution: "@vue/devtools-api@npm:6.0.0-beta.19"
+  checksum: 2eecb7096540ed2777d16e9be21f81429cc8eeed8fcef14dc0481db3f213dad8e3534e099cf268bc91ffbc5a721b3e5252a3ae38a5cc9f67ab59ee24204e974c
   languageName: node
   linkType: hard
 
@@ -3481,9 +3488,9 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"naive-ui@npm:2.19.7":
-  version: 2.19.7
-  resolution: "naive-ui@npm:2.19.7"
+"naive-ui@npm:2.19.9":
+  version: 2.19.9
+  resolution: "naive-ui@npm:2.19.9"
   dependencies:
     "@css-render/plugin-bem": ^0.15.6
     "@css-render/vue3-ssr": ^0.15.6
@@ -3501,11 +3508,11 @@ fsevents@~2.3.2:
     treemate: ^0.3.8
     vdirs: ^0.1.4
     vfonts: ^0.1.0
-    vooks: ^0.2.6
+    vooks: ^0.2.10
     vueuc: ^0.4.13
   peerDependencies:
     vue: ^3.0.0
-  checksum: d44da6e834c8b81b23af69c3a98c4fcd6f75c38effcff5002d958bfa0135f64c964233ac1a4b2bbefebe00857989ad07ab974206cf91636f82062bc336b46126
+  checksum: 1bb814e5c0d28f6f5f670fea51d9133b1980ae74a79332b4c23500c404100ae62f0c1591236588343244122517534b092f8232b9540189bc7d26305b59ae7037
   languageName: node
   linkType: hard
 
@@ -3746,17 +3753,22 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"pinia@npm:2.0.0-beta.5":
-  version: 2.0.0-beta.5
-  resolution: "pinia@npm:2.0.0-beta.5"
+"pinia@npm:2.0.0-rc.13":
+  version: 2.0.0-rc.13
+  resolution: "pinia@npm:2.0.0-rc.13"
   dependencies:
-    "@vue/devtools-api": ^6.0.0-beta.15
+    "@vue/devtools-api": ^6.0.0-beta.19
+    vue-demi: "*"
   peerDependencies:
-    typescript: ^4.3.5
+    "@vue/composition-api": ^1.2.4
+    typescript: ^4.4.3
+    vue: ^2.6.14 || ^3.2.0
   peerDependenciesMeta:
+    "@vue/composition-api":
+      optional: true
     typescript:
       optional: true
-  checksum: 9e1ec5f8cb10bd13b167325761a4f7c2a8d57dcc32d8c11217763b34ad0915ce06f92ff1aa65579a6b627fc564ba0c00dddee53a7bd5f3ae0336308cfc620b69
+  checksum: 6f933d71b228bc9aa73f150e1a9dc2678ddbb028fa8f63f3a8e193ac2c750a456e1b42a0a2374d059af5e974df589944a9fc10e4cc0eb24eecf5f239d7260441
   languageName: node
   linkType: hard
 
@@ -4184,9 +4196,9 @@ fsevents@~2.3.2:
     husky: ^7.0.1
     lint-staged: ^11.0.0
     mockjs: ^1.1.0
-    naive-ui: 2.19.7
+    naive-ui: 2.19.9
     nprogress: ^0.2.0
-    pinia: 2.0.0-beta.5
+    pinia: 2.0.0-rc.13
     prettier: ^2.3.2
     rxjs: ^7.3.0
     sass: ^1.35.2
@@ -4853,7 +4865,18 @@ typescript@^4.4.3:
   languageName: node
   linkType: hard
 
-"vooks@npm:^0.2.4, vooks@npm:^0.2.6":
+"vooks@npm:^0.2.10":
+  version: 0.2.10
+  resolution: "vooks@npm:0.2.10"
+  dependencies:
+    evtd: ^0.2.2
+  peerDependencies:
+    vue: ^3.0.0
+  checksum: 2c44deeb4e1324a1fc46c19117b6e3c5eb6d5a524dd10992aa4b981ddbbe4c9df1161866bdd4a12acabe270b83871a111469c8dfae6b4c74c2903a31daecada1
+  languageName: node
+  linkType: hard
+
+"vooks@npm:^0.2.4":
   version: 0.2.8
   resolution: "vooks@npm:0.2.8"
   dependencies:
@@ -5025,7 +5048,7 @@ typescript@^4.4.3:
   languageName: node
   linkType: hard
 
-"vue-demi@npm:^0.11.2":
+"vue-demi@npm:*, vue-demi@npm:^0.11.2":
   version: 0.11.4
   resolution: "vue-demi@npm:0.11.4"
   peerDependencies:

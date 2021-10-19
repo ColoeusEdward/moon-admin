@@ -3,12 +3,13 @@
   <div class="dash">
     <n-spin :show="spinShow">
       <grid-layout ref="gridLayoutR" v-model:layout="layout" :col-num="12" :row-height="30" :is-draggable="gridConfig.draggable" :is-resizable="gridConfig.resizable" :vertical-compact="gridConfig.compact" :use-css-transforms="true">
-        <grid-item :ref="'gridItem' + item.i" v-for="item in layout" :key="item.i" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i" :class="item.type + 'Item'" :style="ui.gridItemStyle(item)" class="btn" @mousedown="record_mouse_time" @mouseup="handleItemClick(item.i)">
+        <grid-item :ref="'gridItem' + item.i" v-for="item in layout" :key="item.i" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i" :class="item.type + 'Item'" :style="ui.gridItemStyle(item)" class="btn" @mousedown="record_mouse_time" @mouseup="handleItemClick(item.i, item)">
           <span v-if="item.type == 'btn'" class="text">{{ item.text || item.i }}</span>
 
-          <n-upload ref="deployUpload" :default-upload="false" abstract v-if="item.type == 'upload'" action="2" :headers="{ 'naive-info': 'hello!' }" :data="sb.upLoadData" :on-update:file-list="(list) => { sb.handleUploadUdpate(list, item.i) }">
+          <n-upload ref="deployUpload" :default-upload="false" abstract v-if="item.type == 'upload'" action="2" :headers="{ 'naive-info': 'hello!' }" :data="sb.upLoadData" :on-update:file-list="(list) => { sb.handleUploadUdpate(list, item.i, progObj) }">
             <n-upload-trigger #="{ handleClick }" abstract>
-              <div class="upload" @mouseup.stop="sb.handleUpload(handleClick, mouse_time)">
+              <div class="upload" @mouseup="sb.handleUpload(handleClick, mouse_time)">
+                <uploadProgress v-if="curClickBtnI == item.i" :prog="progObj[item.i] || 0" />
                 <span class="text">{{ item.text || item.i }}</span>
               </div>
             </n-upload-trigger>
@@ -78,8 +79,8 @@
 
 <script setup lang="ts">
 // import { Copy } from '@vicons/ionicons5'
-import {GridLayout,GridItem} from 'vue3-grid-layout'
-import { ref, reactive, onMounted, defineAsyncComponent } from 'vue'
+import { GridLayout, GridItem } from 'vue3-grid-layout'
+import { ref, reactive, onMounted, defineAsyncComponent, shallowReactive } from 'vue'
 import { ContentCopyFilled, RefreshOutlined } from '@vicons/material'
 import useSimpleBtn from './simpleBtn'
 import uiFn from './ui'
@@ -115,9 +116,11 @@ const spinShow = ref(false) //loading显示
 let inputContent = ref('')
 let targetInputContent = ref('')
 const targetInputList = ['自由上传文件']
+const curClickBtnI = ref('0')
+const progObj: any = reactive({})
 
 
-let layout: any = [
+let layout: any = shallowReactive([
   { x: 0, y: 0, w: 2, h: 2, i: '0', type: 'btn', text: '释放式上传' },
   { x: 2, y: 0, w: 2, h: 2, i: '1', type: 'btn', text: '释放MP4' },
   { x: 4, y: 0, w: 1, h: 3, i: '2', type: 'icon', text: '命令行', src: 'https://www.freeiconspng.com/uploads/command-line-icon-1.png' },
@@ -136,9 +139,9 @@ let layout: any = [
   , { x: 2, y: 4, w: 2, h: 2, i: '15', type: 'upload', text: '上传至temp' }
   , { x: 11, y: 2, w: 1, h: 3, i: '16', type: 'icon', text: '老upup', src: 'https://static.thenounproject.com/png/3108223-200.png' }
   , { x: 11, y: 3, w: 1, h: 3, i: '17', type: 'btn', text: '回退' }
-  , { x: 0, y: 4, w: 2, h: 2, i: '18', type: 'btn', text: '更新证书' } 
+  , { x: 0, y: 4, w: 2, h: 2, i: '18', type: 'btn', text: '更新证书' }
   // { x: 8, y: 2, w: 2, h: 2, i: '12', type: 'input', text: '自由上传文件', expend: false }
-]
+])
 let gridConfig = {
   draggable: true,
   resizable: true,
@@ -227,7 +230,7 @@ const record_mouse_time = () => {
 
 // method ------------------------------------------------------------------------------------------------------------------------
 
-const handleItemClick = async (i) => {
+const handleItemClick = async (i, item) => {
   let time = new Date().getTime()
   console.log('mouse_time', mouse_time)
   // if (time - mouse_time >= 200) {
@@ -235,6 +238,12 @@ const handleItemClick = async (i) => {
     return
   }
   console.log('i', i)
+  if (item.type == 'upload') {
+    curClickBtnI.value = i
+    console.log(`curClickBtnI.value`, curClickBtnI.value);
+    return
+  }
+
   ui.controlGridItemSize(i, layout, gridLayoutR)
   spinShow.value = true
   await controlClick(i)
@@ -428,6 +437,12 @@ onMounted(() => {
     display: flex;
     align-items: center;
     justify-content: center;
+    .uploadProgress {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: #000;
+    }
   }
 }
 .btn {

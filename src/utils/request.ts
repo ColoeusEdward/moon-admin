@@ -14,7 +14,7 @@ const route = useRoute()
 console.log('import.meta.env.PROD', import.meta.env.PROD)
 const service = axios.create({
 
-  timeout: 10000,
+  timeout: 100000,
   baseURL: define.APIURl, // url = base url + request url
   withCredentials: false // send cookies when cross-domain requests
 })

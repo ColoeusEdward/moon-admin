@@ -130,26 +130,38 @@ export default function useSimpleBtn() {
     })
   }
 
-  const deployUpload = async (fileList) => {
+  const deployUpload = async (fileList,i,progObj) => {
     let fileItem = fileList[0]
     let fdata = new FormData()
     // debugger
     fdata.append('files', fileItem.file)
-    await deploy(fdata)
-    alert('部署成功')
+    await deploy(fdata,(progressEvent) => {
+      const percentCompleted = Math.round(
+        (progressEvent.loaded * 100) / progressEvent.total
+      );
+      progObj[i] = percentCompleted
+      // console.log(progObj);
+    })
+    // alert('部署成功')
   }
-  const tempUpload = async (fileList) => {
+  const tempUpload = async (fileList,i,progObj) => {
     let fileItem = fileList[0]
     let fdata = new FormData()
     fdata.append('files', fileItem.file)
-    await uploadTemp(fdata)
+    await uploadTemp(fdata, (progressEvent) => {
+      const percentCompleted = Math.round(
+        (progressEvent.loaded * 100) / progressEvent.total
+      );
+      progObj[i] = percentCompleted
+      // console.log(progObj);
+    })
   }
-  const handleUploadUdpate = (fileList, i) => {
+  const handleUploadUdpate = (fileList, i,progObj) => {
     let list = [() => { }]
     list[12] = () => {
-      deployUpload(fileList)
+      deployUpload(fileList,i,progObj)
     }
-    list[15] = () => tempUpload(fileList)
+    list[15] = () => tempUpload(fileList,i,progObj)
     list[i] && list[i]()
     fileList = []
     // let file = fileList[0]
