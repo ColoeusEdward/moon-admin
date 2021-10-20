@@ -4,13 +4,36 @@
     <n-spin :show="spinShow">
       <grid-layout ref="gridLayoutR" v-model:layout="layout" :col-num="12" :row-height="30" :is-draggable="gridConfig.draggable" :is-resizable="gridConfig.resizable" :vertical-compact="gridConfig.compact" :use-css-transforms="true">
         <grid-item :ref="'gridItem' + item.i" v-for="item in layout" :key="item.i" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i" :class="item.type + 'Item'" :style="ui.gridItemStyle(item)" class="btn" @mousedown="record_mouse_time" @mouseup="handleItemClick(item.i, item)">
-          <span v-if="item.type == 'btn'" class="text">{{ item.text || item.i }}</span>
+          <span v-if="item.type == 'btn' && !item.src" class="text">{{ item.text || item.i }}</span>
+
+          <div v-if="item.type == 'btn' && item.src" class="imgBtn">
+            <n-tooltip placement="bottom" trigger="hover">
+              <template #trigger>
+                <div v-if="item.src" style="color:#f5f5d5;width:100%;" :style="ui.listTitleStyle(item)" class="iconbtn">
+                  <div class="imgCon">
+                    <img :src="item.src" :alt="item.text" />
+                  </div>
+                </div>
+              </template>
+              <span>{{ item.text }}</span>
+            </n-tooltip>
+          </div>
 
           <n-upload ref="deployUpload" :default-upload="false" abstract v-if="item.type == 'upload'" action="2" :headers="{ 'naive-info': 'hello!' }" :data="sb.upLoadData" :on-update:file-list="(list) => { sb.handleUploadUdpate(list, item.i, progObj) }">
             <n-upload-trigger #="{ handleClick }" abstract>
               <div class="upload" @mouseup="sb.handleUpload(handleClick, mouse_time)">
                 <uploadProgress v-if="curClickBtnI == item.i" :prog="progObj[item.i] || 0" />
-                <span class="text">{{ item.text || item.i }}</span>
+                <span v-if="!item.src" class="text">{{ item.text || item.i }}</span>
+                <n-tooltip placement="bottom" trigger="hover">
+                  <template #trigger>
+                    <div v-if="item.src" style="color:#f5f5d5;width:100%;" :style="ui.listTitleStyle(item)" class="iconbtn">
+                      <div class="imgCon">
+                        <img :src="item.src" :alt="item.text" />
+                      </div>
+                    </div>
+                  </template>
+                  <span>{{ item.text }}</span>
+                </n-tooltip>
               </div>
             </n-upload-trigger>
           </n-upload>
@@ -28,7 +51,18 @@
           </div>
 
           <div v-if="item.type == 'list'" class="list">
-            <div style="color:#f5f5d5;width:100%;margin-bottom:10px;" :style="ui.listTitleStyle(item)">{{ item.text }}</div>
+            <div v-if="item.list" style="color:#f5f5d5;width:100%;margin-bottom:10px;" :style="ui.listTitleStyle(item)">{{ item.text }}</div>
+            <n-tooltip placement="bottom" trigger="hover">
+              <template #trigger>
+                <div v-if="item.src && !item.list" style="color:#f5f5d5;width:100%;" :style="ui.listTitleStyle(item)" class="iconbtn">
+                  <div class="imgCon">
+                    <img :src="item.src" :alt="item.text" />
+                    <!-- <div class="img" :style="{backgroundImgae:`url(${item.src})`;}" /> -->
+                  </div>
+                </div>
+              </template>
+              <span>{{ item.text }}</span>
+            </n-tooltip>
             <c-scrollbar width="100%" height="640px" direction="y" v-if="item.list">
               <div class="listRow" v-for="(le,li) in item.list" @mouseup.stop="handleListRowClick(le)">
                 <div class="name sizeName" v-if="item.text == '查看文件大小'" style="text-align:left;">
@@ -57,7 +91,17 @@
           </div>
 
           <div v-if="item.type == 'input'" class="input">
-            <div style="color:#fff;width:100%;margin-bottom:10px;">{{ item.text }}</div>
+            <!-- <n-tooltip placement="bottom" trigger="hover">
+              <template #trigger>
+                <div v-if="item.src && !item.expend" style="color:#f5f5d5;width:100%;" :style="ui.listTitleStyle(item)" class="iconbtn">
+                  <div class="imgCon">
+                    <img :src="item.src" :alt="item.text" />
+                  </div>
+                </div>
+              </template>
+              <span>{{ item.text }}</span>
+            </n-tooltip>-->
+            <div style="color:#fff;width:100%;margin-bottom:6px;">{{ item.text }}</div>
             <div class="inputBody" v-if="item.expend">
               <n-input style="font-size:16px;" @mouseup.stop v-model:value="inputContent" type="textarea" placeholder="多项用回车分割" clearable />
               <n-input style="margin-bottom:10px;" v-if="targetInputList.indexOf(item.text) != -1" v-model:value="targetInputContent" placeholder="上传地址" clearable />
@@ -126,20 +170,21 @@ let layout: any = shallowReactive([
   { x: 4, y: 0, w: 1, h: 3, i: '2', type: 'icon', text: '命令行', src: 'https://www.freeiconspng.com/uploads/command-line-icon-1.png' },
   { x: 5, y: 0, w: 1, h: 3, i: '11', type: 'icon', text: 'aria2', src: 'https://raw.githubusercontent.com/mayswind/AriaNg-Native/master/assets/AriaNg.ico' },
   { x: 6, y: 0, w: 2, h: 3, i: '3', type: 'btn' },
-  { x: 8, y: 0, w: 2, h: 2, i: '4', type: 'input', text: '自由上传文件', expend: false },
-  { x: 10, y: 0, w: 1, h: 3, i: '12', type: 'upload', text: '部署' },
+  { x: 8, y: 0, w: 2, h: 2, i: '4', type: 'input', text: '自由上传文件', expend: false, src: 'https://icons-for-free.com/iconfiles/png/512/cloudapp+upload+icon-1320185151373769487.png' },
+  { x: 10, y: 0, w: 1, h: 3, i: '12', type: 'upload', text: '部署', src: 'https://cdn.iconscout.com/icon/premium/png-256-thumb/deployment-2369058-1978336.png' },
   { x: 11, y: 0, w: 1, h: 3, i: '5', type: 'iconbtn', text: '复原', iconComp: RefreshOutlined },
-  { x: 0, y: 2, w: 2, h: 4, i: '6', type: 'list', text: '查看剩余空间' },
-  { x: 2, y: 2, w: 2, h: 2, i: '7', type: 'input', text: '删除文件', expend: false },
-  { x: 4, y: 2, w: 2, h: 4, i: '8', type: 'list', text: '查看文件大小' },
+  { x: 0, y: 2, w: 2, h: 4, i: '6', type: 'list', text: '查看剩余空间', src: 'https://icons-for-free.com/iconfiles/png/512/storage+dropbox+dropbox+logo+file+storage+file+transfer+upload-1320196083387888656.png' },
+  { x: 2, y: 2, w: 2, h: 2, i: '7', type: 'input', text: '删除文件', expend: false, src: 'https://icons-for-free.com/iconfiles/png/512/close+delete+discard+exit+remove+x+icon-1320167911272843865.png' },
+  { x: 4, y: 2, w: 2, h: 4, i: '8', type: 'list', text: '查看文件大小', src: 'https://icons-for-free.com/iconfiles/png/512/file+format+mp4+paper+icon-1320167130956649663.png' },
   { x: 6, y: 2, w: 1, h: 3, i: '9', type: 'icon', text: '游踪', src: 'http://tva1.sinaimg.cn/large/002Imx2Egy1gurh4vnejzj6069069wet02.jpg' },
   { x: 7, y: 2, w: 1, h: 3, i: '10', type: 'icon', text: 'onedrive网盘', src: 'http://tva1.sinaimg.cn/large/002Imx2Egy1gurs5ouowwj6069069dg202.jpg' }
   , { x: 10, y: 2, w: 1, h: 3, i: '13', type: 'icon', text: '下载文件夹', src: 'https://img.icons8.com/ios-glyphs/452/downloads-folder.png' }
   , { x: 8, y: 2, w: 2, h: 6, i: '14', type: 'chart', comp: 'memPercent' }
   , { x: 2, y: 4, w: 2, h: 2, i: '15', type: 'upload', text: '上传至temp' }
   , { x: 11, y: 2, w: 1, h: 3, i: '16', type: 'icon', text: '老upup', src: 'https://static.thenounproject.com/png/3108223-200.png' }
-  , { x: 11, y: 3, w: 1, h: 3, i: '17', type: 'btn', text: '回退' }
+  , { x: 11, y: 3, w: 1, h: 3, i: '17', type: 'btn', text: '回退', src: 'https://img.icons8.com/bubbles/2x/undo.png' }
   , { x: 0, y: 4, w: 2, h: 2, i: '18', type: 'btn', text: '更新证书' }
+  , { x: 6, y: 4, w: 2, h: 2, i: '19', type: 'btn', text: '重启后端' }
   // { x: 8, y: 2, w: 2, h: 2, i: '12', type: 'input', text: '自由上传文件', expend: false }
 ])
 let gridConfig = {
@@ -219,6 +264,9 @@ const controlClick = async (i) => {
   }
   list[18] = async () => {
     sb.eccUpdate(dialog)
+  }
+  list[19] = async () => {
+    sb.lexueReboot(dialog)
   }
   list[i] && (await list[i]())
 }
@@ -396,6 +444,16 @@ onMounted(() => {
         }
       }
     }
+    .imgCon {
+      width: 110px;
+      height: 110px;
+      img {
+        height: 100%;
+        width: 100%;
+        border-radius: 14px;
+        background-color: none;
+      }
+    }
   }
 
   .chart {
@@ -418,9 +476,20 @@ onMounted(() => {
 
   .input {
     font-size: 24px;
+    .imgCon {
+      width: 60px;
+      height: 60px;
+      img {
+        height: 100%;
+        width: 100%;
+        border-radius: 14px;
+        background-color: none;
+      }
+    }
   }
 
   .iconbtn,
+  .imgBtn,
   .icon {
     width: 100%;
     height: 100%;
@@ -430,6 +499,18 @@ onMounted(() => {
   }
 
   .iconbtn {
+  }
+  .imgBtn {
+    .imgCon {
+      width: 100px;
+      height: 100px;
+      img {
+        height: 100%;
+        width: 100%;
+        border-radius: 14px;
+        background-color: none;
+      }
+    }
   }
   .upload {
     height: 100%;
@@ -442,6 +523,16 @@ onMounted(() => {
       width: 100%;
       height: 100%;
       background-color: #000;
+    }
+    .imgCon {
+      width: 100px;
+      height: 100px;
+      img {
+        height: 100%;
+        width: 100%;
+        border-radius: 14px;
+        background-color: none;
+      }
     }
   }
 }

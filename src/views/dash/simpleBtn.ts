@@ -7,7 +7,7 @@
  * @FilePath: \moon-admin\src\views\dash\simpleBtn.ts
  * 可以输入预定的版权声明、个性签名、空行等
  */
-import { RecordRelease, Mp4Release, show_record, record_size_list, left_storage, rmFile, record_free, deploy, uploadTemp, rollBackVue, updateEcc } from '@/apis/index'
+import { RecordRelease, Mp4Release, show_record, record_size_list, left_storage, rmFile, record_free, deploy, uploadTemp, rollBackVue, updateEcc, rebootLexue } from '@/apis/index'
 
 export default function useSimpleBtn() {
   const upLoadData = {}
@@ -130,12 +130,12 @@ export default function useSimpleBtn() {
     })
   }
 
-  const deployUpload = async (fileList,i,progObj) => {
+  const deployUpload = async (fileList, i, progObj) => {
     let fileItem = fileList[0]
     let fdata = new FormData()
     // debugger
     fdata.append('files', fileItem.file)
-    await deploy(fdata,(progressEvent) => {
+    await deploy(fdata, (progressEvent) => {
       const percentCompleted = Math.round(
         (progressEvent.loaded * 100) / progressEvent.total
       );
@@ -144,7 +144,7 @@ export default function useSimpleBtn() {
     })
     // alert('部署成功')
   }
-  const tempUpload = async (fileList,i,progObj) => {
+  const tempUpload = async (fileList, i, progObj) => {
     let fileItem = fileList[0]
     let fdata = new FormData()
     fdata.append('files', fileItem.file)
@@ -156,16 +156,31 @@ export default function useSimpleBtn() {
       // console.log(progObj);
     })
   }
-  const handleUploadUdpate = (fileList, i,progObj) => {
+  const handleUploadUdpate = (fileList, i, progObj) => {
     let list = [() => { }]
     list[12] = () => {
-      deployUpload(fileList,i,progObj)
+      deployUpload(fileList, i, progObj)
     }
-    list[15] = () => tempUpload(fileList,i,progObj)
+    list[15] = () => tempUpload(fileList, i, progObj)
     list[i] && list[i]()
     fileList = []
     // let file = fileList[0]
 
+  }
+
+  const lexueReboot = (dialog) => {
+    dialog.warning({
+      title: '警告',
+      content: '你确定？',
+      positiveText: '确定',
+      negativeText: '不确定',
+      onPositiveClick: () => {
+        rebootLexue()
+      },
+      onNegativeClick: () => {
+
+      }
+    })
   }
 
   return {
@@ -187,6 +202,7 @@ export default function useSimpleBtn() {
     , goOldUp
     , rollBackVueConfirm
     , eccUpdate
+    , lexueReboot
   }
 }
 

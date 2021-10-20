@@ -64,12 +64,13 @@ export default function ui() {
   const listTitleStyle = (item) => {
     let style = {
       borderBottom: '',
-      marginTop: ''
+      marginTop: '',
     }
     if (item.list) {
+      // style.marginTop = "10px";
       style.borderBottom = '1px solid #fff'
     } else {
-      style.marginTop = '20%'
+      // style.marginTop = '20%'
     }
     return style
   }

@@ -101,6 +101,15 @@ export function updateEcc(data?) {
   })
 }
 
+export function rebootLexue(data?) {
+  return request<string>({
+    url: '/koa/newCen/rebootLexue',
+    method: 'get',
+    data:data
+  })
+}
+
+
 
 // 'POST /mv_upload/record_free': record_free,
 //   'GET /mv_upload/record_release': record_release,

@@ -11,6 +11,7 @@ interface Props {
 type Emit = {
   childClick: () => void;
 }
+
 const completeStyle = reactive({
   top:'0'
 })
@@ -20,6 +21,8 @@ const showComplete = async () => {
   await sleep(2000)
   completeStyle.top = '0'
 }
+
+
 watch(() => pg.value, () => {
   if (pg.value == 100) {
     console.log(`over`,);
@@ -35,8 +38,6 @@ const pgCompute = computed(() => {
 })
 
 
-
-
 const uploadProgress: FunctionalComponent<Props, Emit> =
   // const mytestChild =
   (props, ctx) => {
@@ -47,8 +48,6 @@ const uploadProgress: FunctionalComponent<Props, Emit> =
       left: (pgCompute.value - 100) + '%'
     }
     
-
-
     return (
       <div class={style.con}>
         <div class={style.bar} style={barStyle}></div>
