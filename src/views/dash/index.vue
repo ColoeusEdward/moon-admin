@@ -91,7 +91,7 @@
           </div>
 
           <div v-if="item.type == 'input'" class="input">
-            <!-- <n-tooltip placement="bottom" trigger="hover">
+            <n-tooltip placement="bottom" trigger="hover">
               <template #trigger>
                 <div v-if="item.src && !item.expend" style="color:#f5f5d5;width:100%;" :style="ui.listTitleStyle(item)" class="iconbtn">
                   <div class="imgCon">
@@ -100,8 +100,8 @@
                 </div>
               </template>
               <span>{{ item.text }}</span>
-            </n-tooltip>-->
-            <div style="color:#fff;width:100%;margin-bottom:6px;">{{ item.text }}</div>
+            </n-tooltip>
+            <div style="color:#fff;width:100%;margin-bottom:6px;" v-if="item.expend">{{ item.text }}</div>
             <div class="inputBody" v-if="item.expend">
               <n-input style="font-size:16px;" @mouseup.stop v-model:value="inputContent" type="textarea" placeholder="多项用回车分割" clearable />
               <n-input style="margin-bottom:10px;" v-if="targetInputList.indexOf(item.text) != -1" v-model:value="targetInputContent" placeholder="上传地址" clearable />
@@ -165,26 +165,27 @@ const progObj: any = reactive({})
 
 
 let layout: any = shallowReactive([
-  { x: 0, y: 0, w: 2, h: 2, i: '0', type: 'btn', text: '释放式上传' },
-  { x: 2, y: 0, w: 2, h: 2, i: '1', type: 'btn', text: '释放MP4' },
-  { x: 4, y: 0, w: 1, h: 3, i: '2', type: 'icon', text: '命令行', src: 'https://www.freeiconspng.com/uploads/command-line-icon-1.png' },
+  { x: 0, y: 0, w: 1, h: 3, i: '0', type: 'btn', text: '释放式上传',src:'https://img.icons8.com/dusk/100/000000/upgrade.png' },
+  { x: 1, y: 0, w: 1, h: 3, i: '1', type: 'btn', text: '释放MP4',src:'https://img.icons8.com/color/100/000000/video.png' },
+  { x: 4, y: 0, w: 1, h: 3, i: '2', type: 'icon', text: '命令行', src: 'https://img.icons8.com/dusk/100/000000/command-line.png' },
   { x: 5, y: 0, w: 1, h: 3, i: '11', type: 'icon', text: 'aria2', src: 'https://raw.githubusercontent.com/mayswind/AriaNg-Native/master/assets/AriaNg.ico' },
   { x: 6, y: 0, w: 2, h: 3, i: '3', type: 'btn' },
-  { x: 8, y: 0, w: 2, h: 2, i: '4', type: 'input', text: '自由上传文件', expend: false, src: 'https://icons-for-free.com/iconfiles/png/512/cloudapp+upload+icon-1320185151373769487.png' },
+  { x: 8, y: 2, w: 2, h: 3, i: '4', type: 'input', text: '自由上传文件', expend: false, src: 'https://img.icons8.com/bubbles/100/000000/upload.png' },
   { x: 10, y: 0, w: 1, h: 3, i: '12', type: 'upload', text: '部署', src: 'https://cdn.iconscout.com/icon/premium/png-256-thumb/deployment-2369058-1978336.png' },
   { x: 11, y: 0, w: 1, h: 3, i: '5', type: 'iconbtn', text: '复原', iconComp: RefreshOutlined },
-  { x: 0, y: 2, w: 2, h: 4, i: '6', type: 'list', text: '查看剩余空间', src: 'https://icons-for-free.com/iconfiles/png/512/storage+dropbox+dropbox+logo+file+storage+file+transfer+upload-1320196083387888656.png' },
-  { x: 2, y: 2, w: 2, h: 2, i: '7', type: 'input', text: '删除文件', expend: false, src: 'https://icons-for-free.com/iconfiles/png/512/close+delete+discard+exit+remove+x+icon-1320167911272843865.png' },
+  { x: 0, y: 3, w: 2, h: 4, i: '6', type: 'list', text: '查看剩余空间', src: 'https://icons-for-free.com/iconfiles/png/512/storage+dropbox+dropbox+logo+file+storage+file+transfer+upload-1320196083387888656.png' },
+  { x: 2, y: 2, w: 2, h: 3, i: '7', type: 'input', text: '删除文件', expend: false, src: 'https://img.icons8.com/bubbles/100/000000/delete-sign.png' },
   { x: 4, y: 2, w: 2, h: 4, i: '8', type: 'list', text: '查看文件大小', src: 'https://icons-for-free.com/iconfiles/png/512/file+format+mp4+paper+icon-1320167130956649663.png' },
-  { x: 6, y: 2, w: 1, h: 3, i: '9', type: 'icon', text: '游踪', src: 'http://tva1.sinaimg.cn/large/002Imx2Egy1gurh4vnejzj6069069wet02.jpg' },
-  { x: 7, y: 2, w: 1, h: 3, i: '10', type: 'icon', text: 'onedrive网盘', src: 'http://tva1.sinaimg.cn/large/002Imx2Egy1gurs5ouowwj6069069dg202.jpg' }
-  , { x: 10, y: 2, w: 1, h: 3, i: '13', type: 'icon', text: '下载文件夹', src: 'https://img.icons8.com/ios-glyphs/452/downloads-folder.png' }
-  , { x: 8, y: 2, w: 2, h: 6, i: '14', type: 'chart', comp: 'memPercent' }
-  , { x: 2, y: 4, w: 2, h: 2, i: '15', type: 'upload', text: '上传至temp' }
-  , { x: 11, y: 2, w: 1, h: 3, i: '16', type: 'icon', text: '老upup', src: 'https://static.thenounproject.com/png/3108223-200.png' }
+  { x: 6, y: 2, w: 1, h: 3, i: '9', type: 'icon', text: '游踪', src: 'https://img.icons8.com/color/100/000000/controller.png' },
+  { x: 7, y: 2, w: 1, h: 3, i: '10', type: 'icon', text: 'onedrive网盘', src: 'https://img.icons8.com/clouds/150/000000/skydrive.png' }
+  , { x: 10, y: 2, w: 1, h: 3, i: '13', type: 'icon', text: '下载文件夹', src: 'https://img.icons8.com/dusk/100/000000/download.png' }
+  , { x: 8, y: 0, w: 2, h: 6, i: '14', type: 'chart', comp: 'memPercent' }
+  , { x: 2, y: 5, w: 1, h: 3, i: '15', type: 'upload', text: '上传至temp',src:'https://img.icons8.com/plasticine/200/000000/add-folder.png' }
+  , { x: 11, y: 2, w: 1, h: 3, i: '16', type: 'icon', text: '老upup', src: 'https://img.icons8.com/dusk/128/000000/home.png' }
   , { x: 11, y: 3, w: 1, h: 3, i: '17', type: 'btn', text: '回退', src: 'https://img.icons8.com/bubbles/2x/undo.png' }
-  , { x: 0, y: 4, w: 2, h: 2, i: '18', type: 'btn', text: '更新证书' }
-  , { x: 6, y: 4, w: 2, h: 2, i: '19', type: 'btn', text: '重启后端' }
+  , { x: 0, y: 5, w: 1, h: 3, i: '18', type: 'btn', text: '更新证书',src:'https://img.icons8.com/external-vitaliy-gorbachev-lineal-color-vitaly-gorbachev/100/000000/external-certificate-award-vitaliy-gorbachev-lineal-color-vitaly-gorbachev.png' }
+  , { x: 6, y: 4, w: 1, h: 3, i: '19', type: 'btn', text: '重启后端',src:'https://img.icons8.com/bubbles/100/000000/restart.png' }
+  , { x: 3, y: 5, w: 1, h: 3, i: '20', type: 'btn', text: '更新onedrive Index代码',src:'https://img.icons8.com/color/144/000000/git.png' }
   // { x: 8, y: 2, w: 2, h: 2, i: '12', type: 'input', text: '自由上传文件', expend: false }
 ])
 let gridConfig = {
@@ -267,6 +268,9 @@ const controlClick = async (i) => {
   }
   list[19] = async () => {
     sb.lexueReboot(dialog)
+  }
+  list[20] = async () => {
+    sb.pullOnedriveInedx()
   }
   list[i] && (await list[i]())
 }
@@ -463,8 +467,8 @@ onMounted(() => {
 
   .icon {
     .imgCon {
-      width: 90px;
-      height: 90px;
+      width: 100px;
+      height: 100px;
       img {
         height: 100%;
         width: 100%;
@@ -477,8 +481,8 @@ onMounted(() => {
   .input {
     font-size: 24px;
     .imgCon {
-      width: 60px;
-      height: 60px;
+      width: 100px;
+      height: 100px;
       img {
         height: 100%;
         width: 100%;

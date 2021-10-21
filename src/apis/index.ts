@@ -109,6 +109,14 @@ export function rebootLexue(data?) {
   })
 }
 
+export function gitPullOnedriveInedx(data?) {
+  return request<string>({
+    url: '/koa/newCen/gitPullOnedriveInedx',
+    method: 'get',
+    data:data
+  })
+}
+
 
 
 // 'POST /mv_upload/record_free': record_free,

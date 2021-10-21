@@ -7,7 +7,7 @@
  * @FilePath: \moon-admin\src\views\dash\simpleBtn.ts
  * 可以输入预定的版权声明、个性签名、空行等
  */
-import { RecordRelease, Mp4Release, show_record, record_size_list, left_storage, rmFile, record_free, deploy, uploadTemp, rollBackVue, updateEcc, rebootLexue } from '@/apis/index'
+import { RecordRelease, Mp4Release, show_record, record_size_list, left_storage, rmFile, record_free, deploy, uploadTemp, rollBackVue, updateEcc, rebootLexue, gitPullOnedriveInedx } from '@/apis/index'
 
 export default function useSimpleBtn() {
   const upLoadData = {}
@@ -183,6 +183,10 @@ export default function useSimpleBtn() {
     })
   }
 
+  const pullOnedriveInedx = () => {
+    gitPullOnedriveInedx()
+  }
+
   return {
     recordRelease,
     mp4Release
@@ -203,6 +207,7 @@ export default function useSimpleBtn() {
     , rollBackVueConfirm
     , eccUpdate
     , lexueReboot
+    , pullOnedriveInedx
   }
 }
 
