@@ -18,18 +18,26 @@ const gg =  () => {
 const test = ref(555)
 
 const changeTest = async () => {
+  
   await sleep(2000)
-  test.value = 999 //改变一下prop就会导致子组件重新渲染, 函数式组件的缺陷
+  test.value = 999 //父组件的内容稍微改变一下就会导致子组件重新渲染, 函数式组件的缺陷, 所以子组件只需要执行一次的任务应该放到函数外, 然后缓存结果, 渲染dom的消耗那就无能为力了
   // childStore.setNum(5566)
 }
+const handeOnGetGG = (gg) => {
+  gg()
+}
+
 
 const mytestChild: FunctionalComponent<Props, Emit> =
   // const mytestChild =
   (props, ctx) => {
     const { emit } = ctx
+    console.log(`fatcher reRender`,);
     return (
       <div>
-        <child class='myChild' v-getComp={(el) => {changeTest()}} style={child2Style} test={test}  onGetGGFn={(gg) => {gg()}} />
+        fathcher:{test.value}
+        <child class='myChild' v-getComp={(el) => {console.log(`child mounted`,);changeTest()}} style={child2Style} test={test} onGetGGFn={handeOnGetGG} />
+        {/* <child class='myChild' v-getComp={(el) => {console.log(`child mounted`,);changeTest()}}  /> */}
       </div>
     )
   }
