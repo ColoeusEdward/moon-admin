@@ -3,9 +3,10 @@ import define from '@/utils/define'
 import { BasicResponseModel,baseData } from './../apis/BasicResponseModel';
 import { useUserStore } from '@/store/modules/user';
 import { useRoute } from 'vue-router';
+import {useMessage} from 'naive-ui'
 declare global {
   interface Window {
-    $msg?: any
+    $msg?: ReturnType<typeof useMessage>
   }
 }
 const userStore = useUserStore()

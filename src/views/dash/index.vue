@@ -3,7 +3,7 @@
   <div class="dash">
     <n-spin :show="spinShow">
       <grid-layout ref="gridLayoutR" v-model:layout="layout" :col-num="12" :row-height="30" :is-draggable="gridConfig.draggable" :is-resizable="gridConfig.resizable" :vertical-compact="gridConfig.compact" :use-css-transforms="true">
-        <grid-item :ref="'gridItem' + item.i" v-for="item in layout" :key="item.i" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i" :class="item.type + 'Item'" :style="ui.gridItemStyle(item)" class="btn" @mousedown="record_mouse_time" @mouseup="handleItemClick(item.i, item)">
+        <grid-item :ref="'gridItem' + item.i" v-for="item in layout" :key="item.i" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i" :class="[item.type + 'Item', ui.aniControl(item, curActiveBtnI)]" :style="ui.gridItemStyle(item)" class="btn" @mousedown="record_mouse_time" @mouseup="handleItemClick(item.i, item)">
           <span v-if="item.type == 'btn' && !item.src" class="text">{{ item.text || item.i }}</span>
 
           <div v-if="item.type == 'btn' && item.src" class="imgBtn">
@@ -112,7 +112,6 @@
           <div v-if="item.type == 'chart'" class="chart">
             <component :is="item.comp" />
           </div>
-
           <!-- <span class="remove" @click="removeItem(item.i)">x</span> -->
         </grid-item>
       </grid-layout>
@@ -161,12 +160,13 @@ let inputContent = ref('')
 let targetInputContent = ref('')
 const targetInputList = ['自由上传文件']
 const curClickBtnI = ref('0')
+const curActiveBtnI = ref('0') //用来控制动画的下标, 隔一秒就会自动归零
 const progObj: any = reactive({})
 
 
 let layout: any = shallowReactive([
-  { x: 0, y: 0, w: 1, h: 3, i: '0', type: 'btn', text: '释放式上传',src:'https://img.icons8.com/dusk/100/000000/upgrade.png' },
-  { x: 1, y: 0, w: 1, h: 3, i: '1', type: 'btn', text: '释放MP4',src:'https://img.icons8.com/color/100/000000/video.png' },
+  { x: 0, y: 0, w: 1, h: 3, i: '0', type: 'btn', text: '释放式上传', src: 'https://img.icons8.com/dusk/100/000000/upgrade.png' },
+  { x: 1, y: 0, w: 1, h: 3, i: '1', type: 'btn', text: '释放MP4', src: 'https://img.icons8.com/color/100/000000/video.png' },
   { x: 4, y: 0, w: 1, h: 3, i: '2', type: 'icon', text: '命令行', src: 'https://img.icons8.com/dusk/100/000000/command-line.png' },
   { x: 5, y: 0, w: 1, h: 3, i: '11', type: 'icon', text: 'aria2', src: 'https://raw.githubusercontent.com/mayswind/AriaNg-Native/master/assets/AriaNg.ico' },
   { x: 6, y: 0, w: 2, h: 3, i: '3', type: 'btn' },
@@ -180,12 +180,13 @@ let layout: any = shallowReactive([
   { x: 7, y: 2, w: 1, h: 3, i: '10', type: 'icon', text: 'onedrive网盘', src: 'https://img.icons8.com/clouds/150/000000/skydrive.png' }
   , { x: 10, y: 2, w: 1, h: 3, i: '13', type: 'icon', text: '下载文件夹', src: 'https://img.icons8.com/dusk/100/000000/download.png' }
   , { x: 8, y: 0, w: 2, h: 6, i: '14', type: 'chart', comp: 'memPercent' }
-  , { x: 2, y: 5, w: 1, h: 3, i: '15', type: 'upload', text: '上传至temp',src:'https://img.icons8.com/plasticine/200/000000/add-folder.png' }
+  , { x: 2, y: 5, w: 1, h: 3, i: '15', type: 'upload', text: '上传至temp', src: 'https://img.icons8.com/plasticine/200/000000/add-folder.png' }
   , { x: 11, y: 2, w: 1, h: 3, i: '16', type: 'icon', text: '老upup', src: 'https://img.icons8.com/dusk/128/000000/home.png' }
   , { x: 11, y: 3, w: 1, h: 3, i: '17', type: 'btn', text: '回退', src: 'https://img.icons8.com/bubbles/2x/undo.png' }
-  , { x: 0, y: 5, w: 1, h: 3, i: '18', type: 'btn', text: '更新证书',src:'https://img.icons8.com/external-vitaliy-gorbachev-lineal-color-vitaly-gorbachev/100/000000/external-certificate-award-vitaliy-gorbachev-lineal-color-vitaly-gorbachev.png' }
-  , { x: 6, y: 4, w: 1, h: 3, i: '19', type: 'btn', text: '重启后端',src:'https://img.icons8.com/bubbles/100/000000/restart.png' }
-  , { x: 3, y: 5, w: 1, h: 3, i: '20', type: 'btn', text: '更新onedrive Index代码',src:'https://img.icons8.com/color/144/000000/git.png' }
+  , { x: 0, y: 5, w: 1, h: 3, i: '18', type: 'btn', text: '更新证书', src: 'https://img.icons8.com/external-vitaliy-gorbachev-lineal-color-vitaly-gorbachev/100/000000/external-certificate-award-vitaliy-gorbachev-lineal-color-vitaly-gorbachev.png' }
+  , { x: 6, y: 4, w: 1, h: 3, i: '19', type: 'btn', text: '重启后端', src: 'https://img.icons8.com/bubbles/100/000000/restart.png' }
+  , { x: 3, y: 5, w: 1, h: 3, i: '20', type: 'btn', text: '更新onedrive Index代码', src: 'https://img.icons8.com/color/144/000000/git.png' }
+  , { x: 2, y: 6, w: 2, h: 6, i: '21', type: 'chart', text: '计时器', comp: 'timeCounter' }
   // { x: 8, y: 2, w: 2, h: 2, i: '12', type: 'input', text: '自由上传文件', expend: false }
 ])
 let gridConfig = {
@@ -290,8 +291,12 @@ const handleItemClick = async (i, item) => {
     return
   }
   console.log('i', i)
+  curClickBtnI.value = i
+  curActiveBtnI.value = i
+  window.setTimeout(() => {
+    curActiveBtnI.value = '-1'
+  }, 800)
   if (item.type == 'upload') {
-    curClickBtnI.value = i
     console.log(`curClickBtnI.value`, curClickBtnI.value);
     return
   }
@@ -383,8 +388,20 @@ onMounted(() => {
   cursor: se-resize;
 }
 .vue-grid-item {
-  &.btn:active {
-    background-color: #3f5772 !important;
+  &.btn {
+    // animation: spreadborder 1s 1;
+  }
+  &.btn.active {
+    animation: spreadborder 0.8s 1;
+    // background-color: #3f5772 !important;
+    @keyframes spreadborder {
+      0% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+      }
+      100% {
+        box-shadow: 0 0 0 20px rgba(255, 255, 255, 0);
+      }
+    }
   }
   &.vue-grid-placeholder {
     background-color: #000;

@@ -1,0 +1,94 @@
+
+
+@mixin hoverFluo($color) {
+  &{
+    transition: 0.3s;
+  }
+  &:hover {
+    z-index: 20;
+    // transition-delay: 1.5s;
+    // color: $bg-color;
+    box-shadow: 0 0 10px $color, 0 0 20px $color,
+      0 0 40px $color, 0 0 80px $color,
+      0 0 160px $color;
+  }
+  &:hover::before {
+    z-index: 20;
+    width: 60%;
+    left: 0;
+    height: 100%;
+    box-shadow: 5px 0 0 $color, 5px 0 0 $color;
+    transition-delay: 0s, 0.5s, 1s, 1s;
+  }
+  a:hover::after {
+    z-index: 20;
+    width: 60%;
+    height: 100%;
+    right: 0;
+    box-shadow: -5px 0 0 $color, -5px 0 0 $color;
+    transition-delay: 0s, 0.5s, 1s, 1s;
+  }
+}
+
+
+.con{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  // position: absolute;
+  .bar{
+    transition: all 0.2s ease;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: #00000066;
+    // left: -100%;
+  }
+  .complete{
+    transition: all 1s ease;
+    color: #fff;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #2d334c;
+    // top: -100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .btnCon{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    height: 100%;
+    div{
+      flex-grow: 1;
+      height: 100%;
+      max-width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &.start{
+        background-color: #63e2b7;
+        color: #44a384;
+        @include hoverFluo(#63e2b7);
+      }
+      &.stop{
+        background-color: #e88080;
+        @include hoverFluo(#e88080);
+        // color: #b86262;
+      }
+      &.reset{
+        background-color: #f2c97d;
+        @include hoverFluo(#f2c97d);
+      }
+
+      
+    }
+  }
+}

@@ -91,9 +91,9 @@ export default defineConfig({
       NODE_ENV: process.env.NODE_ENV
     }
   }
-  // ,css:{
-  //   modules:{
-
-  //   }
-  // }
+  ,css:{
+    modules:{
+      localsConvention:'camelCaseOnly'
+    }
+  }
 })

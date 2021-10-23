@@ -4,7 +4,7 @@ import router from './router'
 import { store } from './store'
 import components from './components'
 import directive from './directive'
-import { io } from "socket.io-client";
+import { io,Socket } from "socket.io-client";
 
 // import resize from ''
 // 通用字体
@@ -24,7 +24,7 @@ import define from './utils/define'
 //   // ,reconnectionDelay:5000
 // });
 
-const socket = io(define.wsUrl,{
+const socket:Socket = io(define.wsUrl,{
     transports: ["websocket"]
     ,reconnectionDelayMax: 10000
     ,reconnectionDelay:5000
