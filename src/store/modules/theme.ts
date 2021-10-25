@@ -1,4 +1,4 @@
-import { useLoadingBar,LoadingBarProviderInst } from 'naive-ui'
+import { useLoadingBar, LoadingBarProviderInst } from 'naive-ui'
 
 import { defineStore } from 'pinia'
 
@@ -6,12 +6,14 @@ interface themeListState {
   //深色主题
   darkTheme: boolean
   loadingBar?: LoadingBarProviderInst
+  pressTime?: number
 }
 
 export const useThemeStore = defineStore({
   id: 'theme',
   state: (): themeListState => ({
     darkTheme: true
+    , pressTime: new Date().getTime()
   }),
   getters: {
     getTheme(): boolean {
@@ -19,9 +21,12 @@ export const useThemeStore = defineStore({
     }
   },
   actions: {
-    setLoadingBar(bar){
-      console.log({bar});
+    setLoadingBar(bar) {
+      console.log({ bar });
       this.loadingBar = bar
+    }
+    , setPressTime(val) {
+      this.pressTime = val
     }
   }
 })

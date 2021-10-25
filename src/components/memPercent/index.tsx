@@ -55,7 +55,7 @@ export default memPercent;
 const mounted = async () => {
   console.timeEnd('挂载时间')
   console.log({vch});
-  window.$socket.emit('getMemOnce')
+  window.$socket?.emit('getMemOnce')
   // await sleep(50)
   // vch.value?.resize()
 

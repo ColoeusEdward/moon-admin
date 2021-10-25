@@ -52,6 +52,10 @@ const menuOptions = [
         label: 'echart页面',
         key: 'echart'
       }
+      ,{
+        label: '新dash',
+        key: 'newDash'
+      }
     ]
   },
   {

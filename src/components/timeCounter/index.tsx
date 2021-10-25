@@ -30,10 +30,6 @@ const percent = computed(() => {
 })
 
 // methods----------------------------------------------------------------------------------------------
-const handleMouseUp = (event, fn) => {
-  event.stopPropagation()
-  fn()
-}
 
 const timeCounter: FunctionalComponent<Props, Emit> =
   // const mytestChild =

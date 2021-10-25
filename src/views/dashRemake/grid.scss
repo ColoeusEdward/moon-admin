@@ -1,0 +1,73 @@
+.vue-grid-layout {
+  background: #0b0b0e;
+}
+.layoutJSON {
+  background: #0b0b0e;
+  border: 1px solid black;
+  margin-top: 10px;
+  padding: 10px;
+}
+.columns {
+  -moz-columns: 120px;
+  -webkit-columns: 120px;
+  columns: 120px;
+}
+.vue-resizable-handle {
+  z-index: 5000;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  bottom: 0;
+  right: 0;
+  background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pg08IS0tIEdlbmVyYXRvcjogQWRvYmUgRmlyZXdvcmtzIENTNiwgRXhwb3J0IFNWRyBFeHRlbnNpb24gYnkgQWFyb24gQmVhbGwgKGh0dHA6Ly9maXJld29ya3MuYWJlYWxsLmNvbSkgLiBWZXJzaW9uOiAwLjYuMSAgLS0+DTwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DTxzdmcgaWQ9IlVudGl0bGVkLVBhZ2UlMjAxIiB2aWV3Qm94PSIwIDAgNiA2IiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjojZmZmZmZmMDAiIHZlcnNpb249IjEuMSINCXhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiDQl4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjZweCIgaGVpZ2h0PSI2cHgiDT4NCTxnIG9wYWNpdHk9IjAuMzAyIj4NCQk8cGF0aCBkPSJNIDYgNiBMIDAgNiBMIDAgNC4yIEwgNCA0LjIgTCA0LjIgNC4yIEwgNC4yIDAgTCA2IDAgTCA2IDYgTCA2IDYgWiIgZmlsbD0iIzAwMDAwMCIvPg0JPC9nPg08L3N2Zz4=");
+  background-position: bottom right;
+  padding: 0 3px 3px 0;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  box-sizing: border-box;
+  cursor: se-resize;
+}
+.vue-grid-item {
+  &.btn {
+    // animation: spreadborder 1s 1;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      transition-property: width, height, transform !important;
+      transition-timing-function: ease !important;
+  }
+  &.btn.active {
+    animation: spreadborder 0.8s 1;
+    // background-color: #3f5772 !important;
+    @keyframes spreadborder {
+      0% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+      }
+      100% {
+        box-shadow: 0 0 0 20px rgba(255, 255, 255, 0);
+      }
+    }
+  }
+  &.vue-grid-placeholder {
+    background-color: #000;
+  }
+}
+.vue-grid-item:not(.vue-grid-placeholder) {
+  user-select: none;
+  background: #3ba786;
+  // border: 1px solid #3ba786;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 5px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.vue-grid-item.resizing {
+  opacity: 0.9;
+  border: 10px solid #fff;
+}
+.vue-grid-item.static {
+  background: #cce;
+}
