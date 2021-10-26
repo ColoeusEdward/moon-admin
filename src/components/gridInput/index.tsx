@@ -1,4 +1,4 @@
-import { ref, FunctionalComponent, reactive } from 'vue'
+import { ref, FunctionalComponent, reactive,Ref } from 'vue'
 import style from './index.module.scss'
 import { isLongPress } from '@/utils';
 import { NInput, NButton, NSpin } from 'naive-ui';
@@ -7,6 +7,7 @@ import useSubmit from './useSubmit';
 
 interface Props {
   // submitFn: (input: string, target: string) => void
+  curClickBtnI: Ref<string>
   item: gridItem
   h: number
   prog?: number
@@ -49,7 +50,7 @@ const gridInput: FunctionalComponent<Props, Emit> =
     // let item = props.item
 
     return (
-      <NSpin show={spinShow.value}>
+      <NSpin show={(spinShow.value && props.curClickBtnI.value == props.item.i)}>
         <div class={style.input}>
           {renderIconLink(props.item)}
           {renderbody(props.item)}

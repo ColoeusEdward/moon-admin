@@ -23,7 +23,8 @@ import { ref, provide } from 'vue'
 //组件引入
 import MoonHeaderContainer from '@/layouts/default/header/index.vue'
 import MoonSider from '@/layouts/default/sider/index.vue'
-import { NConfigProvider, NLayout, NLayoutHeader, NLayoutSider, NLayoutContent, useMessage,NDialogProvider} from 'naive-ui'
+import { NConfigProvider, NLayout, NLayoutHeader, NLayoutSider, NLayoutContent, useMessage,NDialogProvider,useDialog} from 'naive-ui'
+
 
 const defaultTheme = {}
 let collapsed = ref(true)

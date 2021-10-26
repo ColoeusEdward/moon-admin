@@ -29,7 +29,6 @@ const renderProgress = (curClickBtnI, item) => {
 const renderTriggerContent = (handleClick, item, curClickBtnI) => {
   return (<div class={style.upload} onMouseup={() => { !isLongPress() && handleUpload(handleClick) }}>
     {renderProgress(curClickBtnI, item)}
-    {/* <span v-if="!item.src" class="text">{{ item.text || item.i }}</span> */}
     <iconLink item={item} />
   </div>)
 }

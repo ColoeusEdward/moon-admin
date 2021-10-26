@@ -67,7 +67,7 @@ export default function ui() {
     //   return true
     // }
     list[i] && list[i]() && gridLayout.value?.layoutUpdate()
-    console.log(`layout`,layout);
+    // console.log(`layout`,layout);
     // list[i] && list[i]() && gridLayout.layoutUpdate()
   }
 

@@ -4,7 +4,11 @@
 
 <script setup lang="ts">
 import dashIndex from './dashIndex'
-
+import { useThemeStore } from '@/store/modules/theme'
+import { useDialog } from 'naive-ui'
+const dialog = useDialog()
+const themeStore = useThemeStore()
+themeStore.setDialog(dialog)
 
 </script>
 

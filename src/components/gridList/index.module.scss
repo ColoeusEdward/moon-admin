@@ -1,0 +1,24 @@
+.list {
+  width: 100%;
+  height: 100%;
+  font-size: 24px;
+  .listRow {
+    // width: 100%;
+    display: flex;
+    padding: 0 20px;
+    &:hover,
+    &:active {
+      background-color: cornflowerblue;
+    }
+    .name {
+      flex-grow: 1;
+      text-align: center;
+      &.sizeName {
+        display: flex;
+        div {
+          width: 80px;
+        }
+      }
+    }
+  }
+}

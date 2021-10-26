@@ -19,9 +19,10 @@ const renderComp = (item, curClickBtnI) => {
   const obj = {
     iconbtn: () => { res = recoverGridItem(item, grid.recoverSize) }
     , icon: () => { res = (<iconLink item={item} />) }
-    , input: () => { res = (<gridInput item={item} h={item.h} />) }
+    , input: () => { res = (<gridInput item={item} h={item.h} curClickBtnI={curClickBtnI} />) }
     , chart: () => { res = (<chartCon item={item} />) }
     , upload: () => { res = (<gridUploader item={item} curClickBtnI={curClickBtnI} />) }
+    , list: () => { res = (<gridList item={item} w={item.w} curClickBtnI={curClickBtnI} />) }
   }
   obj['btn'] = obj['icon']
   obj[item.type] && obj[item.type]()

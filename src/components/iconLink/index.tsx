@@ -4,6 +4,7 @@ import { useToolTip } from '@/utils/comp';
 import { isLongPress } from '@/utils';
 import useApiReq from './useApiReq';
 
+
 interface Props {
   item: gridItem
   prog?: number
@@ -33,9 +34,9 @@ const iconLink: FunctionalComponent<Props, Emit> =
     Object.assign(style, props.style)
 
     return (
-      <div class={style.icon} onMouseup={() => { !isLongPress() && goLink(props.item) }}>
-        {toolTip.render(contentRender(props.item), props.item.text!)}
-      </div>
+        <div class={style.icon} onMouseup={() => { !isLongPress() && goLink(props.item) }}>
+          {toolTip.render(contentRender(props.item), props.item.text!)}
+        </div>
     )
   }
 export default (() => iconLink)(); //只有这样才能正常使用defineAsyncComponent挂载

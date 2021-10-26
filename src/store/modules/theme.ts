@@ -1,4 +1,4 @@
-import { useLoadingBar, LoadingBarProviderInst } from 'naive-ui'
+import { useLoadingBar, LoadingBarProviderInst, useDialog } from 'naive-ui'
 
 import { defineStore } from 'pinia'
 
@@ -7,6 +7,7 @@ interface themeListState {
   darkTheme: boolean
   loadingBar?: LoadingBarProviderInst
   pressTime?: number
+  dialog?: ReturnType<typeof useDialog>
 }
 
 export const useThemeStore = defineStore({
@@ -27,6 +28,9 @@ export const useThemeStore = defineStore({
     }
     , setPressTime(val) {
       this.pressTime = val
+    }
+    , setDialog(val) {
+      this.dialog = val
     }
   }
 })

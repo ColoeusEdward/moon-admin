@@ -50,8 +50,9 @@ export default function useGrid(gridLayoutR) {
   const itemClassBuilder = (item) => {
     return [[item.type + 'Item', ui.aniControl(item, curActiveBtnI), 'btn']]
   }
-  const recordMouseTime = () => {
+  const recordMouseTime = (i) => {
     // console.log(`recordMouseTime`,);
+    curClickBtnI.value = i
     let time = new Date().getTime()
     mouseTime.value = time
     themeStore.setPressTime(time)
@@ -67,7 +68,7 @@ export default function useGrid(gridLayoutR) {
       return
     }
     console.log('i', i)
-    curClickBtnI.value = i
+    
     curActiveBtnI.value = i
     
     animationId =  window.setTimeout(() => {
@@ -94,7 +95,7 @@ export default function useGrid(gridLayoutR) {
 
     return lay.map(item => {
       return (
-        <GridItem key={item.i} x={item.x} y={item.y} w={item.w} h={item.h} i={item.i} class={itemClassBuilder(item)} style={ui.gridItemStyle(item)} onMousedown={recordMouseTime} onMouseup={(e) => { handleItemClick(item.i, item, e); }} >
+        <GridItem key={item.i} x={item.x} y={item.y} w={item.w} h={item.h} i={item.i} class={itemClassBuilder(item)} style={ui.gridItemStyle(item)} onMousedown={() => {recordMouseTime(item.i)} } onMouseup={(e) => { handleItemClick(item.i, item, e); }} >
           {renderCompFn(item,curClickBtnI)}
         </GridItem>
       )

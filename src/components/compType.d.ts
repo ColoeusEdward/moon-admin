@@ -10,4 +10,5 @@ type gridItem = {
   expend?:boolean
   link?:string
   comp?:string
+  list?:Array
 }
