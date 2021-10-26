@@ -1,11 +1,9 @@
-import { ref, FunctionalComponent, reactive, watch, Ref, computed } from 'vue'
+import { ref, FunctionalComponent, reactive, watch, Ref, computed, defineComponent } from 'vue'
 import style from './dashIndex.module.scss'
 import './grid.scss'
-import { NProgress, NIcon } from 'naive-ui'
 import { GridLayout } from 'vue3-grid-layout'
 import useGrid from './useGrid'
 import recoverGridItem from './child/recover'
-
 
 interface Props {
   prog?: number,
@@ -16,12 +14,16 @@ type Emit = {
 }
 const gridLayoutRef = ref<InstanceType<typeof GridLayout>>()
 const grid = useGrid(gridLayoutRef)
-const renderComp = (item) => {
+const renderComp = (item, curClickBtnI) => {
   let res = (<div>{item.text}</div>)
   const obj = {
-    iconbtn:()=>{res=recoverGridItem(item,grid.recoverSize)}
-
+    iconbtn: () => { res = recoverGridItem(item, grid.recoverSize) }
+    , icon: () => { res = (<iconLink item={item} />) }
+    , input: () => { res = (<gridInput item={item} h={item.h} />) }
+    , chart: () => { res = (<chartCon item={item} />) }
+    , upload: () => { res = (<gridUploader item={item} curClickBtnI={curClickBtnI} />) }
   }
+  obj['btn'] = obj['icon']
   obj[item.type] && obj[item.type]()
   return (
     <>
@@ -30,8 +32,6 @@ const renderComp = (item) => {
   )
 }
 let lay = reactive(grid.layout)
-
-// methods----------------------------------------------------------------------------------------------
 
 const dashIndex: FunctionalComponent<Props, Emit> =
   (props, ctx) => {

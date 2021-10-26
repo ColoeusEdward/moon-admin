@@ -50,7 +50,7 @@ const memPercent: FunctionalComponent<Props, Emit> =
       </div>
     )
   }
-export default memPercent;
+export default (()=>memPercent)();
 
 const mounted = async () => {
   console.timeEnd('挂载时间')

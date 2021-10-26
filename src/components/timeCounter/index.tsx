@@ -56,7 +56,7 @@ const timeCounter: FunctionalComponent<Props, Emit> =
       </div>
     )
   }
-export default timeCounter;
+export default (()=>timeCounter)();
 
 const mounted = async () => {
   // console.timeEnd('挂载时间')

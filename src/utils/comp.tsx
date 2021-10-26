@@ -1,7 +1,7 @@
 import { NIcon, NTooltip } from "naive-ui"
 
 const useToolTip = () => {
-  const render = (content, tipText) => {
+  const render = (content, tipText:string) => {
     return (
       <div>
         <NTooltip placement="bottom" trigger="hover" v-slots={{ trigger:()=>content }}>
@@ -10,10 +10,13 @@ const useToolTip = () => {
       </div>
     )
   }
-
   return {
     render
   }
+}
+
+const gridInput = () => {
+  
 }
 
 export {

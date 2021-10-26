@@ -59,7 +59,7 @@ const uploadProgress: FunctionalComponent<Props, Emit> =
       </div>
     )
   }
-export default uploadProgress;
+export default (()=>uploadProgress)();
 
 const mounted = async () => {
   // console.timeEnd('挂载时间')

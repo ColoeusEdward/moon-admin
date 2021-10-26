@@ -11,7 +11,7 @@ const isLongPress = () => {
   let ret = false
   let time = new Date().getTime()
   let oldTime = themeStore.pressTime!
-  console.log(`time - oldTime`,(time - oldTime));
+  // console.log(`time - oldTime`,(time - oldTime));
   if (time - oldTime > 200) {
     ret = true
   }

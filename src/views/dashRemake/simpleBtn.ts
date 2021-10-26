@@ -52,30 +52,7 @@ export default function useSimpleBtn() {
     return list
   }
 
-  const cmd = async () => {
-    // debugger
-    window.open('https://meamoe.ml:8666/')
-  }
-
-  const goGameNga = () => {
-    window.open('https://bbs.nga.cn/thread.php?fid=414')
-  }
-
-  const goOneDrive = () => {
-    window.open('https://meamoe.ml/mydrive/')
-  }
-
-  const goAria = () => {
-    window.open('https://meamoe.ml/aria2/home/#!/downloading')
-  }
-
-  const goDownDir = () => {
-    window.open('https://meamoe.ml/record/')
-  }
-
-  const goOldUp = () => {
-    window.open('https://meamoe.ml/upload/upload.html')
-  }
+ 
 
   const handleDeleteFile = async (inputStr) => {
     let nstr = inputStr.value.replace(/\n/g, ',')
@@ -191,19 +168,13 @@ export default function useSimpleBtn() {
     recordRelease,
     mp4Release
     , get_record
-    , cmd
     , getRecordSizeList
     , getLeftStore
-    , goGameNga
-    , goOneDrive
-    , goAria
     , handleDeleteFile
     , recordFree
     , handleUpload
     , handleUploadUdpate
     , upLoadData
-    , goDownDir
-    , goOldUp
     , rollBackVueConfirm
     , eccUpdate
     , lexueReboot

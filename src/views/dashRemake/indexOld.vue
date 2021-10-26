@@ -169,7 +169,7 @@ let layout: any = shallowReactive([
   { x: 1, y: 0, w: 1, h: 3, i: '1', type: 'btn', text: '释放MP4', src: 'https://img.icons8.com/color/100/000000/video.png' },
   { x: 4, y: 0, w: 1, h: 3, i: '2', type: 'icon', text: '命令行', src: 'https://img.icons8.com/dusk/100/000000/command-line.png' },
   { x: 5, y: 0, w: 1, h: 3, i: '11', type: 'icon', text: 'aria2', src: 'https://raw.githubusercontent.com/mayswind/AriaNg-Native/master/assets/AriaNg.ico' },
-  { x: 6, y: 0, w: 2, h: 3, i: '3', type: 'btn' },
+  { x: 6, y: 0, w: 2, h: 3, i: '3', type: 'btn', text: 3, src: 'https://img.icons8.com/dusk/100/000000/3.png' },
   { x: 8, y: 2, w: 2, h: 3, i: '4', type: 'input', text: '自由上传文件', expend: false, src: 'https://img.icons8.com/bubbles/100/000000/upload.png' },
   { x: 10, y: 0, w: 1, h: 3, i: '12', type: 'upload', text: '部署', src: 'https://cdn.iconscout.com/icon/premium/png-256-thumb/deployment-2369058-1978336.png' },
   { x: 11, y: 0, w: 1, h: 3, i: '5', type: 'iconbtn', text: '复原', iconComp: RefreshOutlined },
@@ -234,9 +234,6 @@ const controlClick = async (i) => {
   list[1] = async () => {
     await sb.mp4Release()
   }
-  list[2] = () => {
-    sb.cmd()
-  }
   list[5] = async () => {
     await size_recover()
   }
@@ -245,21 +242,6 @@ const controlClick = async (i) => {
   }
   list[8] = async () => {
     await showRecordSizeClick(8)
-  }
-  list[9] = async () => {
-    sb.goGameNga()
-  }
-  list[10] = async () => {
-    sb.goOneDrive()
-  }
-  list[11] = async () => {
-    sb.goAria()
-  }
-  list[13] = async () => {
-    sb.goDownDir()
-  }
-  list[16] = async () => {
-    sb.goOldUp()
   }
   list[17] = async () => {
     sb.rollBackVueConfirm(dialog)
