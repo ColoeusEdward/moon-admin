@@ -4,19 +4,19 @@ import { NIcon } from 'naive-ui';
 import style from '../dashIndex.module.scss'
 // import { } from 'vue'
 
-const contentRender = (item) => {
+const contentRender = (item,size?) => {
   return (
-    <NIcon size="80">
+    <NIcon size={size || '80'}>
       {item.iconComp.render()}
     </NIcon>
   )
 }
 const toolTip = useToolTip()
 const recoverGridItem =
-  (item,recoverFn) => {
+  (item, recoverFn,size?) => {
     return (
-      <div class={style.recoverSize} onMouseup={()=>{!isLongPress()&&recoverFn()}}>
-        {toolTip.render(contentRender(item), item.text)}
+      <div class={style.recoverSize} onMouseup={() => { !isLongPress() && recoverFn() }}>
+        {toolTip.render(contentRender(item,size), item.text)}
       </div>
     )
   }

@@ -5,6 +5,7 @@ import { GridItem } from 'vue3-grid-layout'
 import useUi from './ui'
 import './grid.scss'
 import { useThemeStore } from '@/store/modules/theme';
+import { sleep } from '@/utils';
 
 const themeStore = useThemeStore()
 const ui = useUi()
@@ -58,7 +59,7 @@ export default function useGrid(gridLayoutR) {
     mouseTime.value = time
     themeStore.setPressTime(time)
   }
-  const handleItemClick = (i, item, e) => {
+  const handleItemClick = async(i, item, e) => {
     let time = new Date().getTime()
     animationId && window.clearTimeout(animationId)
     curActiveBtnI.value = '-1'
@@ -68,13 +69,14 @@ export default function useGrid(gridLayoutR) {
       // e.preventDefault()
       return
     }
+    await sleep(50) //强制等待, 确保curActiveBtnI的值被修改
     console.log('i', i)
     
     curActiveBtnI.value = i
     
     animationId =  window.setTimeout(() => {
       curActiveBtnI.value = '-1'
-    }, 800)
+    }, 400)
 
     if (item.type == 'upload') {
       console.log(`curClickBtnI.value`, curClickBtnI.value);
