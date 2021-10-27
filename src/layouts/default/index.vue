@@ -9,9 +9,7 @@
           <moon-sider />
         </n-layout-sider>
         <n-layout-content>
-          <n-dialog-provider>
-            <router-view />
-          </n-dialog-provider>
+          <router-view />
         </n-layout-content>
       </n-layout>
     </n-layout>
@@ -23,8 +21,11 @@ import { ref, provide } from 'vue'
 //组件引入
 import MoonHeaderContainer from '@/layouts/default/header/index.vue'
 import MoonSider from '@/layouts/default/sider/index.vue'
-import { NConfigProvider, NLayout, NLayoutHeader, NLayoutSider, NLayoutContent, useMessage,NDialogProvider,useDialog} from 'naive-ui'
-
+import { NConfigProvider, NLayout, NLayoutHeader, NLayoutSider, NLayoutContent, useMessage, useDialog } from 'naive-ui'
+import { useThemeStore } from '@/store/modules/theme'
+const dialog = useDialog()
+const themeStore = useThemeStore()
+themeStore.setDialog(dialog)
 
 const defaultTheme = {}
 let collapsed = ref(true)

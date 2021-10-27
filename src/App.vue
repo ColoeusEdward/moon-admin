@@ -1,16 +1,18 @@
 <template>
   <n-config-provider style="width: 100%; height: 100%;" :theme="getTheme">
     <n-message-provider>
-      <router-view></router-view>
+      <n-dialog-provider>
+        <router-view></router-view>
+      </n-dialog-provider>
     </n-message-provider>
   </n-config-provider>
 </template>
 
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { NConfigProvider, darkTheme, NMessageProvider } from 'naive-ui'
+import { NConfigProvider, darkTheme, NMessageProvider, NDialogProvider } from 'naive-ui'
 import { useThemeStore } from '@/store/modules/theme'
-import usePermission from  './permission'
+import usePermission from './permission'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()

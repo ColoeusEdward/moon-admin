@@ -41,14 +41,16 @@ const dashIndex: FunctionalComponent<Props, Emit> =
 
     return (
       <div class={style.dash}>
-        <GridLayout v-getComp={(el) => { gridLayoutRef.value = el;}} v-model:layout={lay} colNum={12} rowHeight={30} isDraggable={grid.gridConfig.draggable} isResizable={grid.gridConfig.resizable} verticalCompact={grid.gridConfig.compact} useCssTransforms={true} >
+        {/* @ts-ignore */}
+        <GridLayout v-getComp={(el) => { gridLayoutRef.value = el; }} v-model:layout={lay} colNum={12} rowHeight={30} isDraggable={grid.gridConfig.draggable} isResizable={grid.gridConfig.resizable} verticalCompact={grid.gridConfig.compact} useCssTransforms={true} style="padding-bottom:80px;">
           {grid.renderItem(renderComp, lay)}
         </GridLayout>
-        <dock />
+        <dock onNeedRecover={grid.recoverSize} />
       </div>
+
     )
   }
-export default dashIndex;
+export default (() => dashIndex)();
 
 const mounted = async () => {
   // console.timeEnd('挂载时间')

@@ -9,16 +9,17 @@ interface Props {
   item: gridItem
   prog?: number
   style?: CSSModuleClasses
+  clickFn?: () => void
 }
 type Emit = {
   childClick: () => void;
 }
 const toolTip = useToolTip()
 const { reqObj } = useApiReq()
-const contentRender = (item) => {
+const contentRender = (item, sty) => {
   return (
-    <div class={style.imgCon}>
-      <img src={item.src} alt={item.text} />
+    <div class={sty.imgCon}>
+      <img class={sty.img} src={item.src} alt={item.text} />
     </div>
   )
 }
@@ -31,12 +32,13 @@ const goLink = (item) => {
 const iconLink: FunctionalComponent<Props, Emit> =
   (props, ctx) => {
     const { emit } = ctx
-    Object.assign(style, props.style)
-
+    let sty = JSON.parse(JSON.stringify(style))
+    Object.assign(sty, props.style)
+    // let styleFather = Object.values({fdfa:'fff'})[0]
     return (
-        <div class={style.icon} onMouseup={() => { !isLongPress() && goLink(props.item) }}>
-          {toolTip.render(contentRender(props.item), props.item.text!)}
-        </div>
+      <div class={sty.icon} onMouseup={() => { !isLongPress() && goLink(props.item) }} onClick={() => { props.clickFn && props.clickFn() }}>
+        {toolTip.render(contentRender(props.item, sty), props.item.text!)}
+      </div>
     )
   }
 export default (() => iconLink)(); //只有这样才能正常使用defineAsyncComponent挂载

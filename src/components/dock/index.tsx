@@ -1,5 +1,6 @@
 import { ref, FunctionalComponent, reactive, watch, Ref, computed, defineComponent } from 'vue'
 import style from './index.module.scss'
+import useData from './useData'
 
 interface Props {
   item: gridItem
@@ -7,19 +8,27 @@ interface Props {
   style?: CSSModuleClasses
 }
 type Emit = {
-  childClick: () => void;
+  needRecover: () => void;
 }
-
-// methods----------------------------------------------------------------------------------------------
 
 const dock: FunctionalComponent<Props, Emit> =
   (props, ctx) => {
     const { emit } = ctx
     Object.assign(style, props.style)
-
+    const data = useData(emit)
+    const renderItem = () => {
+      return data.list.map(e => {
+        return (
+          <div class={style.item}>
+            <iconLink clickFn={e.fn} style={style} item={e} />
+          </div>
+        )
+      })
+    }
+    
     return (
       <div class={style.dock}>
-
+        {renderItem()}
       </div>
     )
   }

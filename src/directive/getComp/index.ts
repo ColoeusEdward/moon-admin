@@ -4,7 +4,7 @@ const getComp = {//用于无状态组件获取子组件vnode
   }
   , mounted(el, binding,vnode) {
     let ret = vnode
-    console.log(`vnode`,vnode);
+    // console.log(`vnode`,vnode);
     vnode.ref?.i.ctx && (ret = vnode.ref.i.ctx)
     binding && binding.value(ret);    // 关键
   }
