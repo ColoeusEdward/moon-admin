@@ -29,7 +29,7 @@ const renderIconLink = (item) => {
   return !item.list ? <iconLink item={item} /> : ''
 }
 const renderTitle = (item) => {
-  return item.list ? <div style="color:#f5f5d5;width:100%;margin-bottom:10px;">{item.text}</div> : ''
+  return item.list ? <div style="color:#f5f5d5;width:100%;margin-bottom:10px;border-bottom:1px solid #fff;">{item.text}</div> : ''
 }
 const renderScrollList = (item) => {
   let res: JSX.Element | string = ''

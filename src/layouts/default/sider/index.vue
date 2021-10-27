@@ -53,8 +53,8 @@ const menuOptions = [
         key: 'echart'
       }
       ,{
-        label: '新dash',
-        key: 'newDash'
+        label: '旧dash',
+        key: 'oldDash'
       }
     ]
   },

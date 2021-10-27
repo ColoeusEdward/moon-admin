@@ -19,6 +19,7 @@ export default function useGrid(gridLayoutR) {
     draggable: true,
     resizable: true,
     compact: true
+    // ,responsive:true
   }
   let layout = [
     { x: 0, y: 0, w: 1, h: 3, i: '0', type: 'btn', text: '释放式上传', src: 'https://img.icons8.com/dusk/100/000000/upgrade.png' },

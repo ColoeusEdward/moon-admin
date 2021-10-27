@@ -19,8 +19,8 @@ export default function ui() {
     return style
   }
 
-  const aniControl = (item,btnIdx) => {
-    if(item.i==btnIdx){
+  const aniControl = (item,btnIdx) => {//动画控制
+    if(item.i==btnIdx.value){
       return 'active'
     }
     return ''
@@ -28,10 +28,11 @@ export default function ui() {
 
   const controlGridItemSize = (i, layout, gridLayout) => {
     console.log('control', i)
+    let item = layout.find((e) => {
+      return e.i == i
+    })
+    // item.y = 7
     let temp = (fn) => {
-      let item = layout.find((e) => {
-        return e.i == i
-      })
       item.w = 4
       item.h = 18
       fn && fn(item)
@@ -40,18 +41,12 @@ export default function ui() {
     let list: any[] = []
     list[6] = list[8] = temp
     list[7] = () => {
-      let item = layout.find((e) => {
-        return e.i == i
-      })
       item.w = 4
       item.h = 6
       item.expend = true
       return true
     }
     list[4] = () => {
-      let item = layout.find((e) => {
-        return e.i == i
-      })
       item.w = 4
       item.h = 7
       item.expend = true
@@ -67,31 +62,10 @@ export default function ui() {
     //   return true
     // }
     list[i] && list[i]() && gridLayout.value?.layoutUpdate()
+    // console.log(`layout`,layout);
+    // list[i] && list[i]() && gridLayout.layoutUpdate()
   }
 
-  const listTitleStyle = (item) => {
-    let style = {
-      borderBottom: '',
-      marginTop: '',
-    }
-    if (item.list) {
-      // style.marginTop = "10px";
-      style.borderBottom = '1px solid #fff'
-    } else {
-      // style.marginTop = '20%'
-    }
-    return style
-  }
-
-  const listRowNameStyle = (le) => {
-    let style = {
-      color: ''
-    }
-    if (le.search('32G') != -1) {
-      style.color = 'blue'
-    }
-    return style
-  }
 
 
 
@@ -100,8 +74,6 @@ export default function ui() {
     , setLayoutColor
     , gridItemStyle
     , controlGridItemSize
-    , listTitleStyle
-    , listRowNameStyle
     , aniControl
   }
 }

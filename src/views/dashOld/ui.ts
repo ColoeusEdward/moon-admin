@@ -19,8 +19,8 @@ export default function ui() {
     return style
   }
 
-  const aniControl = (item,btnIdx) => {//动画控制
-    if(item.i==btnIdx.value){
+  const aniControl = (item,btnIdx) => {
+    if(item.i==btnIdx){
       return 'active'
     }
     return ''
@@ -67,8 +67,6 @@ export default function ui() {
     //   return true
     // }
     list[i] && list[i]() && gridLayout.value?.layoutUpdate()
-    // console.log(`layout`,layout);
-    // list[i] && list[i]() && gridLayout.layoutUpdate()
   }
 
   const listTitleStyle = (item) => {

@@ -22,7 +22,7 @@ export default function useApiReq() {
       RecordRelease()
     }
     , '释放MP4': () => {
-      Mp4Release()
+      confirm(Mp4Release)
     }
     , '更新证书': () => {
       confirm(updateEcc)
