@@ -49,7 +49,7 @@ const gridList: FunctionalComponent<Props, Emit> =
     Object.assign(style, props.style)
 
     return (
-      <NSpin show={spinShow.value && props.curClickBtnI.value==props.item.i}>
+      <NSpin class={style.listCon} show={spinShow.value && props.curClickBtnI.value==props.item.i}>
         <div class={style.list} onMouseup={() => { !isLongPress() && sendReq(props.item); }}>
           {renderIconLink(props.item)}
           {renderTitle(props.item)}
