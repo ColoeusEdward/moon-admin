@@ -17,7 +17,7 @@ export default function useRenderListRow() {
   }
   const renderCon = (renderFn, e) => {
     return (
-      <div class={style.listRow} onMouseup={(e) => { e.stopPropagation(); !isLongPress() && handleListRowClick(e) }} >
+      <div class={style.listRow} onMouseup={(event) => { event.stopPropagation(); !isLongPress() && handleListRowClick(e) }} >
         {renderFn(e)}
         <NIcon size="30">
           <ContentCopyFilled />

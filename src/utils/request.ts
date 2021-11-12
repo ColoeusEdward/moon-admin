@@ -31,17 +31,11 @@ service.interceptors.request.use((config) => {
   if (config.method == 'get') {
     config.params = config.data
   }
-  console.log({config});
+  // console.log({config});
   return config
 }, err)
 
 service.interceptors.response.use((response: any) => {
-  if(response.status == 401){
-    window.$msg && window.$msg.error(response.data.msg || 'Error')
-    userStore.setToken('')
-    location.reload()
-    return
-  } 
   if (response.data.code !== 200) {
     console.log('msg',window.$msg);
     window.$msg && window.$msg.error(response.data.msg || 'Error')
@@ -52,12 +46,19 @@ service.interceptors.response.use((response: any) => {
     return res.data
   }
   // return response.data
-}, err)
+}, err=>{
+  if(err.message.search('401')>-1){
+    window.$msg && window.$msg.error('token过期, 请重新登录')
+    userStore.setToken('')
+    location.reload()
+    return
+  }
+})
 
 const request = async <T = any>(config: AxiosRequestConfig): Promise<T> => { //自定义response类型
   try {
     const {data} = await service.request<T>(config)
-    
+    console.log({data});
     // data.code === 0
     //   ? console.log('操作成功') // 成功消息提示
     //   : console.error(data.msg) // 失败消息提示

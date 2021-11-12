@@ -4,6 +4,7 @@ import './grid.scss'
 import { GridLayout } from 'vue3-grid-layout'
 import useGrid from './useGrid'
 import recoverGridItem from './child/recover'
+import useGridInput from '@/components/gridInput/useGridInput'
 
 interface Props {
   prog?: number,
@@ -19,7 +20,10 @@ const renderComp = (item, curClickBtnI) => {
   const obj = {
     iconbtn: () => { res = recoverGridItem(item, grid.recoverSize) }
     , icon: () => { res = (<iconLink item={item} />) }
-    , input: () => { res = (<gridInput item={item} h={item.h} curClickBtnI={curClickBtnI} />) }
+    , input: () => { 
+      const {gridInput} = useGridInput()
+      res = (<gridInput item={item} h={item.h} curClickBtnI={curClickBtnI} />) 
+    }
     , chart: () => { res = (<chartCon item={item} />) }
     , upload: () => { res = (<gridUploader item={item} curClickBtnI={curClickBtnI} />) }
     , list: () => { res = (<gridList item={item} w={item.w} curClickBtnI={curClickBtnI} />) }
