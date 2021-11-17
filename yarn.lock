@@ -1380,6 +1380,41 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vueuse/core@npm:^6.9.1":
+  version: 6.9.1
+  resolution: "@vueuse/core@npm:6.9.1"
+  dependencies:
+    "@vueuse/shared": 6.9.1
+    vue-demi: "*"
+  peerDependencies:
+    "@vue/composition-api": ^1.1.0
+    vue: ^2.6.0 || ^3.2.0
+  peerDependenciesMeta:
+    "@vue/composition-api":
+      optional: true
+    vue:
+      optional: true
+  checksum: 1f21a0d2c37db6ff9fff7c38d74cc8700056bef38f80c77e2c265bfe35bdd6f0a32e2a35012aba94c4ad5977e8588b29c30bdb861c0d7d6889b3361702bbf866
+  languageName: node
+  linkType: hard
+
+"@vueuse/shared@npm:6.9.1":
+  version: 6.9.1
+  resolution: "@vueuse/shared@npm:6.9.1"
+  dependencies:
+    vue-demi: "*"
+  peerDependencies:
+    "@vue/composition-api": ^1.1.0
+    vue: ^2.6.0 || ^3.2.0
+  peerDependenciesMeta:
+    "@vue/composition-api":
+      optional: true
+    vue:
+      optional: true
+  checksum: 7abfb7a7f1f4265e3ea855702fdcfbb100c90de0e8bdf64e22f81dd5e2b6b911f85db3d8b1c02a17e41945bf5069b448e837638719d3641fdf1071544cc0d8ce
+  languageName: node
+  linkType: hard
+
 "@xicons/utils@npm:^0.1.4":
   version: 0.1.4
   resolution: "@xicons/utils@npm:0.1.4"
@@ -4729,6 +4764,7 @@ fsevents@~2.3.2:
     "@vitejs/plugin-vue-jsx": ^1.2.0
     "@vue/babel-plugin-jsx": ^1.1.1
     "@vue/compiler-sfc": 3.2.13
+    "@vueuse/core": ^6.9.1
     axios: ^0.21.1
     bent: ^7.3.12
     c-scrollbar: ^1.0.1

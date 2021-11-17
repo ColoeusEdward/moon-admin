@@ -3,6 +3,7 @@ import style from './index.module.scss'
 import { isLongPress } from '@/utils';
 import { NInput, NButton, NSpin } from 'naive-ui';
 import useSubmit from './useSubmit';
+import { useMouse } from '@vueuse/core';
 interface Props {
   // submitFn: (input: string, target: string) => void
   curClickBtnI: Ref<string>
@@ -15,10 +16,10 @@ type Emit = {
   childClick: () => void;
 }
 type reacData = {
-  props?:Props
+  props?: Props
 }
 export default function useGridInput() {
-  const data:reacData = reactive({})
+  const data: reacData = reactive({})
   const { submitObj } = useSubmit()
   const inputContent = ref('')
   const targetInputContent = ref('')
@@ -48,7 +49,7 @@ export default function useGridInput() {
 
   const gridInput: FunctionalComponent<Props, Emit> =
     (props, ctx) => {
-      const { emit,attrs } = ctx
+      const { emit, attrs } = ctx
       Object.assign(style, props.style)
       // let item = props.item
       data.props = props

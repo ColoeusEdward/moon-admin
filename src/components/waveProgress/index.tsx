@@ -17,7 +17,7 @@ export default function useWaveProgress() {
     top: '0'
   })
   const conStyle = reactive({
-    top:'100%'
+    top: '100%'
   })
   const pg = ref(0)
   const showProgress = () => {
@@ -29,14 +29,14 @@ export default function useWaveProgress() {
   const showComplete = async () => {
     completeStyle.top = '-100%'
     await sleep(2000)
-    completeStyle.top = '0'
+    // completeStyle.top = '0'
     hideProgress()
   }
 
 
 
   watch(() => pg.value, () => {
-    if(pg.value>=1){
+    if (pg.value >= 1) {
       showProgress()
     }
     if (pg.value == 100) {
@@ -71,7 +71,9 @@ export default function useWaveProgress() {
 
       return (
         <div class={style.con} style={conStyle}>
-          <div class={style.bar} style={barStyle}></div>
+          <div class={style.bar} style={barStyle}>
+            <div class={style.Gwave}></div>
+          </div>
           <div class={style.complete} style={completeStyle}>
             <NIcon size="30">
               <CloudSyncComplete32Regular />
