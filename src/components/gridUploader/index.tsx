@@ -1,9 +1,10 @@
 import { isLongPress } from '@/utils'
 import { NUpload, NUploadTrigger, } from 'naive-ui'
 import { ref, FunctionalComponent, reactive, watch, Ref, computed, defineComponent } from 'vue'
+import useWaveProgress from '../waveProgress'
 import style from './index.module.scss'
 import useSubmit from './useSubmit'
-
+const {waveProgress} = useWaveProgress()
 interface Props {
   curClickBtnI: Ref<string>
   item: gridItem
@@ -23,7 +24,8 @@ const handleUpload = (handleClick) => {
   handleClick()
 }
 const renderProgress = (curClickBtnI, item) => {
-  let res = curClickBtnI.value == item.i ? <uploadProgress prog={progObj[item.i] || 0} /> : ''
+  // return <waveProgress prog={0} />
+  let res = curClickBtnI.value == item.i ? <waveProgress prog={progObj[item.i] || 0} /> : ''
   return res
 }
 const renderTriggerContent = (handleClick, item, curClickBtnI) => {
