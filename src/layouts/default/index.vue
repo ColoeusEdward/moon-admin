@@ -5,7 +5,7 @@
         <moon-header-container />
       </n-layout-header>
       <n-layout has-sider position="absolute" style="top: 71px">
-        <n-layout-sider bordered show-trigger collapse-mode="width" :collapsed-width="64" :width="270" :native-scrollbar="false" @collapse="collapsed = true" @expand="collapsed = false" :collapsed="collapsed">
+        <n-layout-sider bordered show-trigger collapse-mode="width" :collapsed-width="64" :width="270" :native-scrollbar="false" @collapse="collapsed = true" @expand="collapsed = false " :collapsed="collapsed">
           <moon-sider />
         </n-layout-sider>
         <n-layout-content>

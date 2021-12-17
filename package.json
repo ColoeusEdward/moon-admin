@@ -6,6 +6,7 @@
     "format": "prettier --write src/**/*.{vue,ts,tsx}",
     "build": "vue-tsc --noEmit --skipLibCheck && vite build --mode production",
     "builds": "vue-tsc --noEmit",
+    "buildf": "vite build --mode production",
     "serve": "vite preview",
     "prepare": "husky install",
     "pre-commit": "lint-staged",
@@ -19,7 +20,6 @@
     "@vueuse/core": "^6.9.1",
     "axios": "^0.21.1",
     "bent": "^7.3.12",
-    "c-scrollbar": "^1.0.1",
     "echarts": "^5.2.1",
     "mockjs": "^1.1.0",
     "naive-ui": "2.19.9",
@@ -49,8 +49,8 @@
     "@vicons/material": "^0.11.0",
     "@vicons/tabler": "^0.11.0",
     "@vicons/utils": "^0.1.4",
-    "@vitejs/plugin-vue": "^1.3.0",
-    "@vitejs/plugin-vue-jsx": "^1.2.0",
+    "@vitejs/plugin-vue": "1.3.0",
+    "@vitejs/plugin-vue-jsx": "1.2.0",
     "@vue/babel-plugin-jsx": "^1.1.1",
     "@vue/compiler-sfc": "3.2.13",
     "css-render": "^0.15.4",
@@ -63,9 +63,10 @@
     "prettier": "^2.3.2",
     "sass": "^1.43.2",
     "sass-loader": "^12.1.0",
-    "typescript": "^4.4.4",
+    "typescript": "^4.5.4",
     "typescript-plugin-css-modules": "^3.4.0",
     "vite": "2.5.10",
     "vue-tsc": "^0.3.0"
-  }
+  },
+  "packageManager": "yarn@3.1.1"
 }

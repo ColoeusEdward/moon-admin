@@ -18,8 +18,14 @@ const isLongPress = () => {
   return ret
 }
 
+const copyToPaste = async (text) => {
+  const clipboardObj = navigator.clipboard
+  await clipboardObj.writeText(text)
+  window.$msg!.success('复制成功')
+}
 
 export {
   sleep
   , isLongPress
+  , copyToPaste
 }

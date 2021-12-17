@@ -1,6 +1,6 @@
 <template>
   <div class="moon-logo" @click="goDash">
-    <img class="moon-logo__image" :src="logo" alt />
+    <img class="moon-logo__image" :src="logo" />
     <span class="moon-logo__name">MoonAdmin</span>
   </div>
 </template>

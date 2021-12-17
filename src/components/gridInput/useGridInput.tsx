@@ -37,11 +37,12 @@ export default function useGridInput() {
   }
   const renderbody = (item) => {
     let text = item.expend ? (<div style="color:#fff;width:100%;margin-bottom:6px;">{item.text}</div>) : ''
-    let body = item.expend ? (<div onMouseup={(e) => { e.stopPropagation() }}>
-      <NInput style="font-size:16px;margin-bottom:10px;" v-model:value={inputContent.value} type="textarea" placeholder="多项用回车分割" clearable />
-      {renderTargetInput(item)}
-      <NButton style="width:90%;height:40px;" type="primary" onClick={() => !isLongPress() && handleInputBtn(item)}>提交</NButton>
-    </div>) : ''
+    let body = item.expend ? (
+      <div onMouseup={(e) => { e.stopPropagation() }}>
+        <NInput style="font-size:16px;margin-bottom:10px;" v-model:value={inputContent.value} type="textarea" placeholder="多项用回车分割" clearable />
+        {renderTargetInput(item)}
+        <NButton style="width:90%;height:40px;" type="primary" onClick={() => !isLongPress() && handleInputBtn(item)}>提交</NButton>
+      </div>) : ''
     let res = [text, body]
     return res
   }

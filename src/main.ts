@@ -15,9 +15,6 @@ import 'vfonts/FiraCode.css'
 import { buildSocket } from './utils/buildSocket'
 import define from './utils/define'
 
-
-// import CScrollbar from 'c-scrollbar';
-
 // console.log('components', components)
 // const socket = io(define.wsUrl,{
 //   transports: ["websocket"]

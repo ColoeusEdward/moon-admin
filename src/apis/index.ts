@@ -1,5 +1,5 @@
 import request from '../utils/request'
-import { BasicResponseModel } from './BasicResponseModel'
+import { AccData } from './BasicResponseModel'
 
 export function ip() {
   return request({
@@ -113,6 +113,22 @@ export function gitPullOnedriveInedx(data?) {
   return request<string>({
     url: '/koa/newCen/gitPullOnedriveInedx',
     method: 'get',
+    data:data
+  })
+}
+
+export function getAccountList(data?) {
+  return request<string>({
+    url: '/koa/newCen/getAccountList',
+    method: 'get',
+    data:data
+  })
+}
+
+export function saveAccountList(data?) {
+  return request<string>({
+    url: '/koa/newCen/saveAccountList',
+    method: 'post',
     data:data
   })
 }

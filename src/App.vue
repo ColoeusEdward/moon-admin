@@ -10,7 +10,7 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { NConfigProvider, darkTheme, NMessageProvider, NDialogProvider } from 'naive-ui'
+import { NConfigProvider, darkTheme, NMessageProvider, NDialogProvider, GlobalTheme } from 'naive-ui'
 import { useThemeStore } from '@/store/modules/theme'
 import usePermission from './permission'
 import { useRouter } from 'vue-router'
@@ -20,7 +20,7 @@ usePermission(router)
 // const loadingBar = useLoadingBar()
 const themeStore = useThemeStore()
 // themeStore.setLoadingBar(loadingBar)
-const getTheme = computed(() => (themeStore.darkTheme ? darkTheme : undefined))
+const getTheme = computed(() => (themeStore.darkTheme ? darkTheme : undefined)) as (GlobalTheme | undefined)
   // const getTheme = darkTheme
 </script>
 

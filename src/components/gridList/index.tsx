@@ -4,7 +4,7 @@ import { CScrollbar } from 'c-scrollbar'
 import useRenderListRow from './useRenderListRow'
 import useApiReq from './useApiReq'
 import { isLongPress } from '@/utils'
-import { NSpin } from 'naive-ui'
+import { NSpin, NScrollbar } from 'naive-ui'
 
 // const CScrollbar = new CScrollbarClass()
 interface Props {
@@ -34,11 +34,19 @@ const renderTitle = (item) => {
 const renderScrollList = (item) => {
   let res: JSX.Element | string = ''
   if (item.list) {
+    // res = (
+    //   // @ts-ignore
+    //   <CScrollbar width="100%" height="640px" direction="y">
+    //     {renderListRow.render(item)}
+    //   </CScrollbar>
+    // )
     res = (
-      // @ts-ignore
-      <CScrollbar width="100%" height="640px" direction="y">
+      <NScrollbar style="width:100%;height:640px">
         {renderListRow.render(item)}
-      </CScrollbar>
+      </NScrollbar>
+      // <CScrollbar width="100%" height="640px" direction="y">
+
+      // </CScrollbar>
     )
   }
   return res
@@ -49,7 +57,7 @@ const gridList: FunctionalComponent<Props, Emit> =
     Object.assign(style, props.style)
 
     return (
-      <NSpin class={style.listCon} show={spinShow.value && props.curClickBtnI.value==props.item.i}>
+      <NSpin class={style.listCon} show={spinShow.value && props.curClickBtnI.value == props.item.i}>
         <div class={style.list} onMouseup={() => { !isLongPress() && sendReq(props.item); }}>
           {renderIconLink(props.item)}
           {renderTitle(props.item)}

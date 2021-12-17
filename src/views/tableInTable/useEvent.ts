@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid'; // 导入uuid生成插件
 import { useTableStore } from '@/store/modules/table'
 
 
-export default function useEvent(data: myRowData[], spinShow: Ref<boolean>, columns) {
+export default function useEvent(data: myRowData[], spinShow, columns) {
   let curExpItem: myRowData | undefined
   const tableStore = useTableStore()
   const handleExpendChange = (e) => {

@@ -63,19 +63,18 @@
               </template>
               <span>{{ item.text }}</span>
             </n-tooltip>
-            <c-scrollbar width="100%" height="640px" direction="y" v-if="item.list">
+            <!-- <c-scrollbar width="100%" height="640px" direction="y" v-if="item.list">
               <div class="listRow" v-for="(le,li) in item.list" @mouseup.stop="handleListRowClick(le)">
                 <div class="name sizeName" v-if="item.text == '查看文件大小'" style="text-align:left;">
                   <div style="color:blue;">{{ le[0] }}</div>
                   <span>{{ le[1] }}</span>
                 </div>
-                <!-- <div class="name" v-if="item.text=='查看record'">{{le}}</div> -->
                 <div class="name" :style="ui.listRowNameStyle(le)" v-else>{{ le }}</div>
                 <n-icon size="30">
                   <ContentCopyFilled />
                 </n-icon>
               </div>
-            </c-scrollbar>
+            </c-scrollbar> -->
           </div>
 
           <div v-if="item.type == 'icon'" class="icon">
@@ -127,7 +126,7 @@ import { ref, reactive, onMounted, defineAsyncComponent, shallowReactive } from 
 import { ContentCopyFilled, RefreshOutlined } from '@vicons/material'
 import useSimpleBtn from './simpleBtn'
 import uiFn from './ui'
-import { CScrollbar } from 'c-scrollbar'
+
 
 
 // import { GridLayout, GridItem } from 'vue-grid-layout'

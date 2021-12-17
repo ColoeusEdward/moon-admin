@@ -19,8 +19,8 @@ export default function ui() {
     return style
   }
 
-  const aniControl = (item,btnIdx) => {//动画控制
-    if(item.i==btnIdx.value){
+  const aniControl = (item, btnIdx) => {//动画控制
+    if (item.i == btnIdx.value) {
       return 'active'
     }
     return ''
@@ -35,11 +35,12 @@ export default function ui() {
     let temp = (fn) => {
       item.w = 4
       item.h = 18
+      item.expend = true
       fn && fn(item)
       return true
     }
     let list: any[] = []
-    list[6] = list[8] = temp
+    list[6] = list[8] = list[22] = temp
     list[7] = () => {
       item.w = 4
       item.h = 6

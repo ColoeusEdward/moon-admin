@@ -27,3 +27,8 @@ export interface BasicPageParams {
   pageSize: number
   total: number
 }
+
+export interface AccData {
+  acc:string
+  ,psw:string
+}

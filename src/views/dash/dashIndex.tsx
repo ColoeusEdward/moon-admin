@@ -5,6 +5,7 @@ import { GridLayout } from 'vue3-grid-layout'
 import useGrid from './useGrid'
 import recoverGridItem from './child/recover'
 import useGridInput from '@/components/gridInput/useGridInput'
+import useAccountList from '@/components/accountList/useAccountList'
 
 interface Props {
   prog?: number,
@@ -13,6 +14,7 @@ interface Props {
 type Emit = {
   childClick: () => void;
 }
+const { accountList } = useAccountList()
 const gridLayoutRef = ref<InstanceType<typeof GridLayout>>()
 const grid = useGrid(gridLayoutRef)
 const renderComp = (item, curClickBtnI) => {
@@ -20,13 +22,16 @@ const renderComp = (item, curClickBtnI) => {
   const obj = {
     iconbtn: () => { res = recoverGridItem(item, grid.recoverSize) }
     , icon: () => { res = (<iconLink item={item} />) }
-    , input: () => { 
-      const {gridInput} = useGridInput()
-      res = (<gridInput item={item} h={item.h} curClickBtnI={curClickBtnI} />) 
+    , input: () => {
+      const { gridInput } = useGridInput()
+      res = (<gridInput item={item} h={item.h} curClickBtnI={curClickBtnI} />)
     }
     , chart: () => { res = (<chartCon item={item} />) }
     , upload: () => { res = (<gridUploader item={item} curClickBtnI={curClickBtnI} />) }
     , list: () => { res = (<gridList item={item} w={item.w} curClickBtnI={curClickBtnI} />) }
+    , accList: () => {
+      res = (<accountList item={item} curClickBtnI={curClickBtnI} key={666} />)
+    }
   }
   obj['btn'] = obj['icon']
   obj[item.type] && obj[item.type]()
@@ -36,7 +41,7 @@ const renderComp = (item, curClickBtnI) => {
     </>
   )
 }
-let lay = reactive(grid.layout)
+let lay = grid.layout
 
 const dashIndex: FunctionalComponent<Props, Emit> =
   (props, ctx) => {
