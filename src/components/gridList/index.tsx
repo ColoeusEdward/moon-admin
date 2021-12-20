@@ -1,6 +1,5 @@
 import { ref, FunctionalComponent, reactive, watch, Ref, computed, defineComponent } from 'vue'
 import style from './index.module.scss'
-import { CScrollbar } from 'c-scrollbar'
 import useRenderListRow from './useRenderListRow'
 import useApiReq from './useApiReq'
 import { isLongPress } from '@/utils'
@@ -44,9 +43,6 @@ const renderScrollList = (item) => {
       <NScrollbar style="width:100%;height:640px">
         {renderListRow.render(item)}
       </NScrollbar>
-      // <CScrollbar width="100%" height="640px" direction="y">
-
-      // </CScrollbar>
     )
   }
   return res

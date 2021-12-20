@@ -1,4 +1,4 @@
-import { ref, FunctionalComponent, reactive, Ref } from 'vue'
+import { ref, FunctionalComponent, reactive, Ref, onMounted,defineComponent } from 'vue'
 import style from './index.module.scss'
 import { copyToPaste, isLongPress } from '@/utils';
 import { NInput, NButton, NSpin, NIcon, NModal, FormRules, NScrollbar } from 'naive-ui';
@@ -23,13 +23,6 @@ interface Props {
 // }
 type Emit = {
   childClick: () => void;
-}
-type ReacData = {
-  props?: Props
-  spinShow: boolean
-  accData?: AccData[]
-  modalShow: boolean
-  // , form?: AccData
 }
 export default function useAccountList() {
   const sty = JSON.parse(JSON.stringify(style))
@@ -141,9 +134,13 @@ export default function useAccountList() {
     )
 
   }
+  onMounted(() => {
+    console.log(`test`,);
+  })
   const mount = (el) => {
 
   }
+
 
   const accountList: FunctionalComponent<Props, Emit> =
     (props, ctx) => {
@@ -151,7 +148,8 @@ export default function useAccountList() {
       Object.assign(sty, props.style)
       // let item = props.item
       data.props = props
-      console.log(`props item`, props.item);
+      // console.log(`props item`, props.item);
+
       return (
         <NSpin class={sty.con} show={data.spinShow}>
           <div class={sty.con} v-getComp={(el) => { mount(el) }} onMouseup={() => !isLongPress() && getAccount()}>
