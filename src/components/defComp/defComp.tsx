@@ -10,11 +10,12 @@ import { Delete24Regular } from '@vicons/fluent'
 import { useThemeStore } from '@/store/modules/theme';
 interface Props {
   // submitFn: (input: string, target: string) => void
-  curClickBtnI: Ref<string>
-  item: gridItem
-  h: number
+  curClickBtnI?: Ref<string>
+  item?: gridItem
+  h?: number
   prog?: number
   style?: CSSModuleClasses
+  te: string
 }
 // interface AccData {
 //   acc: string
@@ -23,36 +24,27 @@ interface Props {
 type Emit = {
   childClick: () => void;
 }
-const defComp = defineComponent({
-  props: {
-    curClickBtnI: {
-      type: Object as PropType<Ref<string>>,
-      default: undefined,
-    },
-    item: {
-      type: Object as PropType<gridItem>,
-      default: undefined,
-    },
-  },
-  name: 'testDefComp',
-  setup(props, ctx) {
+export default defineComponent({
+  props:{
+    // ...Props
+    prop: Object as PropType<Props>,
+  }
+  ,name: 'DefComp'
+  , setup(props, ctx) {
     onMounted(() => {
-      console.log(`test Def`,);
+      console.log(`test Def`, props);
     })
     const dd = reactive({})
     return () => (
       <div>
-        fuck
+        fuck comp DEFFFFFFF<br />
+        {props.prop?.te}
       </div>
     )
   }
 })
-export {
-  defComp
-}
 
-
-export default function useAccountList() {
+function useAccountList() {
   const sty = JSON.parse(JSON.stringify(style))
   const data: any = reactive({
     spinShow: false

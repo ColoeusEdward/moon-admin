@@ -14,7 +14,7 @@ interface Props {
 type Emit = {
   childClick: () => void;
 }
-const { accountList } = useAccountList()
+const { AccountList } = useAccountList()
 const gridLayoutRef = ref<InstanceType<typeof GridLayout>>()
 const grid = useGrid(gridLayoutRef)
 const renderComp = (item, curClickBtnI) => {
@@ -30,7 +30,7 @@ const renderComp = (item, curClickBtnI) => {
     , upload: () => { res = (<gridUploader item={item} curClickBtnI={curClickBtnI} />) }
     , list: () => { res = (<gridList item={item} w={item.w} curClickBtnI={curClickBtnI} />) }
     , accList: () => {
-      res = (<accountList item={item} curClickBtnI={curClickBtnI} key={666} />)
+      res = (<AccountList item={item} curClickBtnI={curClickBtnI} key={666} />)
     }
   }
   obj['btn'] = obj['icon']

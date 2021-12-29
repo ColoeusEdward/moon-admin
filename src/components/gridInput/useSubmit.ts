@@ -6,7 +6,7 @@ export default function useSubmit() {
       let nstr = input.split('\n')
       let data = {
         name_list: nstr
-        , target: target.value
+        , target: target
       }
       return await record_free(data)
     }

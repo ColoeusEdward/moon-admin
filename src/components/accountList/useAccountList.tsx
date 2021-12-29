@@ -1,4 +1,4 @@
-import { ref, FunctionalComponent, reactive, Ref, onMounted,defineComponent } from 'vue'
+import { ref, FunctionalComponent, reactive, Ref, onMounted, defineComponent, getCurrentInstance } from 'vue'
 import style from './index.module.scss'
 import { copyToPaste, isLongPress } from '@/utils';
 import { NInput, NButton, NSpin, NIcon, NModal, FormRules, NScrollbar } from 'naive-ui';
@@ -13,7 +13,7 @@ interface Props {
   // submitFn: (input: string, target: string) => void
   curClickBtnI: Ref<string>
   item: gridItem
-  h: number
+  h?: number
   prog?: number
   style?: CSSModuleClasses
 }
@@ -85,13 +85,13 @@ export default function useAccountList() {
         return (
           <div class={sty.row}>
             <div onMouseup={() => !isLongPress() && copyToPaste(e.acc)}>
-              {e.acc}
+              <p>{e.acc}</p>
               <NIcon size="30">
                 <ContentCopyFilled />
               </NIcon>
             </div>
             <div style={{ marginLeft: '5px' }} onMouseup={() => !isLongPress() && copyToPaste(e.psw)}>
-              {e.psw}
+              <p>{e.psw}</p>
               <NIcon size="30">
                 <ContentCopyFilled />
               </NIcon>
@@ -134,21 +134,19 @@ export default function useAccountList() {
     )
 
   }
-  onMounted(() => {
-    console.log(`test`,);
-  })
-  const mount = (el) => {
 
+  const mount = (el) => {
+    console.log(`comp`, getCurrentInstance());
   }
 
-
-  const accountList: FunctionalComponent<Props, Emit> =
+  const AccountList: FunctionalComponent<Props, Emit> =
     (props, ctx) => {
       const { emit, attrs } = ctx
       Object.assign(sty, props.style)
       // let item = props.item
       data.props = props
       // console.log(`props item`, props.item);
+
 
       return (
         <NSpin class={sty.con} show={data.spinShow}>
@@ -162,7 +160,7 @@ export default function useAccountList() {
     }
   // export default (() => gridInput)(); //只有这样才能正常使用defineAsyncComponent挂载
   return {
-    accountList
+    AccountList
   }
 }
 

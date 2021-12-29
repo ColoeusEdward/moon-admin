@@ -29,9 +29,19 @@
       justify-content: center;
       align-items: center;
       flex-grow: 1;
-      &:hover{
+      max-width: 50%;
+      p {
+        //修剪文本
+        overflow: hidden;
+        width: 100%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      &:hover {
         background-color: #6495ed;
       }
+      
     }
+    
   }
 }
