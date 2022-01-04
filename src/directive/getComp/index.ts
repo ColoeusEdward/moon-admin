@@ -1,15 +1,24 @@
-const getComp = {//用于无状态组件获取子组件vnode
+const getComp = {//用于无状态组件获取子组件vnode, 接收参数为[mount(),unmount()] 或 mount()
   beforeMount(el, binding) {
 
   }
-  , mounted(el, binding,vnode) {
+  , mounted(el, binding, vnode) {
     let ret = vnode
     // console.log(`vnode`,vnode);
     vnode.ref?.i.ctx && (ret = vnode.ref.i.ctx)
-    binding && binding.value(ret);    // 关键
+    if (binding.value.length === 2) {
+      binding.value[0](ret)
+    } else {
+      binding.value(ret)
+    }
+    // 关键
   }
-  , unmounted(el) {
+  , unmounted(el, binding) {
     // clearInterval(el.__vueSetInterval__);
+    // binding
+    if (binding.value.length === 2) {
+      binding.value[1]()
+    }
   }
 }
 

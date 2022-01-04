@@ -53,6 +53,7 @@ export default function ui() {
       item.expend = true
       return true
     }
+    list[3] = list[4]
     // list[14] = () => {
     //   let item = layout.find((e) => {
     //     return e.i == i

@@ -133,6 +133,21 @@ export function saveAccountList(data?) {
   })
 }
 
+export function getAliRefreshToken(data?) {
+  return request<string>({
+    url: '/koa/newCen/free/getAliRefreshToken',
+    method: 'get',
+    data:data
+  })
+}
+
+export function syncVideoToYou(data?) {
+  return request<string>({
+    url: '/koa/newCen/syncVideoToYou',
+    method: 'post',
+    data:data
+  })
+}
 
 
 // 'POST /mv_upload/record_free': record_free,

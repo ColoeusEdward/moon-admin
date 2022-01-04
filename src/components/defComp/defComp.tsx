@@ -59,7 +59,7 @@ function useAccountList() {
     { type: 'input', label: 'a', prop: 'acc' }
     , { type: 'input', label: 'p', prop: 'psw' }
   ])
-  const { myFormWarp, spinShow: formSpin } = useMyFormWarp()
+  const { MyFormWarp, spinShow: formSpin } = useMyFormWarp()
   // methods----------------------------------------------------------------------------------------------
   const mount = (el) => {
 

@@ -5,6 +5,7 @@ import { store } from './store'
 import components from './components'
 import directive from './directive'
 import { io,Socket } from "socket.io-client";
+import '@/assets/global.scss'
 // import './assets/global.scss'
 
 // import resize from ''

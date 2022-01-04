@@ -1,9 +1,9 @@
-import { ref, FunctionalComponent, reactive, Ref, onMounted, defineComponent, getCurrentInstance } from 'vue'
+import { ref, FunctionalComponent, reactive, Ref, onMounted, defineComponent, getCurrentInstance, watch,provide,inject } from 'vue'
 import style from './index.module.scss'
 import { copyToPaste, isLongPress } from '@/utils';
 import { NInput, NButton, NSpin, NIcon, NModal, FormRules, NScrollbar } from 'naive-ui';
 import useSubmit from './useSubmit';
-import { getAccountList, saveAccountList } from '@/apis';
+import { getAccountList, getAliRefreshToken, saveAccountList } from '@/apis';
 import { ContentCopyFilled } from '@vicons/material';
 import useMyFormWarp from '../myFormWarp/useMyFormWarp';
 import { AccData } from '../../apis/BasicResponseModel'
@@ -39,7 +39,7 @@ export default function useAccountList() {
     { type: 'input', label: 'a', prop: 'acc' }
     , { type: 'input', label: 'p', prop: 'psw' }
   ])
-  const { myFormWarp, spinShow: formSpin } = useMyFormWarp()
+  const { MyFormWarp, spinShow: formSpin } = useMyFormWarp()
   // methods----------------------------------------------------------------------------------------------
   const getAccount = async () => {
     data.spinShow = true
@@ -128,29 +128,36 @@ export default function useAccountList() {
           )
         }
       }}>
-        <myFormWarp form={form} rule={rule} itemList={formItemList} />
+        <MyFormWarp form={form} rule={rule} itemList={formItemList} />
       </NModal>
-
     )
 
   }
 
-  const mount = (el) => {
+  const mount = (el,injectVal) => {
+  console.log("🚀 ~ file: useAccountList.tsx ~ line 139 ~ mount ~ injectVal", injectVal)
     console.log(`comp`, getCurrentInstance());
+    // getAliRefreshToken()
+    return () => {console.log(`fuckyyyy`,);}
   }
+  watch(
+    () => data.spinShow
+    , () => {
+      console.log(`spinnnnn`,);
+    })
 
   const AccountList: FunctionalComponent<Props, Emit> =
     (props, ctx) => {
       const { emit, attrs } = ctx
       Object.assign(sty, props.style)
+      console.log(`ctx`, ctx);
       // let item = props.item
       data.props = props
       // console.log(`props item`, props.item);
-
-
+      let ij = inject('test')
       return (
         <NSpin class={sty.con} show={data.spinShow}>
-          <div class={sty.con} v-getComp={(el) => { mount(el) }} onMouseup={() => !isLongPress() && getAccount()}>
+          <div class={sty.con} v-getComp={(el) => { mount(el,ij) }} onMouseup={() => !isLongPress() && getAccount()}>
             {renderIconLink(props.item)}
             {renderBody(props.item)}
             {renderDialog()}

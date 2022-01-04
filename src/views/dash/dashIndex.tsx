@@ -1,4 +1,4 @@
-import { ref, FunctionalComponent, reactive, watch, Ref, computed, defineComponent } from 'vue'
+import { ref, FunctionalComponent, reactive, watch, Ref, computed, defineComponent, provide } from 'vue'
 import style from './dashIndex.module.scss'
 import './grid.scss'
 import { GridLayout } from 'vue3-grid-layout'
@@ -6,7 +6,7 @@ import useGrid from './useGrid'
 import recoverGridItem from './child/recover'
 import useGridInput from '@/components/gridInput/useGridInput'
 import useAccountList from '@/components/accountList/useAccountList'
-
+import useSyncToYou from '@/components/syncToYou/useSyncToYou'
 interface Props {
   prog?: number,
   style?: CSSModuleClasses
@@ -15,6 +15,7 @@ type Emit = {
   childClick: () => void;
 }
 const { AccountList } = useAccountList()
+const { SyncToYou } = useSyncToYou()
 const gridLayoutRef = ref<InstanceType<typeof GridLayout>>()
 const grid = useGrid(gridLayoutRef)
 const renderComp = (item, curClickBtnI) => {
@@ -31,6 +32,9 @@ const renderComp = (item, curClickBtnI) => {
     , list: () => { res = (<gridList item={item} w={item.w} curClickBtnI={curClickBtnI} />) }
     , accList: () => {
       res = (<AccountList item={item} curClickBtnI={curClickBtnI} key={666} />)
+    }
+    , syncToYou:() => {
+      res = (<SyncToYou item={item} h={item.h} curClickBtnI={curClickBtnI} />)
     }
   }
   obj['btn'] = obj['icon']

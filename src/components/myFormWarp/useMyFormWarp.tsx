@@ -8,8 +8,9 @@ interface formListItem {
   type: string
   label: string
   prop: string
-  placeholder?:string
-  inputType?:string
+  placeholder?: string
+  inputType?: string
+  row?: number
 }
 interface Props {
   // submitFn: (input: string, target: string) => void
@@ -29,28 +30,28 @@ export default function useMyFormWarp() {
   const data: reacData = reactive({})
   const spinShow = ref(false)
   // methods----------------------------------------------------------------------------------------------
-  const renderInput = (form,item) => {
+  const renderInput = (form, item) => {
     return (
       <NFormItem label={item.label} path={item.prop}>
-        <NInput v-model:value={form[item.prop]} placeholder="" clearable />
+        <NInput v-model:value={form[item.prop]} placeholder="" clearable type={item.inputType || 'text'} rows={item.row||3} />
       </NFormItem>
     )
   }
 
-  const renderComp = (itemList,form) => {
+  const renderComp = (itemList, form) => {
     const obj = {
-      input:renderInput
+      input: renderInput
     }
     return itemList.map((item) => {
       return (
         <NGi span={item.width || 12}>
-          {obj[item.type] && obj[item.type](form,item)}
+          {obj[item.type] && obj[item.type](form, item)}
         </NGi>
       )
     })
   }
 
-  const myFormWarp: FunctionalComponent<Props, Emit> =
+  const MyFormWarp: FunctionalComponent<Props, Emit> =
     (props, ctx) => {
       const { emit, attrs } = ctx
       Object.assign(style, props.style)
@@ -59,9 +60,9 @@ export default function useMyFormWarp() {
 
       return (
         <NSpin show={spinShow.value}>
-          <NForm model={props.form} rules={props.rule} size="medium"  labelPlacement="left" >
+          <NForm model={props.form} rules={props.rule} size="medium" labelPlacement="left" >
             <NGrid xGap={12} yGap={8}>
-              {renderComp(props.itemList,props.form)}
+              {renderComp(props.itemList, props.form)}
             </NGrid>
           </NForm>
         </NSpin>
@@ -78,8 +79,8 @@ export default function useMyFormWarp() {
   }
 
   return {
-    myFormWarp
-    ,spinShow
+    MyFormWarp
+    , spinShow
   }
 }
 
