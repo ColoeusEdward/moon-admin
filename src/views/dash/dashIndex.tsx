@@ -55,7 +55,7 @@ const dashIndex: FunctionalComponent<Props, Emit> =
     return (
       <div class={style.dash}>
         {/* @ts-ignore */}
-        <GridLayout v-getComp={(el) => { gridLayoutRef.value = el; }} v-model:layout={lay} colNum={12} rowHeight={30} isDraggable={grid.gridConfig.draggable} isResizable={grid.gridConfig.resizable} verticalCompact={grid.gridConfig.compact} useCssTransforms={true} style="padding-bottom:80px;">
+        <GridLayout  v-getComp={(el) => { gridLayoutRef.value = el; }} v-model:layout={lay} colNum={12} rowHeight={30} isDraggable={grid.gridConfig.draggable} isResizable={grid.gridConfig.resizable} verticalCompact={grid.gridConfig.compact} useCssTransforms={true} style="padding-bottom:80px;">
           {grid.renderItem(renderComp, lay)}
         </GridLayout>
         <dock onNeedRecover={grid.recoverSize} />

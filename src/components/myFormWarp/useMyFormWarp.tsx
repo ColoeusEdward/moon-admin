@@ -19,6 +19,8 @@ interface Props {
   rule: FormRules
   form: Object
   itemList: formListItem[]
+  submitFn?: () => any
+  hideBtn?:boolean
 }
 type Emit = {
   childClick: () => void;
@@ -33,7 +35,7 @@ export default function useMyFormWarp() {
   const renderInput = (form, item) => {
     return (
       <NFormItem label={item.label} path={item.prop}>
-        <NInput v-model:value={form[item.prop]} placeholder="" clearable type={item.inputType || 'text'} rows={item.row||3} />
+        <NInput v-model:value={form[item.prop]} placeholder="" clearable type={item.inputType || 'text'} rows={item.row || 3} />
       </NFormItem>
     )
   }
@@ -50,6 +52,15 @@ export default function useMyFormWarp() {
       )
     })
   }
+  const renderBtn = (props) => {
+    return props.hideBtn ? '' : 
+    (
+      <div style={{display:'flex'}}>
+        <NButton style="width:90%;height:40px;margin:0 auto;" type="primary" onClick={() => !isLongPress() && props.submitFn && props.submitFn()}>提交</NButton>
+      </div>
+    )
+    
+  }
 
   const MyFormWarp: FunctionalComponent<Props, Emit> =
     (props, ctx) => {
@@ -65,6 +76,7 @@ export default function useMyFormWarp() {
               {renderComp(props.itemList, props.form)}
             </NGrid>
           </NForm>
+          {renderBtn(props)}
         </NSpin>
       )
     }

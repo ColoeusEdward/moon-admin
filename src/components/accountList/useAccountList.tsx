@@ -128,7 +128,7 @@ export default function useAccountList() {
           )
         }
       }}>
-        <MyFormWarp form={form} rule={rule} itemList={formItemList} />
+        <MyFormWarp form={form} rule={rule} itemList={formItemList} hideBtn={true} />
       </NModal>
     )
 
@@ -138,7 +138,9 @@ export default function useAccountList() {
   console.log("🚀 ~ file: useAccountList.tsx ~ line 139 ~ mount ~ injectVal", injectVal)
     console.log(`comp`, getCurrentInstance());
     // getAliRefreshToken()
-    return () => {console.log(`fuckyyyy`,);}
+  }
+  const unmount = () => {
+    console.log('fuck unmount')
   }
   watch(
     () => data.spinShow
@@ -157,7 +159,7 @@ export default function useAccountList() {
       let ij = inject('test')
       return (
         <NSpin class={sty.con} show={data.spinShow}>
-          <div class={sty.con} v-getComp={(el) => { mount(el,ij) }} onMouseup={() => !isLongPress() && getAccount()}>
+          <div class={sty.con} v-getComp={[(el) => { mount(el,ij) },unmount]} onMouseup={() => !isLongPress() && getAccount()}>
             {renderIconLink(props.item)}
             {renderBody(props.item)}
             {renderDialog()}

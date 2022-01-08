@@ -15,6 +15,7 @@ import 'vfonts/Lato.css'
 import 'vfonts/FiraCode.css'
 import { buildSocket } from './utils/buildSocket'
 import define from './utils/define'
+import './index.css'
 
 // console.log('components', components)
 // const socket = io(define.wsUrl,{

@@ -51,8 +51,8 @@ export default function useSyncToYou() {
     let body = item.expend ? (
       <NScrollbar style="width:100%;height:220px;padding:10px;">
         <div onMouseup={(e) => { e.stopPropagation() }}>
-          <MyFormWarp rule={rule} form={form} itemList={formItemList} />
-          <NButton style="width:90%;height:40px;" type="primary" onClick={() => !isLongPress() && handleInputBtn()}>提交</NButton>
+          <MyFormWarp rule={rule} form={form} itemList={formItemList} submitFn={() => !isLongPress() && handleInputBtn()} />
+          {/* <NButton style="width:90%;height:40px;" type="primary" onClick={() => !isLongPress() && handleInputBtn()}>提交</NButton> */}
         </div>
       </NScrollbar>) : ''
     let res = [text, body]
