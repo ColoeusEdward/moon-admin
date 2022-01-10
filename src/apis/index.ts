@@ -149,14 +149,6 @@ export function syncVideoToYou(data?) {
   })
 }
 
-export function getWeatcherInfo(data?) {
-  return request<any>({
-    // url: 'https://tianqi.2345.com/api/getWeatherInfo.php',
-    url: 'https://tianqi.2345.com/api/getWeatherInfo.php',
-    method: 'get',
-    data:data
-  })
-}
 
 
 // 'POST /mv_upload/record_free': record_free,

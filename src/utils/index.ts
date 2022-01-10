@@ -24,6 +24,10 @@ const copyToPaste = async (text) => {
   window.$msg!.success('复制成功')
 }
 
+const numToChinese = (num) => {
+  var chnNumChar = ["零","一","二","三","四","五","六","七","八","九"];
+  return chnNumChar[num]
+}
 // const shuffle = (array) => { //数组洗牌
 //   let currentIndex = array.length, randomIndex;
 //   // While there remain elements to shuffle...
@@ -43,10 +47,18 @@ const shuffle = (array) => { //数组洗牌
   return array;
 }
 
+const getRandomIntInclusive = (min, max) => { //得到一个两数之间的随机整数，包括两个数在内
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min; //含最大值，含最小值 
+}
+
 
 export {
   sleep
   , isLongPress
   , copyToPaste
   , shuffle
+  , numToChinese
+  , getRandomIntInclusive
 }

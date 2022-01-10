@@ -1,4 +1,4 @@
-import { ref, FunctionalComponent, reactive, watch, Ref, computed, defineComponent, provide } from 'vue'
+import { ref, FunctionalComponent, reactive, watch, Ref, computed } from 'vue'
 import style from './dashIndex.module.scss'
 import './grid.scss'
 import { GridLayout } from 'vue3-grid-layout'
@@ -7,7 +7,7 @@ import recoverGridItem from './child/recover'
 import useGridInput from '@/components/gridInput/useGridInput'
 import useAccountList from '@/components/accountList/useAccountList'
 import useSyncToYou from '@/components/syncToYou/useSyncToYou'
-import useWeatherInfo from '@/components/weather'
+import useWeatherInfo from '@/components/weather/useWeather'
 interface Props {
   prog?: number,
   style?: CSSModuleClasses
@@ -15,19 +15,24 @@ interface Props {
 type Emit = {
   childClick: () => void;
 }
+let inputMap = {}
 const { AccountList } = useAccountList()
 const { SyncToYou } = useSyncToYou()
 const { WeatherInfo } = useWeatherInfo()
 const gridLayoutRef = ref<InstanceType<typeof GridLayout>>()
 const grid = useGrid(gridLayoutRef)
+const buildInput = (item, curClickBtnI) => {
+  const { GridInput } = useGridInput()
+  inputMap[item.i] = (<GridInput item={item} h={item.h} curClickBtnI={curClickBtnI} />)
+}
 const renderComp = (item, curClickBtnI) => {
   let res = (<div>{item.text}</div>)
   const obj = {
     iconbtn: () => { res = recoverGridItem(item, grid.recoverSize) }
     , icon: () => { res = (<iconLink item={item} />) }
     , input: () => {
-      const { gridInput } = useGridInput()
-      res = (<gridInput item={item} h={item.h} curClickBtnI={curClickBtnI} />)
+      !inputMap[item.i] && buildInput(item, curClickBtnI)
+      res = inputMap[item.i]
     }
     , chart: () => { res = (<chartCon item={item} />) }
     , upload: () => { res = (<gridUploader item={item} curClickBtnI={curClickBtnI} />) }

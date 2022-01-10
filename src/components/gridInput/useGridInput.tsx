@@ -48,7 +48,7 @@ export default function useGridInput() {
   }
   // methods----------------------------------------------------------------------------------------------
 
-  const gridInput: FunctionalComponent<Props, Emit> =
+  const GridInput: FunctionalComponent<Props, Emit> =
     (props, ctx) => {
       const { emit, attrs } = ctx
       Object.assign(style, props.style)
@@ -75,7 +75,7 @@ export default function useGridInput() {
   }
 
   return {
-    gridInput
+    GridInput
   }
 }
 

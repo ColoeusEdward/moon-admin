@@ -7,6 +7,7 @@ import {useMessage} from 'naive-ui'
 declare global {
   interface Window {
     $msg?: ReturnType<typeof useMessage>
+    dayjs:() => any
   }
 }
 const userStore = useUserStore()

@@ -1,6 +1,5 @@
 import { isLongPress } from '@/utils';
 import { useToolTip } from '@/utils/comp';
-import { Refresh } from '@icon-park/vue-next';
 import { NIcon } from 'naive-ui';
 import style from '../dashIndex.module.scss'
 // import { } from 'vue'
