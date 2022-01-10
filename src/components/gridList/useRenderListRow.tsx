@@ -1,5 +1,5 @@
 import { record_free, rmFile, deploy, uploadTemp } from "@/apis"
-import { ContentCopyFilled } from '@vicons/material'
+import {CopyOne,Delete} from '@icon-park/vue-next'
 import { NIcon } from 'naive-ui'
 import useStyle from "./useStyle"
 import style from './index.module.scss'
@@ -20,7 +20,7 @@ export default function useRenderListRow() {
       <div class={style.listRow} onMouseup={(event) => { event.stopPropagation(); !isLongPress() && handleListRowClick(e) }} >
         {renderFn(e)}
         <NIcon size="30">
-          <ContentCopyFilled />
+          <CopyOne />
         </NIcon>
       </div>
     )

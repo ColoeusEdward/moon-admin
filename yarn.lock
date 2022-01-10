@@ -445,6 +445,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@icon-park/vue-next@npm:^1.3.6":
+  version: 1.3.6
+  resolution: "@icon-park/vue-next@npm:1.3.6"
+  peerDependencies:
+    vue: 3.x
+  checksum: 8d2c2f4aefcdcd8de91f8ae25a74f3d775b03ce2adb17df35c1298104139aa054ed17aaee23b65d7ffc4f8c7b45efbbe7feb85f5be2492633168afdb813f9f30
+  languageName: node
+  linkType: hard
+
 "@interactjs/actions@npm:1.10.11, @interactjs/actions@npm:^1.10.2":
   version: 1.10.11
   resolution: "@interactjs/actions@npm:1.10.11"
@@ -964,73 +973,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vicons/antd@npm:^0.11.0":
-  version: 0.11.0
-  resolution: "@vicons/antd@npm:0.11.0"
-  checksum: af1dd55c9feed1e2e5257126c97a1d49b6191544d62fa16a4592d3c800734b63a982a23403c45ad8c105403dffd21d83a99248d54349cb78923315b050e54288
-  languageName: node
-  linkType: hard
-
-"@vicons/carbon@npm:^0.11.0":
-  version: 0.11.0
-  resolution: "@vicons/carbon@npm:0.11.0"
-  checksum: 90229ff464196678567fcde1a5e89759a1fb12d1902fafd4d5113e509c8213650db6bfa3fac994e3f5526e87cfe863e449dd7a94a3b19589b559f3025fad66ac
-  languageName: node
-  linkType: hard
-
-"@vicons/fa@npm:^0.11.0":
-  version: 0.11.0
-  resolution: "@vicons/fa@npm:0.11.0"
-  checksum: c3cdacca86d9b4f1423c47c14b3921b73c501e9444a90649e95b8a6af534ea537cce86a76ae365ee36dcd040db9ef9f0da97b03ae41130e6392d6b6fa33dcb22
-  languageName: node
-  linkType: hard
-
-"@vicons/fluent@npm:^0.11.0":
-  version: 0.11.0
-  resolution: "@vicons/fluent@npm:0.11.0"
-  checksum: 4a7f45f7ec55c1d82b1d02c6c4d50492626f2c0c63b518cc0000cc530d9e772945a588d9a4e7258b01cde6d8376d232f1a4adf3b13db873d5e9b818da4d70957
-  languageName: node
-  linkType: hard
-
-"@vicons/ionicons4@npm:^0.11.0":
-  version: 0.11.0
-  resolution: "@vicons/ionicons4@npm:0.11.0"
-  checksum: b89f37b1e0526c5ef7e0f5c009d325c501fda0783f08e8d8c87a0aea91b0d61b6012d8c2badd2be27b35b1d618cbdbe65604957881c65cefd8a67661997965d9
-  languageName: node
-  linkType: hard
-
-"@vicons/ionicons5@npm:^0.11.0":
-  version: 0.11.0
-  resolution: "@vicons/ionicons5@npm:0.11.0"
-  checksum: c311b4b7d9fbf936862ce09118a43addb104dd01263454d7e6572d50ef6ea0f7791da3cb111bc619fef2f15d7eaefe46b7e28b376a1fe5bb663e3c1f8ffe89b6
-  languageName: node
-  linkType: hard
-
-"@vicons/material@npm:^0.11.0":
-  version: 0.11.0
-  resolution: "@vicons/material@npm:0.11.0"
-  checksum: b23c3a4f50f5041cbea60fa813ada827c3f2cb9eae910879563c1355efe038ea38d46f21ec16d35ab7983dbe61189c84873d7d29c018ba3ea6f73c9d2e933ffb
-  languageName: node
-  linkType: hard
-
-"@vicons/tabler@npm:^0.11.0":
-  version: 0.11.0
-  resolution: "@vicons/tabler@npm:0.11.0"
-  checksum: 51d0afa27cfc16afcfca131c3c4d06c968da559b4120d1eac3d96762d78c181313b8b3fbf7bca26fb613bd222e5177ff6721d1f2f59aed951ab6d3a8fcf50491
-  languageName: node
-  linkType: hard
-
-"@vicons/utils@npm:^0.1.4":
-  version: 0.1.4
-  resolution: "@vicons/utils@npm:0.1.4"
-  dependencies:
-    "@xicons/utils": ^0.1.4
-  peerDependencies:
-    vue: ^3.0.6
-  checksum: 419172f66c798c22c8fc4a7953f4f3b76c0e86de0ad7b30456ea4e1ebf869fe5ba31fdbc651f899352ce4f7320610c3b5ae56ed28663576456aa549bd01c2144
-  languageName: node
-  linkType: hard
-
 "@vitejs/plugin-vue-jsx@npm:1.3.3":
   version: 1.3.3
   resolution: "@vitejs/plugin-vue-jsx@npm:1.3.3"
@@ -1334,15 +1276,6 @@ __metadata:
     vue:
       optional: true
   checksum: d4cfa824ae4581e766dd7f230d0d0ede2ada565e7fa04dfa41b641f221f4ec8b64cbc0fdd6d4d25752b0798666a34f5c13d923d549bc8f650d703e81944ed546
-  languageName: node
-  linkType: hard
-
-"@xicons/utils@npm:^0.1.4":
-  version: 0.1.4
-  resolution: "@xicons/utils@npm:0.1.4"
-  dependencies:
-    css-render: ^0.13.2
-  checksum: 9dce5331328a70c0afee99c334f937a5095b59e88521944f9bb6e74704d2c4a17eedc39abd78d3a73158eb23a79a87b21a9c1277f075e079a8559d98f15e3426
   languageName: node
   linkType: hard
 
@@ -2002,17 +1935,6 @@ __metadata:
   dependencies:
     css: ^2.0.0
   checksum: e6b23721364f6d7028538463f2388200430f32331fbbd8cd3b2c545e4b17a270594b74986aa1d6f2ad9dd206cbdad1c5e2331a16c06f4a7213f07494a32cca2b
-  languageName: node
-  linkType: hard
-
-"css-render@npm:^0.13.2":
-  version: 0.13.9
-  resolution: "css-render@npm:0.13.9"
-  dependencies:
-    "@emotion/hash": ~0.8.0
-    "@types/node": ~14.14.31
-    csstype: ~3.0.5
-  checksum: c882aaba3cfc58de9fc8de78e633db1caaca76f6c9c3a5f8935c06e082c970e14c4469eef8f311a82621ae22333083d6a6b91883c78de9cad0aac8998716b1a6
   languageName: node
   linkType: hard
 
@@ -4908,20 +4830,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
+    "@icon-park/vue-next": ^1.3.6
     "@types/mockjs": ^1.0.4
     "@types/node": ^16.3.1
     "@types/nprogress": ^0.2.0
     "@typescript-eslint/eslint-plugin": ^4.28.2
     "@typescript-eslint/parser": ^4.28.2
-    "@vicons/antd": ^0.11.0
-    "@vicons/carbon": ^0.11.0
-    "@vicons/fa": ^0.11.0
-    "@vicons/fluent": ^0.11.0
-    "@vicons/ionicons4": ^0.11.0
-    "@vicons/ionicons5": ^0.11.0
-    "@vicons/material": ^0.11.0
-    "@vicons/tabler": ^0.11.0
-    "@vicons/utils": ^0.1.4
     "@vitejs/plugin-vue": 2.0.1
     "@vitejs/plugin-vue-jsx": 1.3.3
     "@vue/babel-plugin-jsx": ^1.1.1
@@ -4955,6 +4869,7 @@ __metadata:
     vite: 2.7.9
     vue: 3.2.25
     vue-echarts: ^6.0.0
+    vue-jsonp: ^2.0.0
     vue-router: ^4.0.11
     vue-tsc: ^0.3.0
     vue3-grid-layout: ^1.0.0
@@ -5965,6 +5880,13 @@ __metadata:
   peerDependencies:
     eslint: ">=5.0.0"
   checksum: 16d8bd31dacd9e5d3cd0fc82354c0cfdb42ee3d2e0c3aeda385b82aa48a59a440de3dc18521ea6535f4b00a54eb248d49a6ea2323fbae0d3c1afa0a00c63fe6c
+  languageName: node
+  linkType: hard
+
+"vue-jsonp@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "vue-jsonp@npm:2.0.0"
+  checksum: 8836e19282a01aceb3b3a57add84ec46786390a7ea8cced6b4e75b09d001f3b4bfd00e3bbde0f717dc0f7530bc55a8d1c9c132f0c1e56dfb5b7e920ef0754753
   languageName: node
   linkType: hard
 

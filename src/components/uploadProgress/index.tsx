@@ -1,7 +1,7 @@
 import { ref, FunctionalComponent, reactive, watch, Ref,computed } from 'vue'
 import style from './index.module.scss'
 import { NIcon } from 'naive-ui'
-import { CloudSyncComplete32Regular } from '@vicons/fluent'
+import {LinkCloudSucess} from '@icon-park/vue-next'
 import { sleep } from '@/utils'
 
 interface Props {
@@ -53,7 +53,7 @@ const uploadProgress: FunctionalComponent<Props, Emit> =
         <div class={style.bar} style={barStyle}></div>
         <div class={style.complete} style={completeStyle}>
           <NIcon size="30">
-            <CloudSyncComplete32Regular />
+            <LinkCloudSucess />
           </NIcon>
         </div>
       </div>

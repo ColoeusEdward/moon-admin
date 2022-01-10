@@ -6,21 +6,21 @@
       <p>Chief manager</p>
     </div>
     <n-icon class="moon-avatar__icon" size="35">
-      <arrow-drop-down-round />
+      <down-c />
     </n-icon>
   </div>
 </template>
 
 <script lang="ts">
   import { defineComponent } from 'vue'
-  import { ArrowDropDownRound } from '@vicons/material'
+  import {DownC} from '@icon-park/vue-next'
   import { NIcon } from 'naive-ui'
   import Avatar from '@/assets/images/avatar.png'
   import moonAvatarStyle from '@/layouts/default/avatar/index.cssr'
 
   export default defineComponent({
     name: 'MoonAvatar',
-    components: { ArrowDropDownRound, NIcon },
+    components: { NIcon, DownC },
     setup() {
       moonAvatarStyle.mount()
 

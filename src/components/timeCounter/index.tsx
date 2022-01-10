@@ -2,9 +2,7 @@ import { ref, FunctionalComponent, reactive, watch, Ref, computed } from 'vue'
 import style from './index.module.scss'
 import { NProgress, NIcon } from 'naive-ui'
 import { sleep } from '@/utils'
-import { IosPlay } from '@vicons/ionicons4'
-import { PauseCircle24Filled } from '@vicons/fluent'
-import { RestartAltRound } from '@vicons/material'
+import {PlayOne,PauseOne,Refresh} from '@icon-park/vue-next'
 import { useSocketStore } from '@/store/modules/socket'
 import useTimeCount from './timeCount'
 
@@ -49,9 +47,9 @@ const timeCounter: FunctionalComponent<Props, Emit> =
           <span style="text-align: center;font-size:20px;">{time.value}</span>
         </NProgress>
         <div class={style.btnCon}>
-          <div class={style.start} onMouseup={(e) => { }} onClick={(e) => { e.stopPropagation(); timeCount.handleStart() }}><NIcon size='32'><IosPlay /></NIcon></div>
-          <div class={style.stop} onMouseup={(e) => { }} onClick={(e) => { e.stopPropagation(); timeCount.handleStop() }}><NIcon size='32'><PauseCircle24Filled /></NIcon></div>
-          <div class={style.reset} onMouseup={(e) => { }} onClick={(e) => { e.stopPropagation(); timeCount.handleReset() }}><NIcon size='32'><RestartAltRound /></NIcon></div>
+          <div class={style.start} onMouseup={(e) => { }} onClick={(e) => { e.stopPropagation(); timeCount.handleStart() }}><NIcon size='32'><PlayOne theme={'filled'} /></NIcon></div>
+          <div class={style.stop} onMouseup={(e) => { }} onClick={(e) => { e.stopPropagation(); timeCount.handleStop() }}><NIcon size='32'><PauseOne /></NIcon></div>
+          <div class={style.reset} onMouseup={(e) => { }} onClick={(e) => { e.stopPropagation(); timeCount.handleReset() }}><NIcon size='32'><Refresh /></NIcon></div>
         </div>
       </div>
     )

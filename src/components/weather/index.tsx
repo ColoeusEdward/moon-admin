@@ -2,7 +2,7 @@ import { ref, FunctionalComponent, reactive, watch, Ref, computed, defineCompone
 import style from './index.module.scss'
 import { useToolTip } from '@/utils/comp';
 import { isLongPress } from '@/utils';
-import useApiReq from './useApiReq';
+import { getWeatcherInfo } from '@/apis';
 
 
 interface Props {
@@ -16,7 +16,8 @@ type Emit = {
 }
 const useWeatherInfo = () => {
   const toolTip = useToolTip()
-  const { reqObj } = useApiReq()
+
+  // methods----------------------------------------------------------------------------------------------
   const contentRender = (item, sty) => {
     return (
       <div class={sty.imgCon}>
@@ -24,16 +25,12 @@ const useWeatherInfo = () => {
       </div>
     )
   }
-  const infoRender = () => {
-    return (
-      <div>
-
-      </div>
-    )
+  const getInfo = async () => {
+    let res = await getWeatcherInfo()
+    console.log("🚀 ~ file: index.tsx ~ line 39 ~ getInfo ~ res", res)
   }
-  // methods----------------------------------------------------------------------------------------------
   const mount = () => {
-    
+    getInfo()
   }
   const WeatherInfo: FunctionalComponent<Props, Emit> =
     (props, ctx) => {
@@ -42,8 +39,11 @@ const useWeatherInfo = () => {
       Object.assign(sty, props.style)
       // let styleFather = Object.values({fdfa:'fff'})[0]
       return (
-        <div class={'flex-initial w-full h-full justify-center items-center'} v-getComp={(en) => { mount() }} onMouseup={() => { !isLongPress() }} onClick={() => { props.clickFn && props.clickFn() }}>
-          {infoRender()}
+        <div class={'flex-initial w-full h-full justify-center items-center'} v-getComp={(el) => { mount() }} onMouseup={() => { !isLongPress() }} onClick={() => { props.clickFn && props.clickFn() }}>
+          <div class={'flex-initial h-full justify-center items-center'}>
+
+          </div>
+          <div></div>
         </div>
       )
     }

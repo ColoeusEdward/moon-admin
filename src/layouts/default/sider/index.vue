@@ -8,9 +8,7 @@
 import { NMenu, NIcon } from 'naive-ui'
 // import moonSiderStyle from './index.cssr'
 import { h, ref, inject } from 'vue'
-
-import { BookOutline as BookIcon, PersonOutline as PersonIcon, WineOutline as WineIcon } from '@vicons/ionicons5'
-import { DataExplorationOutlined } from '@vicons/material'
+import {BookOne,People,Drink,DataFile} from '@icon-park/vue-next'
 import useJump from './jump'
 
 const jump = useJump()
@@ -32,13 +30,13 @@ const menuOptions = [
   {
     label: '且听风吟',
     key: 'hear-the-wind-sing',
-    icon: renderIcon(BookIcon),
+    icon: renderIcon(BookOne),
     href: 'https://baike.baidu.com/item/%E4%B8%94%E5%90%AC%E9%A3%8E%E5%90%9F/3199'
   },
   {
     label: '1973年的弹珠玩具',
     key: 'pinball-1973',
-    icon: renderIcon(DataExplorationOutlined),
+    icon: renderIcon(DataFile),
     children: [
       {
         label: '无限嵌套表格',
@@ -61,12 +59,12 @@ const menuOptions = [
   {
     label: '寻羊冒险记',
     key: 'a-wild-sheep-chase',
-    icon: renderIcon(BookIcon)
+    icon: renderIcon(BookOne)
   },
   {
     label: '舞，舞，舞',
     key: 'dance-dance-dance',
-    icon: renderIcon(BookIcon),
+    icon: renderIcon(BookOne),
     children: [
       {
         type: 'group',
@@ -76,19 +74,19 @@ const menuOptions = [
           {
             label: '叙事者',
             key: 'narrator',
-            icon: renderIcon(PersonIcon)
+            icon: renderIcon(People)
           },
           {
             label: '羊男',
             key: 'sheep-man',
-            icon: renderIcon(PersonIcon)
+            icon: renderIcon(People)
           }
         ]
       },
       {
         label: '饮品',
         key: 'beverage',
-        icon: renderIcon(WineIcon),
+        icon: renderIcon(Drink),
         children: [
           {
             label: '威士忌',

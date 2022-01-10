@@ -1,5 +1,6 @@
 import { isLongPress } from '@/utils';
 import { useToolTip } from '@/utils/comp';
+import { Refresh } from '@icon-park/vue-next';
 import { NIcon } from 'naive-ui';
 import style from '../dashIndex.module.scss'
 // import { } from 'vue'
@@ -7,7 +8,7 @@ import style from '../dashIndex.module.scss'
 const contentRender = (item,size?) => {
   return (
     <NIcon size={size || '80'}>
-      {item.iconComp.render()}
+      {item.iconComp()}
     </NIcon>
   )
 }

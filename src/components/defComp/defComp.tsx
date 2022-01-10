@@ -3,10 +3,9 @@ import style from './index.module.scss'
 import { copyToPaste, isLongPress } from '@/utils';
 import { NInput, NButton, NSpin, NIcon, NModal, FormRules, NScrollbar } from 'naive-ui';
 import { getAccountList, saveAccountList } from '@/apis';
-import { ContentCopyFilled } from '@vicons/material';
+import {CopyOne,Delete} from '@icon-park/vue-next'
 import useMyFormWarp from '../myFormWarp/useMyFormWarp';
 import { AccData } from '../../apis/BasicResponseModel'
-import { Delete24Regular } from '@vicons/fluent'
 import { useThemeStore } from '@/store/modules/theme';
 interface Props {
   // submitFn: (input: string, target: string) => void

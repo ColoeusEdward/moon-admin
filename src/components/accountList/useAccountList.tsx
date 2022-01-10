@@ -4,10 +4,9 @@ import { copyToPaste, isLongPress } from '@/utils';
 import { NInput, NButton, NSpin, NIcon, NModal, FormRules, NScrollbar } from 'naive-ui';
 import useSubmit from './useSubmit';
 import { getAccountList, getAliRefreshToken, saveAccountList } from '@/apis';
-import { ContentCopyFilled } from '@vicons/material';
+import {CopyOne,Delete} from '@icon-park/vue-next'
 import useMyFormWarp from '../myFormWarp/useMyFormWarp';
 import { AccData } from '../../apis/BasicResponseModel'
-import { Delete24Regular } from '@vicons/fluent'
 import { useThemeStore } from '@/store/modules/theme';
 interface Props {
   // submitFn: (input: string, target: string) => void
@@ -87,19 +86,19 @@ export default function useAccountList() {
             <div onMouseup={() => !isLongPress() && copyToPaste(e.acc)}>
               <p>{e.acc}</p>
               <NIcon size="30">
-                <ContentCopyFilled />
+                <CopyOne />
               </NIcon>
             </div>
             <div style={{ marginLeft: '5px' }} onMouseup={() => !isLongPress() && copyToPaste(e.psw)}>
               <p>{e.psw}</p>
               <NIcon size="30">
-                <ContentCopyFilled />
+                <CopyOne />
               </NIcon>
             </div>
             <NButton style="height:40px;color:#fff;margin:0 5px;" type="error" onClick={() => !isLongPress() && handleDelete(i)}
               v-slots={{
                 icon: () => {
-                  return (<NIcon><Delete24Regular /></NIcon>)
+                  return (<NIcon><Delete /></NIcon>)
                 }
               }}></NButton>
           </div>

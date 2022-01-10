@@ -120,10 +120,9 @@
 </template>
 
 <script setup lang="ts">
-// import { Copy } from '@vicons/ionicons5'
 import { GridLayout, GridItem } from 'vue3-grid-layout'
 import { ref, reactive, onMounted, defineAsyncComponent, shallowReactive } from 'vue'
-import { ContentCopyFilled, RefreshOutlined } from '@vicons/material'
+import {Refresh} from '@icon-park/vue-next'
 import useSimpleBtn from './simpleBtn'
 import uiFn from './ui'
 
@@ -171,7 +170,7 @@ let layout: any = shallowReactive([
   { x: 6, y: 0, w: 2, h: 3, i: '3', type: 'btn' },
   { x: 8, y: 2, w: 2, h: 3, i: '4', type: 'input', text: '自由上传文件', expend: false, src: 'https://img.icons8.com/bubbles/100/000000/upload.png' },
   { x: 10, y: 0, w: 1, h: 3, i: '12', type: 'upload', text: '部署', src: 'https://cdn.iconscout.com/icon/premium/png-256-thumb/deployment-2369058-1978336.png' },
-  { x: 11, y: 0, w: 1, h: 3, i: '5', type: 'iconbtn', text: '复原', iconComp: RefreshOutlined },
+  { x: 11, y: 0, w: 1, h: 3, i: '5', type: 'iconbtn', text: '复原', iconComp: Refresh },
   { x: 0, y: 3, w: 2, h: 4, i: '6', type: 'list', text: '查看剩余空间', src: 'https://icons-for-free.com/iconfiles/png/512/storage+dropbox+dropbox+logo+file+storage+file+transfer+upload-1320196083387888656.png' },
   { x: 2, y: 2, w: 2, h: 3, i: '7', type: 'input', text: '删除文件', expend: false, src: 'https://img.icons8.com/bubbles/100/000000/delete-sign.png' },
   { x: 4, y: 2, w: 2, h: 4, i: '8', type: 'list', text: '查看文件大小', src: 'https://icons-for-free.com/iconfiles/png/512/file+format+mp4+paper+icon-1320167130956649663.png' },

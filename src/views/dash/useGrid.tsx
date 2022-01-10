@@ -1,6 +1,6 @@
 
 import { ref, reactive } from 'vue';
-import { RefreshOutlined } from '@vicons/material';
+import {Refresh} from '@icon-park/vue-next'
 import { GridItem } from 'vue3-grid-layout'
 import useUi from './ui'
 import './grid.scss'
@@ -28,9 +28,9 @@ export default function useGrid(gridLayoutR) {
     { x: 4, y: 0, w: 1, h: 3, i: '2', type: 'icon', text: '命令行', src: 'https://img.icons8.com/dusk/100/000000/command-line.png', link: 'https://meamoe.ml:8666/' },
     { x: 5, y: 0, w: 1, h: 3, i: '11', type: 'icon', text: 'aria2', src: 'https://raw.githubusercontent.com/mayswind/AriaNg-Native/master/assets/AriaNg.ico', link: 'https://meamoe.ml/aria2/home/#!/downloading' },
     { x: 6, y: 0, w: 2, h: 3, i: '3', type: 'syncToYou', text: '上传视频至youtube', src: 'https://img.icons8.com/fluency/96/000000/youtube-play.png' },
-    { x: 8, y: 6, w: 2, h: 3, i: '4', type: 'input', text: '自由上传文件', expend: false, src: 'https://img.icons8.com/bubbles/100/000000/upload.png' },
+    { x: 7, y: 6, w: 2, h: 3, i: '4', type: 'input', text: '自由上传文件', expend: false, src: 'https://img.icons8.com/bubbles/100/000000/upload.png' },
     { x: 10, y: 0, w: 1, h: 3, i: '12', type: 'upload', text: '部署', src: 'https://cdn.iconscout.com/icon/premium/png-256-thumb/deployment-2369058-1978336.png' },
-    { x: 11, y: 0, w: 1, h: 3, i: '5', type: 'iconbtn', text: '复原', iconComp: RefreshOutlined },
+    { x: 11, y: 0, w: 1, h: 3, i: '5', type: 'iconbtn', text: '复原', iconComp: ()=><Refresh /> },
     { x: 0, y: 3, w: 2, h: 4, i: '6', type: 'list', text: '查看剩余空间', src: 'https://icons-for-free.com/iconfiles/png/512/storage+dropbox+dropbox+logo+file+storage+file+transfer+upload-1320196083387888656.png' },
     { x: 2, y: 0, w: 2, h: 3, i: '7', type: 'input', text: '删除文件', expend: false, src: 'https://img.icons8.com/bubbles/100/000000/delete-sign.png' },
     { x: 4, y: 3, w: 2, h: 4, i: '8', type: 'list', text: '查看文件大小', src: 'https://icons-for-free.com/iconfiles/png/512/file+format+mp4+paper+icon-1320167130956649663.png' },
@@ -46,6 +46,7 @@ export default function useGrid(gridLayoutR) {
     , { x: 3, y: 3, w: 1, h: 3, i: '20', type: 'btn', text: '更新onedrive Index代码', src: 'https://img.icons8.com/color/144/000000/git.png' }
     , { x: 2, y: 6, w: 2, h: 6, i: '21', type: 'chart', text: '计时器', comp: 'timeCounter' }
     , { x: 4, y: 6, w: 2, h: 4, i: '22', type: 'accList', text: 'ap', src: 'https://img.icons8.com/external-flatarticons-blue-flatarticons/100/000000/external-account-ux-and-ui-flatarticons-blue-flatarticons.png', expend: false, },
+    { x: 9, y: 6, w: 2, h: 3, i: '23', type: 'weather', text: '天气', expend: false, src: 'https://img.icons8.com/bubbles/100/000000/upload.png' },
     // { x: 8, y: 6, w: 2, h: 3, i: '4', type: 'syncToYou', text: '上传视频至youtube', expend: false, src: 'https://img.icons8.com/bubbles/100/000000/upload.png' },
     // { x: 8, y: 2, w: 2, h: 2, i: '12', type: 'input', text: '自由上传文件', expend: false }
   ])

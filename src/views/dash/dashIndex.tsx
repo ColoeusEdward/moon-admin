@@ -7,6 +7,7 @@ import recoverGridItem from './child/recover'
 import useGridInput from '@/components/gridInput/useGridInput'
 import useAccountList from '@/components/accountList/useAccountList'
 import useSyncToYou from '@/components/syncToYou/useSyncToYou'
+import useWeatherInfo from '@/components/weather'
 interface Props {
   prog?: number,
   style?: CSSModuleClasses
@@ -16,6 +17,7 @@ type Emit = {
 }
 const { AccountList } = useAccountList()
 const { SyncToYou } = useSyncToYou()
+const { WeatherInfo } = useWeatherInfo()
 const gridLayoutRef = ref<InstanceType<typeof GridLayout>>()
 const grid = useGrid(gridLayoutRef)
 const renderComp = (item, curClickBtnI) => {
@@ -33,8 +35,11 @@ const renderComp = (item, curClickBtnI) => {
     , accList: () => {
       res = (<AccountList item={item} curClickBtnI={curClickBtnI} key={666} />)
     }
-    , syncToYou:() => {
+    , syncToYou: () => {
       res = (<SyncToYou item={item} h={item.h} curClickBtnI={curClickBtnI} />)
+    }
+    , weather: () => {
+      res = (<WeatherInfo item={item} />)
     }
   }
   obj['btn'] = obj['icon']
@@ -55,7 +60,7 @@ const dashIndex: FunctionalComponent<Props, Emit> =
     return (
       <div class={style.dash}>
         {/* @ts-ignore */}
-        <GridLayout  v-getComp={(el) => { gridLayoutRef.value = el; }} v-model:layout={lay} colNum={12} rowHeight={30} isDraggable={grid.gridConfig.draggable} isResizable={grid.gridConfig.resizable} verticalCompact={grid.gridConfig.compact} useCssTransforms={true} style="padding-bottom:80px;">
+        <GridLayout v-getComp={(el) => { gridLayoutRef.value = el; }} v-model:layout={lay} colNum={12} rowHeight={30} isDraggable={grid.gridConfig.draggable} isResizable={grid.gridConfig.resizable} verticalCompact={grid.gridConfig.compact} useCssTransforms={true} style="padding-bottom:80px;">
           {grid.renderItem(renderComp, lay)}
         </GridLayout>
         <dock onNeedRecover={grid.recoverSize} />
