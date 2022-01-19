@@ -1,6 +1,6 @@
 import { useThemeStore } from "@/store/modules/theme"
 
-const themeStore = useThemeStore()
+
 const sleep = (ms) => {
   return new Promise((reslove) => {
     setTimeout(reslove, ms)
@@ -8,6 +8,7 @@ const sleep = (ms) => {
 }
 
 const isLongPress = () => {
+  const themeStore = useThemeStore()
   let ret = false
   let time = new Date().getTime()
   let oldTime = themeStore.pressTime!
@@ -53,6 +54,9 @@ const getRandomIntInclusive = (min, max) => { //得到一个两数之间的随�
   return Math.floor(Math.random() * (max - min + 1)) + min; //含最大值，含最小值 
 }
 
+const firstCap = (str:string) => { //首字母大写
+  return str.replace(/^\S/, s => s.toUpperCase())
+} 
 
 export {
   sleep
@@ -61,4 +65,5 @@ export {
   , shuffle
   , numToChinese
   , getRandomIntInclusive
+  , firstCap
 }

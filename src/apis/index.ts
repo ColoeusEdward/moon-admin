@@ -149,6 +149,14 @@ export function syncVideoToYou(data?) {
   })
 }
 
+export function testIpc(data?) {
+  return request<string>({
+    url: '/koa/newCen/testIpc',
+    method: 'post',
+    data:data
+  })
+}
+
 
 
 // 'POST /mv_upload/record_free': record_free,

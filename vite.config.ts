@@ -26,7 +26,11 @@ export default defineConfig({
   , build: process.env.NODE_ENV === 'production' ?
     {
       rollupOptions: {
-        output: {
+        input: {
+          main: resolve(__dirname, 'index.html'),
+          book: resolve(__dirname, 'bookPage/index.html')
+        }
+        ,output: {
           manualChunks(id) {
             if (id.includes("node_modules")) {
               const [, module] = /node_modules\/(@?[a-z0-9-]+?[a-z0-9-]+)/.exec(
@@ -53,7 +57,11 @@ export default defineConfig({
       ,chunkSizeWarningLimit:600
     } : {
       rollupOptions: {
-        output: {
+        input: {
+          main: resolve(__dirname, 'index.html'),
+          book: resolve(__dirname, 'bookPage/index.html')
+        }
+        ,output: {
           sourcemap: true
         }
       }

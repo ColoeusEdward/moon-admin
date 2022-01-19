@@ -15,11 +15,12 @@ export default function useSubmit() {
       return await rmFile({ fileName: nstr })
     }
   }
-  const submit = async (spin, form) => {
+  const submit = async (spin, form,socketStore) => {
     console.log("🚀 ~ file: useSubmit.ts ~ line 19 ~ submit ~ form", form)
     spin.value = true
     await syncVideoToYou(form)
     spin.value = false
+    socketStore.youtubeNeedToken && socketStore.setYoutubeNeedToken(false)
   }
 
   return {

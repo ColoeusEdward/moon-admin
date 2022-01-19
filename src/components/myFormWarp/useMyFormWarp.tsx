@@ -4,13 +4,14 @@ import { isLongPress } from '@/utils';
 import { NInput, NButton, NSpin, NForm, FormRules, NGrid, NGi, NFormItem } from 'naive-ui';
 import useSubmit from './useSubmit';
 import { useMouse } from '@vueuse/core';
-interface formListItem {
+export interface formListItem {
   type: string
   label: string
   prop: string
   placeholder?: string
   inputType?: string
   row?: number
+  width?:number
 }
 interface Props {
   // submitFn: (input: string, target: string) => void

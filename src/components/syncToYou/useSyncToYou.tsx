@@ -1,10 +1,12 @@
-import { ref, FunctionalComponent, reactive, Ref } from 'vue'
+import { ref, FunctionalComponent, reactive, Ref, computed, watch } from 'vue'
 import style from './index.module.scss'
 import { isLongPress } from '@/utils';
 import { NInput, NButton, NSpin, NScrollbar } from 'naive-ui';
 import useSubmit from './useSubmit';
 import { useMouse } from '@vueuse/core';
 import useMyFormWarp from '../myFormWarp/useMyFormWarp';
+import { formListItem } from '../myFormWarp/useMyFormWarp';
+import { useSocketStore } from '@/store/modules/socket'
 
 interface Props {
   // submitFn: (input: string, target: string) => void
@@ -25,6 +27,7 @@ type formData = {
   , list: string
 }
 export default function useSyncToYou() {
+  const socketStore = useSocketStore()
   const data: reacData = reactive({})
   const { submitObj, submit } = useSubmit()
   const { MyFormWarp, spinShow: formSpin } = useMyFormWarp()
@@ -32,15 +35,24 @@ export default function useSyncToYou() {
   const rule = {
     must: { required: true, message: '请输入该项', trigger: 'blur' },
   }
-  const formItemList = reactive([
-    { type: 'input', label: '链接', prop: 'url', width: 23, inputType: 'textarea',row:5 }
-    // , { type: 'input', label: 'p', prop: 'psw', width: 24 }
-  ])
   const spinShow = ref(false)
   const targetInputList = ['自由上传文件']
+  const formItemList: formListItem[] = reactive([
+    { type: 'input', label: '链接', prop: 'url', width: 23, inputType: 'textarea', row: 5 }
+    // , { type: 'input', label: 'p', prop: 'psw', width: 24 }
+  ])
+  // methods----------------------------------------------------------------------------------------------
+  watch(() => socketStore.youtubeNeedToken,
+    (youtubeNeedToken, prev) => {
+      if (youtubeNeedToken && formItemList.length == 1) {
+        formItemList.push({ type: 'input', label: 'token', prop: 'token', width: 23 })
+      } else if (!youtubeNeedToken) {
+        formItemList.splice(1, formItemList.length - 1)
+      }
+    })
   const handleInputBtn = async () => {
     // submitObj[item.text] && (spinShow.value = true) && await submitObj[item.text](inputContent.value, targetInputContent.value)
-    submit(formSpin, form)
+    submit(formSpin, form, socketStore)
     // spinShow.value = false
   }
   const renderIconLink = (item) => {
@@ -58,7 +70,6 @@ export default function useSyncToYou() {
     let res = [text, body]
     return res
   }
-  // methods----------------------------------------------------------------------------------------------
 
   const SyncToYou: FunctionalComponent<Props, Emit> =
     (props, ctx) => {

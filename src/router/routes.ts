@@ -87,6 +87,11 @@ const frameOut: RouteRecordRaw[] = [
     name: 'login',
     component: components['login']
   }
+  // ,{
+  //   path: '/book', 
+  //   name: 'book',
+  //   component: components['bookPage']
+  // }
 ]
 
 /**

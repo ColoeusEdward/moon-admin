@@ -5,9 +5,11 @@ declare global {
   }
 }
 import { useSocketStore } from "@/store/modules/socket"
+import { useBookStore } from '@/store/modules/book'
 
 export function buildSocket(socket: Socket) {
   let socketStore = useSocketStore()
+  const bookStore = useBookStore()
   socket.on('getMem', (res) => {
     socketStore.setMemPercent(res)
   })
@@ -21,10 +23,10 @@ export function buildSocket(socket: Socket) {
     window.$msg?.success(res)
   })
   socket.on('getTimeLoop', (res) => {
-    if(res.total){
+    if (res.total) {
       socketStore.setTotalTime(res.total)
       socketStore.setTime(res.time)
-    }else{
+    } else {
       socketStore.setTime(res)
     }
   })
@@ -37,6 +39,13 @@ export function buildSocket(socket: Socket) {
     socket.emit('getTimeWithTotal')
     // socket.emit('getTimeLoop')
   });
+
+  socket.on('YoutubeNeedToken', () => {
+    socketStore.setYoutubeNeedToken(true)
+  })
+  socket.on('novelContent', (res) => {
+    bookStore.setContent(res)
+  })
 
   window.$socket = socket
 }

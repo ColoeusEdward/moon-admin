@@ -1,5 +1,5 @@
 
-import { ref, reactive } from 'vue';
+import { ref, reactive,nextTick } from 'vue';
 import {Refresh} from '@icon-park/vue-next'
 import { GridItem } from 'vue3-grid-layout'
 import useUi from './ui'
@@ -72,7 +72,7 @@ export default function useGrid(gridLayoutR) {
       // e.preventDefault()
       return
     }
-    await sleep(50) //强制等待, 确保curActiveBtnI的值被修改
+    await sleep(30) //强制等待, 确保curActiveBtnI值的修改被渲染至dom
     console.log('i', i)
 
     curActiveBtnI.value = i

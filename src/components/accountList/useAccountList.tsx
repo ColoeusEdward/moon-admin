@@ -158,7 +158,7 @@ export default function useAccountList() {
       let ij = inject('test')
       return (
         <NSpin class={sty.con} show={data.spinShow}>
-          <div class={sty.con} v-getComp={[(el) => { mount(el,ij) },unmount]} onMouseup={() => !isLongPress() && getAccount()}>
+          <div class={sty.con} v-getComp={{m:(el) => { mount(el,ij) },um:unmount}} onMouseup={() => !isLongPress() && getAccount()}>
             {renderIconLink(props.item)}
             {renderBody(props.item)}
             {renderDialog()}
