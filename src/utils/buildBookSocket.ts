@@ -17,7 +17,8 @@ export function buildBookSocket(socket: Socket) {
 
   });
   socket.on('novelContent', (res) => {
-    bookStore.setContent(res)
+    bookStore.setContent(res.text)
+    bookStore.setPage(res.page)
   })
 
   window.$socket = socket

@@ -46,7 +46,8 @@ export default function useGrid(gridLayoutR) {
     , { x: 3, y: 3, w: 1, h: 3, i: '20', type: 'btn', text: '更新onedrive Index代码', src: 'https://img.icons8.com/color/144/000000/git.png' }
     , { x: 2, y: 6, w: 2, h: 6, i: '21', type: 'chart', text: '计时器', comp: 'timeCounter' }
     , { x: 4, y: 6, w: 2, h: 4, i: '22', type: 'accList', text: 'ap', src: 'https://img.icons8.com/external-flatarticons-blue-flatarticons/100/000000/external-account-ux-and-ui-flatarticons-blue-flatarticons.png', expend: false, },
-    { x: 9, y: 6, w: 2, h: 3, i: '23', type: 'weather', text: '天气', expend: false, src: 'https://img.icons8.com/bubbles/100/000000/upload.png' },
+    { x: 9, y: 6, w: 2, h: 3, i: '23', type: 'weather', text: '天气', expend: false, src: 'https://img.icons8.com/bubbles/100/000000/upload.png' }
+    , { x: 1, y: 7, w: 1, h: 3, i: '24', type: 'icon', text: 'book', src: 'https://img.icons8.com/dusk/64/000000/literature.png', link: 'https://meamoe.ml/site/bookPage/index.html' }
     // { x: 8, y: 6, w: 2, h: 3, i: '4', type: 'syncToYou', text: '上传视频至youtube', expend: false, src: 'https://img.icons8.com/bubbles/100/000000/upload.png' },
     // { x: 8, y: 2, w: 2, h: 2, i: '12', type: 'input', text: '自由上传文件', expend: false }
   ])

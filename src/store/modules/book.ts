@@ -3,18 +3,23 @@ import { defineStore } from 'pinia'
 
 type state = {
   content: string
+  page: number
 }
 export const useBookStore = defineStore({
   id: 'book',
   state: (): state => ({
-    content: ''
+    content: '6666666666666'
+    , page: 0
   }),
   getters: {
 
   },
   actions: {
-    setContent(val){
+    setContent(val) {
       this.content = val
+    }
+    , setPage(val) {
+      this.page = val
     }
   }
 })

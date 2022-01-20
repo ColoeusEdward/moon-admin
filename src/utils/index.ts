@@ -58,6 +58,7 @@ const firstCap = (str:string) => { //首字母大写
   return str.replace(/^\S/, s => s.toUpperCase())
 } 
 
+
 export {
   sleep
   , isLongPress
