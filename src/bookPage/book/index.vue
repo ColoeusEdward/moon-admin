@@ -1,5 +1,5 @@
 <template>
-  <Book />
+  <Book>111</Book>
 </template>
 
 <script setup lang="ts">

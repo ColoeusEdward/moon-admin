@@ -4,6 +4,7 @@ import useRenderListRow from './useRenderListRow'
 import useApiReq from './useApiReq'
 import { isLongPress } from '@/utils'
 import { NSpin, NScrollbar } from 'naive-ui'
+import useMySkeleton from '../mySkeleton/useMySkeleton'
 
 // const CScrollbar = new CScrollbarClass()
 interface Props {
@@ -16,7 +17,7 @@ interface Props {
 type Emit = {
   childClick: () => void;
 }
-
+const { MySkeleton } = useMySkeleton()
 const renderListRow = useRenderListRow()
 const { reqObj } = useApiReq()
 const spinShow = ref(false)
@@ -53,13 +54,15 @@ const gridList: FunctionalComponent<Props, Emit> =
     Object.assign(style, props.style)
 
     return (
-      <NSpin class={style.listCon} show={spinShow.value && props.curClickBtnI.value == props.item.i}>
+      <MySkeleton isLoading={spinShow.value && props.curClickBtnI.value == props.item.i}>
+        {/* <NSpin class={style.listCon} show={spinShow.value && props.curClickBtnI.value == props.item.i}> */}
         <div class={style.list} onMouseup={() => { !isLongPress() && sendReq(props.item); }}>
           {renderIconLink(props.item)}
           {renderTitle(props.item)}
           {renderScrollList(props.item)}
         </div >
-      </NSpin>
+        {/* </NSpin> */}
+      </MySkeleton>
     )
   }
 export default (() => gridList)(); //只有这样才能正常使用defineAsyncComponent挂载

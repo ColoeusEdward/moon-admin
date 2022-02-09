@@ -16,7 +16,7 @@ const useBook = () => {
   let endTime = 0
   let startX = 0
   let endX = 0
-  let isPageClick = ref(false)
+  const isPageClick = ref(false)
   const toolTip = useToolTip()
   const resData: any = ref(null)
   const bookStore = useBookStore()
@@ -89,20 +89,23 @@ const useBook = () => {
       }
     }
   }
-  const mount = () => {
-
+  const mount = (el) => {
+    console.log(`el`,el);
   }
   const Book: FunctionalComponent<Props, Emit> =
     (props, ctx) => {
       const { emit } = ctx
+      console.log("🚀 ~ file: book.tsx ~ line 98 ~ useBook ~ ctx", ctx.slots.default!())
+      
       // let sty = JSON.parse(JSON.stringify(style))
       // Object.assign(sty, props.style)
       // let styleFather = Object.values({fdfa:'fff'})[0]
       return (
-        <div class={'flex flex-col w-full h-full justify-center items-center text-slate-400 bg-gray-900'} v-getComp={(el) => { mount() }} onMouseup={() => { !isLongPress() }}>
+        <div class={'flex flex-col w-full h-full justify-center items-center text-slate-400 bg-gray-900'} v-getComp={(el) => { mount(el) }}>
           {renderSideClick()}
           <p class={'w-full h-full text-6xl break-all text-left pl-2 '} onTouchstart={handleTouchStart} onTouchend={handleTouchEnd}>
             {text.value}
+            {ctx.slots.default && ctx.slots.default()}
           </p>
           {renderPageNum()}
         </div>

@@ -26,7 +26,7 @@ const copyToPaste = async (text) => {
 }
 
 const numToChinese = (num) => {
-  var chnNumChar = ["零","一","二","三","四","五","六","七","八","九"];
+  var chnNumChar = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九"];
   return chnNumChar[num]
 }
 // const shuffle = (array) => { //数组洗牌
@@ -54,10 +54,19 @@ const getRandomIntInclusive = (min, max) => { //得到一个两数之间的随�
   return Math.floor(Math.random() * (max - min + 1)) + min; //含最大值，含最小值 
 }
 
-const firstCap = (str:string) => { //首字母大写
+const firstCap = (str: string) => { //首字母大写
   return str.replace(/^\S/, s => s.toUpperCase())
-} 
+}
 
+const debounce = (fn: Function, ms = 16) => {
+  // 这里使用debounce防抖处理，防抖的延时时间可以通过自定义指令的参数传过来，如`v-resize:300`表示300ms延时
+  // 也可以将此处延时去掉，放在绑定的函数中自定义
+  let timeoutId: ReturnType<typeof setTimeout>;
+  return function (this: any, ...args: any[]) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => fn.apply(this, args), ms);
+  };
+};
 
 export {
   sleep
@@ -67,4 +76,5 @@ export {
   , numToChinese
   , getRandomIntInclusive
   , firstCap
+  , debounce
 }
