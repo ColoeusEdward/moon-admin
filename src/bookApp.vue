@@ -11,13 +11,14 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { NConfigProvider, darkTheme, NMessageProvider, NDialogProvider, GlobalTheme } from 'naive-ui'
+import { NConfigProvider, darkTheme, NMessageProvider, NDialogProvider, GlobalTheme,useMessage } from 'naive-ui'
 import { useThemeStore } from '@/store/modules/theme'
 import BookIndex from '@/bookPage/book/index.vue'
 // const loadingBar = useLoadingBar()
 const themeStore = useThemeStore()
 // themeStore.setLoadingBar(loadingBar)
-const getTheme = computed(() => (themeStore.darkTheme ? darkTheme : undefined)) as (GlobalTheme | undefined)
+const getTheme = computed(() => (themeStore.darkTheme ? darkTheme : undefined))
+
   // const getTheme = darkTheme
 </script>
 

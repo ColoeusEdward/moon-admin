@@ -68,6 +68,27 @@ const debounce = (fn: Function, ms = 16) => {
   };
 };
 
+const all = <T = any>(arr: T[], fn: (t: T) => boolean = Boolean) =>
+  arr.every(fn);
+
+// const atob = (str) => Buffer.from(str, "base64").toString("binary"); //解码base64字符串
+
+const attempt = (fn: (...args: any[]) => any, ...args: any[]) => {   //尝试运行并捕获错误
+  try {
+    return fn(...args);
+  } catch (e:any) {
+    return e instanceof Error ? e : new Error(e);
+  }
+};
+
+const attempt2 = (fn: (...args: any[]) => any, ...args: any[]) => {
+  try {
+    return [fn(...args), null];
+  } catch (e:any) {
+    return [null, e instanceof Error ? e : new Error(e)];
+  }
+};
+
 export {
   sleep
   , isLongPress
@@ -77,4 +98,7 @@ export {
   , getRandomIntInclusive
   , firstCap
   , debounce
+  , all
+  , attempt
+  , attempt2
 }

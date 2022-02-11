@@ -10,7 +10,7 @@ declare global {
     dayjs:() => any
   }
 }
-const userStore = useUserStore()
+
 const route = useRoute()
 
 console.log('import.meta.env.PROD', import.meta.env.PROD)
@@ -26,6 +26,7 @@ const err = (error: any) => {
 }
 
 service.interceptors.request.use((config) => {
+  const userStore = useUserStore()
   config.headers = {
     Authorization:`Bearer ${userStore.token}` 
   }
@@ -48,6 +49,7 @@ service.interceptors.response.use((response: any) => {
   }
   // return response.data
 }, err=>{
+  const userStore = useUserStore()
   if(err.message.search('401')>-1){
     window.$msg && window.$msg.error('token过期, 请重新登录')
     userStore.setToken('')

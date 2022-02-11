@@ -48,6 +48,7 @@ export default function useGrid(gridLayoutR) {
     , { x: 4, y: 6, w: 2, h: 4, i: '22', type: 'accList', text: 'ap', src: 'https://img.icons8.com/external-flatarticons-blue-flatarticons/100/000000/external-account-ux-and-ui-flatarticons-blue-flatarticons.png', expend: false, },
     { x: 9, y: 6, w: 2, h: 3, i: '23', type: 'weather', text: '天气', expend: false, src: 'https://img.icons8.com/bubbles/100/000000/upload.png' }
     , { x: 1, y: 7, w: 1, h: 3, i: '24', type: 'icon', text: 'book', src: 'https://img.icons8.com/dusk/64/000000/literature.png', link: 'https://meamoe.ml/site/up/bookPage' }
+    , { x: 6, y: 7, w: 1, h: 3, i: '25', type: 'upload', text: '上传book', src: 'https://img.icons8.com/color/96/000000/book-reading.png' }
     // { x: 8, y: 6, w: 2, h: 3, i: '4', type: 'syncToYou', text: '上传视频至youtube', expend: false, src: 'https://img.icons8.com/bubbles/100/000000/upload.png' },
     // { x: 8, y: 2, w: 2, h: 2, i: '12', type: 'input', text: '自由上传文件', expend: false }
   ])

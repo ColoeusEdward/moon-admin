@@ -1,9 +1,10 @@
-import { record_free, rmFile, deploy, uploadTemp } from "@/apis"
+import { record_free, rmFile, deploy, uploadTemp, uploadBook } from "@/apis"
 
 export default function useSubmit() {
   const api = {
     '部署': deploy
     , '上传至temp': uploadTemp
+    , '上传book': uploadBook
   }
   const submit = async (fileList, item, progObj) => {
     let fileItem = fileList[0]

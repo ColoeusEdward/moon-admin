@@ -157,6 +157,23 @@ export function testIpc(data?) {
   })
 }
 
+export function uploadBook(data?,handleUploadEvent?) {
+  return request<string>({
+    url: '/koa/mv_upload/uploadBook',
+    method: 'post',
+    data:data
+    ,onUploadProgress:handleUploadEvent
+  })
+}
+
+export function getExistBook(data?) {
+  return request<string[]>({
+    url: '/koa/newCen/getExistBook',
+    method: 'get',
+    data:data
+  })
+}
+
 
 
 // 'POST /mv_upload/record_free': record_free,

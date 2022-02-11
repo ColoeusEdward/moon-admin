@@ -1,7 +1,8 @@
 import { ref, FunctionalComponent, reactive, Ref } from 'vue'
 import style from './index.module.scss'
 import { isLongPress } from '@/utils';
-import { NInput, NButton, NSpin, NForm, FormRules, NGrid, NGi, NFormItem } from 'naive-ui';
+import { NInput, NButton, NSpin, NForm, FormRules, NGrid, NGi, NFormItem, NSelect } from 'naive-ui';
+// import type {NForm} from 'naive-ui'
 import useSubmit from './useSubmit';
 import { useMouse } from '@vueuse/core';
 export interface formListItem {
@@ -11,17 +12,19 @@ export interface formListItem {
   placeholder?: string
   inputType?: string
   row?: number
-  width?:number
+  width?: number
+  rule?: string
 }
 interface Props {
   // submitFn: (input: string, target: string) => void
   prog?: number
   style?: CSSModuleClasses
-  rule: FormRules
+  rule?: FormRules
   form: Object
   itemList: formListItem[]
   submitFn?: () => any
-  hideBtn?:boolean
+  hideBtn?: boolean
+  optionMap?: Object
 }
 type Emit = {
   childClick: () => void;
@@ -31,7 +34,12 @@ type reacData = {
 }
 export default function useMyFormWarp() {
   const data: reacData = reactive({})
+  const defaultRule: FormRules = {
+    must: { required: true, message: '请输入该项', trigger: 'blur' },
+  }
   const spinShow = ref(false)
+  const finalRule = ref({})
+  const formRef: any = ref({})
   // methods----------------------------------------------------------------------------------------------
   const renderInput = (form, item) => {
     return (
@@ -40,27 +48,55 @@ export default function useMyFormWarp() {
       </NFormItem>
     )
   }
+  const renderSelect = (form, item, optionMap) => {
+    return (
+      <NFormItem label={item.label} path={item.prop}>
+        <NSelect v-model:value={form[item.prop]} options={optionMap[item.prop]} />
+      </NFormItem>
+    )
+  }
 
-  const renderComp = (itemList, form) => {
+  const renderComp = (itemList, form, optionMap?) => {
     const obj = {
       input: renderInput
+      , select: renderSelect
     }
     return itemList.map((item) => {
       return (
         <NGi span={item.width || 12}>
-          {obj[item.type] && obj[item.type](form, item)}
+          {obj[item.type] && obj[item.type](form, item, optionMap)}
         </NGi>
       )
     })
   }
+  const buildRule = (props: Props) => {
+    let baseRule = props.rule ? Object.assign(props.rule, defaultRule) : defaultRule
+    let ruleOfProp = {}
+    props.itemList.forEach((e) => {
+      e.rule && (ruleOfProp[e.prop] = baseRule[e.rule])
+    })
+    finalRule.value = ruleOfProp
+  }
+  const validForm = () => {
+    return formRef.value.validate()
+  }
+  const submit = async (propSubmit) => {
+    await validForm()
+    propSubmit()
+  }
   const renderBtn = (props) => {
-    return props.hideBtn ? '' : 
-    (
-      <div style={{display:'flex'}}>
-        <NButton style="width:90%;height:40px;margin:0 auto;" type="primary" onClick={() => !isLongPress() && props.submitFn && props.submitFn()}>提交</NButton>
-      </div>
-    )
-    
+    return props.hideBtn ? '' :
+      (
+        <div style={{ display: 'flex' }}>
+          <NButton style="width:90%;height:40px;margin:0 auto;" type="primary" onClick={() => { props.submitFn && submit(props.submitFn) }}>提交</NButton>
+        </div>
+      )
+  }
+
+
+  const mount = (props: Props) => {
+    buildRule(props)
+    // formRef.value = el.el.__vueParentComponent.ctx
   }
 
   const MyFormWarp: FunctionalComponent<Props, Emit> =
@@ -72,9 +108,9 @@ export default function useMyFormWarp() {
 
       return (
         <NSpin show={spinShow.value}>
-          <NForm model={props.form} rules={props.rule} size="medium" labelPlacement="left" >
+          <NForm model={props.form} ref={formRef} rules={finalRule.value} size="medium" labelPlacement="left" v-getComp={() => { mount(props) }} >
             <NGrid xGap={12} yGap={8}>
-              {renderComp(props.itemList, props.form)}
+              {renderComp(props.itemList, props.form, props.optionMap)}
             </NGrid>
           </NForm>
           {renderBtn(props)}
@@ -83,17 +119,11 @@ export default function useMyFormWarp() {
     }
   // export default (() => gridInput)(); //只有这样才能正常使用defineAsyncComponent挂载
 
-  const mounted = async () => {
-    // console.timeEnd('挂载时间')
-    // await sleep(50)
-    // vch.value?.resize()
-
-    // console.log(`vch`,);
-  }
-
   return {
     MyFormWarp
     , spinShow
+    , formRef
+    , validForm
   }
 }
 

@@ -20,7 +20,7 @@ usePermission(router)
 // const loadingBar = useLoadingBar()
 const themeStore = useThemeStore()
 // themeStore.setLoadingBar(loadingBar)
-const getTheme = computed(() => (themeStore.darkTheme ? darkTheme : undefined)) as (GlobalTheme | undefined)
+const getTheme = computed(() => (themeStore.darkTheme ? darkTheme : undefined))
   // const getTheme = darkTheme
 </script>
 
