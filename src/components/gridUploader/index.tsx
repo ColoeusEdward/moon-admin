@@ -14,8 +14,10 @@ interface Props {
 type Emit = {
   childClick: () => void;
 }
-const { submit } = useSubmit()
+const uploadRef:any = ref()
+const { submit } = useSubmit(uploadRef)
 const progObj: any = reactive({})
+
 // let upLoadData
 const handleUploadUdpate = (list, item) => {
   submit(list, item, progObj)
@@ -36,6 +38,9 @@ const renderTriggerContent = (handleClick, item, curClickBtnI) => {
 }
 
 // methods----------------------------------------------------------------------------------------------
+const mount = () => {
+  console.log(`uploadref`,uploadRef.value);
+}
 
 const gridUploader: FunctionalComponent<Props, Emit> =
   (props, ctx) => {
@@ -43,7 +48,7 @@ const gridUploader: FunctionalComponent<Props, Emit> =
     Object.assign(style, props.style)
 
     return (
-      <NUpload defaultUpload={false} abstract action="2" headers={{ 'naive-info': 'hello!' }} onUpdate:file-list={(list) => { handleUploadUdpate(list, props.item) }}>
+      <NUpload  ref={(e) => {uploadRef.value=e}} defaultUpload={false} abstract action="2" headers={{ 'naive-info': 'hello!' }} onUpdate:file-list={(list) => { handleUploadUdpate(list, props.item) }}>
         <NUploadTrigger v-slots={{ default: ({ handleClick }) => renderTriggerContent(handleClick, props.item, props.curClickBtnI) }} abstract>
         </NUploadTrigger>
       </NUpload>

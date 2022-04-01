@@ -113,7 +113,7 @@ const useBook = () => {
       return (
         <div class={'flex flex-col w-full h-full justify-center items-center text-slate-400 bg-gray-900'} v-getComp={(el) => { mount(el) }}>
           {renderSideClick()}
-          <p class={'w-full h-full text-6xl break-all text-left pl-2 '} onTouchstart={handleTouchStart} onTouchend={handleTouchEnd}>
+          <p class={'w-full h-full text-5xl leading-snug break-all text-left pl-2 '} onTouchstart={handleTouchStart} onTouchend={handleTouchEnd}>
             {text.value}
             {ctx.slots.default && ctx.slots.default()}
           </p>
