@@ -1,7 +1,9 @@
 <template>
   <jsxIndex :test="566" />
-  <DefComp :prop="{te:'jjj'}" />
-  <DefComp :prop="{te:'kkk'}" />
+  <DefComp :prop="{te:'jjj'}" >
+    dfdfdfdfdfggggconsole.log("🚀 ~ file: index.tsx ~ line 25 ~ ,setup ~ elref", elref)等等
+  </DefComp>
+  <!-- <DefComp :prop="{te:'kkk'}" /> -->
 </template>
 
 <script setup lang="ts">

@@ -8,6 +8,7 @@ import useGridInput from '@/components/gridInput/useGridInput'
 import useAccountList from '@/components/accountList/useAccountList'
 import useSyncToYou from '@/components/syncToYou/useSyncToYou'
 import useWeatherInfo from '@/components/weather/useWeather'
+import useGoogleSearch from './comp/googleSearch/useGoogleSearch'
 interface Props {
   prog?: number,
   style?: CSSModuleClasses
@@ -19,6 +20,7 @@ let inputMap = {}
 const { AccountList } = useAccountList()
 const { SyncToYou } = useSyncToYou()
 const { WeatherInfo } = useWeatherInfo()
+const { GoogleSearch } = useGoogleSearch()
 const gridLayoutRef = ref<InstanceType<typeof GridLayout>>()
 const grid = useGrid(gridLayoutRef)
 const buildInput = (item, curClickBtnI) => {
@@ -45,6 +47,9 @@ const renderComp = (item, curClickBtnI) => {
     }
     , weather: () => {
       res = (<WeatherInfo item={item} />)
+    }
+    , google: () => {
+      res = (<GoogleSearch item={item} />)
     }
   }
   obj['btn'] = obj['icon']
