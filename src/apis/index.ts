@@ -174,6 +174,32 @@ export function getExistBook(data?) {
   })
 }
 
+export function getV8(data?) {
+  return request<string>({
+    url: '/koa/newCen/free/getV8',
+    method: 'get',
+    data:data
+  })
+}
+
+export function getV8Comment(data?) {
+  return request<object>({
+    url: `/koa/newCen/free/getV8Comment/${data.tid}/${data.p}`,
+    method: 'get',
+    // data:data
+  })
+}
+
+export function getV8Post(data?) {
+  return request<string>({
+    url: `/koa/newCen/free/getV8Post/${data.tid}/${data.p}`,
+    method: 'get',
+    // data:data
+  })
+}
+
+
+
 
 
 // 'POST /mv_upload/record_free': record_free,

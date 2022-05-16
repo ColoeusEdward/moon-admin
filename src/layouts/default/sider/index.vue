@@ -8,7 +8,7 @@
 import { NMenu, NIcon } from 'naive-ui'
 // import moonSiderStyle from './index.cssr'
 import { h, ref, inject } from 'vue'
-import {BookOne,People,Drink,DataFile} from '@icon-park/vue-next'
+import {BookOne,People,Drink,DataFile,FrenchFries} from '@icon-park/vue-next'
 import useJump from './jump'
 
 const jump = useJump()
@@ -58,8 +58,8 @@ const menuOptions = [
   },
   {
     label: '寻羊冒险记',
-    key: 'a-wild-sheep-chase',
-    icon: renderIcon(BookOne)
+    key: 'v8',
+    icon: renderIcon(FrenchFries)
   },
   {
     label: '舞，舞，舞',

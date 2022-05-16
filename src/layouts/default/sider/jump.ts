@@ -6,6 +6,7 @@ export default function userJump() {
     , 'tsx': '/testJsx'
     , 'echart': '/testEchart'
     , 'oldDash': '/dashOld'
+    , 'v8':'/v8'
   }
   const handleChange = (key, item) => {
     console.log(key, item);

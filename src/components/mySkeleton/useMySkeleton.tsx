@@ -39,7 +39,7 @@ const useMySkeleton = () => {
   const MySkeleton: FunctionalComponent<Props, Emit> =
     (props, ctx) => {
       const { emit } = ctx
-      console.log("🚀 ~ file: useMySkeleton.tsx ~ line 50 ~ useMySkeleton ~ ctx.slots", ctx.slots)
+      // console.log("🚀 ~ file: useMySkeleton.tsx ~ line 50 ~ useMySkeleton ~ ctx.slots", ctx.slots)
       // let sty = JSON.parse(JSON.stringify(style))
       // Object.assign(sty, props.style)
       // let styleFather = Object.values({fdfa:'fff'})[0]

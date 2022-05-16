@@ -1,10 +1,23 @@
 import { useThemeStore } from "@/store/modules/theme"
 import { Options, Position } from "./util"
 
+(Array as any).prototype.myChildFind =  function (judgeFn) {
+  return this.find(e=>{return judgeFn(e)})
+}
 
 const sleep = (ms) => {
   return new Promise((reslove) => {
     setTimeout(reslove, ms)
+  })
+}
+
+const ajaxPromiseAll = (list) => {
+  return new Promise<any[]>((resolve, reject) => {
+    return Promise.all(list).then(res => {
+      resolve(res);
+    }).catch(err => {
+      reject(err);
+    })
   })
 }
 
@@ -89,6 +102,22 @@ const attempt2 = (fn: (...args: any[]) => any, ...args: any[]) => {
     return [null, e instanceof Error ? e : new Error(e)];
   }
 };
+
+const deepSearch = (obj, predicate) => {
+  let result: Object[] = [];
+  for (let p in obj) { // iterate on every property
+    // tip: here is a good idea to check for hasOwnProperty
+    if (typeof (obj[p]) == 'object') { // if its object - lets search inside it
+      result = result.concat(deepSearch(obj[p], predicate));
+    } else if (predicate(p, obj[p]))
+      result.push(obj); // check condition
+  }
+  return result;
+}
+
+const childFind = () => {
+
+}
 
 /**
  * Returns the relative position of the caret in the given element.
@@ -246,6 +275,8 @@ function getRelativePosition(
     height: parseInt(computed.fontSize) * 1.5
   }
 
+
+
   if (debug) {
     span.style.backgroundColor = '#aaa'
   } else {
@@ -261,6 +292,8 @@ function getRelativePosition(
   return relativePosition
 }
 
+
+
 export {
   sleep
   , isLongPress
@@ -274,4 +307,6 @@ export {
   , attempt
   , attempt2
   , getRelativePosition
+  , deepSearch
+  , ajaxPromiseAll
 }
