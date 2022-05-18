@@ -1,4 +1,4 @@
-import { getV8, getV8Comment, getV8Post } from '@/apis'
+import { getTB, getV8, getV8Comment, getV8Post } from '@/apis'
 import useMySkeleton from '@/components/mySkeleton/useMySkeleton'
 import { ref, FunctionalComponent, reactive, watch, Ref, computed, nextTick } from 'vue'
 import { DomHandler, DomHandlerOptions, Element, Document } from "domhandler";
@@ -6,6 +6,7 @@ import * as htmlparser2 from "htmlparser2";
 import { NButton, NIcon, NDropdown, NSpace, NImage } from 'naive-ui'
 import { Refresh, Comments } from '@icon-park/vue-next'
 import useDetail from './useDetail';
+import useChangeBa from './useChangeBa';
 // import {} from 'htmlparser2'
 interface Props {
   prog?: number,
@@ -25,6 +26,7 @@ type postData = {
 }
 
 const useIndexTSX = () => {
+  const curBa = ref({ name: "v", fid: '97650' })
   const { MySkeleton } = useMySkeleton()
   const loading = ref(false)
   const dropDownShow = ref(false)
@@ -33,9 +35,13 @@ const useIndexTSX = () => {
   const curUrl = ref('')
   const curItem = ref({})
   const dataList = ref<postData[]>([])
-  const Detail = useDetail(curUrl, curItem)
+  const Detail = useDetail(curUrl, curItem, curBa)
+  const ChangeBa = useChangeBa(curBa)
 
-
+  watch(curBa, (n) => {
+    // console.log("🚀 ~ file: indexTSX.tsx ~ line 42 ~ watch ~ n", n)
+    getData()
+  })
   //---------------------------------------------------------------------------------------------------------
   const handleContextMenu = (e: MouseEvent) => {
     e.preventDefault()
@@ -62,6 +68,26 @@ const useIndexTSX = () => {
       // Detail.getData()
     }
   }
+  const buildAuthor = (ele) => {
+    // console.log("🚀 ~ file: indexTSX.tsx ~ line 66 ~ buildAuthor ~ ele", ele)
+    let isVip = false
+    let item = ele.children[1]
+    if (item.attribs.class == 'pre_icon_wrap pre_icon_wrap_theme1 frs_bright_preicon') {
+      isVip = true
+      item = item.next
+    }
+    let list = item.children[0].children.map((e) => {
+      let type = ''
+      e.type == 'text' && (type = 'text')
+      e.name == 'img' && (type = 'img')
+      return {
+        type: type
+        , val: type == 'text' ? e.data : e.attribs.src
+      }
+    })
+    isVip && list.unshift({ type: 'text', val: '👑' })
+    return list
+  }
   const parseData = (str) => {
     const dom = htmlparser2.parseDocument(str)
     let list: postData[] = (dom.children[0] as Element).children.filter(e => {
@@ -77,10 +103,12 @@ const useIndexTSX = () => {
         , url: right.children[1]?.children[1]?.children[1]?.attribs.href
         , info: right.children[3]?.children[1]?.children[1]?.children[0]?.data || ' '
         , replyNum: left.children[1].children[0].data
-        , author: right.children[1].children[2].children[1].attribs.title.split(': ')[1]
+        // , author: right.children[1].children[2].children[1].attribs.title.split(': ')[1]
+        , author: buildAuthor(right.children[1].children[2].children[1])
         , lastTime: right.children[3].children[3].children[3].children[0].data
         , imgList: imgEleList ? imgEleList.map(e => e.children[0].children[0].attribs.bpic) : []
       }
+
       // console.log("🚀 ~ file: indexTSX.tsx ~ line 37 ~ parseData ~ data", data)
       return data
     })
@@ -89,7 +117,7 @@ const useIndexTSX = () => {
   const getData = async () => {
     dataList.value = []
     loading.value = true
-    let res = await getV8()
+    let res = await getTB({ name: curBa.value.name })
     loading.value = false
     if (res.length == 0) {
       return
@@ -109,6 +137,15 @@ const useIndexTSX = () => {
         )
       })
     }
+    const renderAuthor = (author) => {
+      return author.map((e) => {
+        let obj = {
+          text: () => e.val
+          , img: () => <NImage class={'relative top-0.5'} width="16" src={e.val} />
+        }
+        return obj[e.type] && obj[e.type]()
+      })
+    }
     return (
       <div class={'p-3 text-slate-400 hover:bg-gray-900'} onMousedown={(e) => { curUrl.value = item.url; rowClick(e, item) }}>
         <div class={'inline-block w-4/5 text-left'}>
@@ -117,7 +154,7 @@ const useIndexTSX = () => {
           <div><NSpace>{renderImgList()}</NSpace></div>
         </div>
         <div class={'inline-block w-1/5 text-right'}>
-          <div>{item.author}</div>
+          <div>{renderAuthor(item.author)}</div>
           <div>
             <div class={'text-sm text-slate-500 inline-block mr-3'}>{item.lastTime}</div>
             <div class={'inline-flex align-baseline items-center'}>
@@ -174,6 +211,7 @@ const useIndexTSX = () => {
               {renderRefresh()}
               {renderDropDown()}
               {Detail.render()}
+              {ChangeBa.render()}
             </div>
           </MySkeleton>
         </div>

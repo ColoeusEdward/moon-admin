@@ -33,7 +33,7 @@ const useMySkeleton = () => {
     ) : ''
   }
   const mount = (el) => {
-    console.log(`el`, el);
+    // console.log(`el`, el);
     totalHeight.value = el[0].contentRect.height
   }
   const MySkeleton: FunctionalComponent<Props, Emit> =
@@ -44,7 +44,7 @@ const useMySkeleton = () => {
       // Object.assign(sty, props.style)
       // let styleFather = Object.values({fdfa:'fff'})[0]
       return (
-        <div class={'w-full h-full'} v-watchSize={(el) => { mount(el) }}>
+        <div class={'w-full h-full relative'} v-watchSize={(el) => { mount(el) }}>
           {renderSkeleton(props.isLoading)}
           {ctx.slots.default && ctx.slots.default()}
         </div>

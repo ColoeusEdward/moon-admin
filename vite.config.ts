@@ -46,7 +46,6 @@ export default defineConfig({
                 try {
                   const packageJson = require(path);
                   const version = packageJson.version;
-                  // console.log(module, version);
                   return `@vendor/${module}_${version}.js`;
                 } catch (error) {}
               }
