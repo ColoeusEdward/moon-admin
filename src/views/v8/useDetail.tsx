@@ -4,7 +4,7 @@ import { ref, FunctionalComponent, reactive, watch, Ref, computed, nextTick } fr
 import { DomHandler, DomHandlerOptions, Element, Document } from "domhandler";
 import * as htmlparser2 from "htmlparser2";
 import { NButton, NIcon, NDropdown, NSpace, NImage, NDrawer, NDrawerContent, NPagination, NScrollbar } from 'naive-ui'
-import { ajaxPromiseAll } from '@/utils';
+import { ajaxPromiseAll, sleep } from '@/utils';
 import useReply, { replyType } from './useReply';
 type postData = {
   content: string | any[]
@@ -64,6 +64,7 @@ const useDetail = (curUrl, curItem, curBa) => {
   const getData = async () => {
     postList.value = []
     is404Ref.value = false
+    curComment.value = {}
     const tid = curUrl.value.split('/')[2]
     loading.value = true
     const resList = await ajaxPromiseAll([getTBPost({ tid: tid, p: pn.value }), getTBComment({ tid: tid, fid: curBa.value.fid, p: pn.value })])
@@ -220,12 +221,21 @@ const useDetail = (curUrl, curItem, curBa) => {
     postList.value = list
   }
   const commentClick = (type, item) => {
+    console.log("🚀 ~ file: useDetail.tsx ~ line 223 ~ commentClick ~ type", type)
+    // debugger
     let obj = {
       layer: () => { curComment.value = { type, quoteId: item.id } }
       , layerIn: () => { curComment.value = { type, quoteId: item[0].quoteId, proId: item[0].proId, userName: item[0].val.split(': ')[0], repostid: item[0].repostid } }
     }
-    obj[type]()
-    console.log("🚀 ~ file: useDetail.tsx ~ line 204 ~ commentClick ~ curComment.value", curComment.value)
+    if (Object.keys(curComment.value).length == 0) {
+      obj[type]()
+    }
+    let uw = watch(() => dropDownShow.value, (n) => {
+      // console.log(`watch`,);
+      !n && !obj[type]() && uw()
+      !n && console.log(`watch`,)
+      // console.log("🚀 ~ file: useDetail.tsx ~ line 204 ~ commentClick ~ curComment.value", curComment.value)
+    })
   }
   const dropDownClick = (key) => {
     dropDownShow.value = false
@@ -236,7 +246,10 @@ const useDetail = (curUrl, curItem, curBa) => {
   const handleContextMenu = (e) => {
     e.preventDefault()
     dropDownShow.value = false
-    nextTick().then(() => {
+    // if(this.)
+    nextTick(() => {
+      if (Object.keys(curComment.value).length == 0)
+        return
       dropDownShow.value = true
       xRef.value = e.clientX
       yRef.value = e.clientY
@@ -247,7 +260,7 @@ const useDetail = (curUrl, curItem, curBa) => {
       layer: { label: '回复层', key: 'layer' }
       , layerIn: { label: `回复【${curComment.value['userName']}】`, key: 'layerIn' }
     }
-    let optObj = obj[curComment.value['type']]
+    let optObj = obj[curComment.value['type']] || obj['layer']
     return (
       <NDropdown
         placement="bottom-start"
@@ -290,7 +303,7 @@ const useDetail = (curUrl, curItem, curBa) => {
               }
               , face: () => <div class={'inline-block relative top-0.5'}><NImage width="30" src={ce.val} /></div>
               , br: () => <div></div>
-              , img: () => <div><NImage width="50" src={ce.val} /></div>
+              , img: () => <div onContextmenu={(e) => {e.stopPropagation();}} ><NImage width="50" src={ce.val} /></div>
             }
             // console.log(`obj[ce.type]`,ce,obj[ce.type]);
             return obj[ce.type] && obj[ce.type]()
@@ -383,19 +396,19 @@ const useDetail = (curUrl, curItem, curBa) => {
   const render = () => {
     return (
       <NDrawer v-model:show={drawShow.value} width={700} >
-        <NDrawerContent title={curItem.value.title} bodyContentStyle={{ padding: 0 }} v-slots={{
+        <NDrawerContent title={curItem.value.title} bodyContentStyle={{ padding: 0, overflow: 'hidden' }} v-slots={{
           footer: () => <NPagination v-model:page={pn.value} pageSize={15} pageCount={pcount.value} onUpdatePage={getData} />
         }}>
           <MySkeleton isLoading={loading.value}  >
-            <div class={'h-full w-full overflow-hidden'} id={'DetailDiv'} onContextmenu={handleContextMenu}>
+            <div class={'w-full h-full overflow-hidden'} id={'DetailDiv'} onContextmenu={handleContextMenu}>
               <NScrollbar >
                 {renderRow()}
                 {Reply.render()}
+                {renderDropDown()}
+                {/* <div class={'absolute bottom-0'} style={{ height: '5px' }} ></div> */}
+                {/* {is404Ref.value && <div class={'mt-10 text-2xl text-gray-500 text-center'}>404</div>} */}
               </NScrollbar>
-              {renderDropDown()}
-              {is404Ref.value && <div class={'mt-20 text-2xl text-gray-500 text-center'}>404</div>}
             </div>
-
           </MySkeleton>
         </NDrawerContent>
       </NDrawer>

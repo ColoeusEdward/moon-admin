@@ -3,7 +3,7 @@ import useMySkeleton from '@/components/mySkeleton/useMySkeleton'
 import { ref, FunctionalComponent, reactive, watch, Ref, computed, nextTick } from 'vue'
 import { DomHandler, DomHandlerOptions, Element, Document } from "domhandler";
 import * as htmlparser2 from "htmlparser2";
-import { NButton, NIcon, NDropdown, NSpace, NImage } from 'naive-ui'
+import { NButton, NIcon, NDropdown, NSpace, NImage, NScrollbar } from 'naive-ui'
 import { Refresh, Comments } from '@icon-park/vue-next'
 import useDetail from './useDetail';
 import useChangeBa from './useChangeBa';
@@ -128,12 +128,11 @@ const useIndexTSX = () => {
     parseData(str)
   }
 
-
   const renderRow = (item: postData) => {
     const renderImgList = () => {
       return item.imgList?.map(e => {
         return (
-          <div onMousedown={(e) => { e.stopPropagation() }}><NImage width="50" src={e} /></div>
+          <div onMousedown={(e) => { e.stopPropagation() }} onContextmenu={(e) => {e.stopPropagation();}}  ><NImage width="50" src={e} /></div>
         )
       })
     }
@@ -207,11 +206,13 @@ const useIndexTSX = () => {
         <div class={'w-full h-full'}  >
           <MySkeleton isLoading={loading.value} >
             <div class={'w-full h-full'} v-getComp={(e) => { mount(e) }} onContextmenu={handleContextMenu} >
-              {renderList()}
-              {renderRefresh()}
-              {renderDropDown()}
-              {Detail.render()}
-              {ChangeBa.render()}
+              <NScrollbar >
+                {renderList()}
+                {renderRefresh()}
+                {renderDropDown()}
+                {Detail.render()}
+                {ChangeBa.render()}
+              </NScrollbar>
             </div>
           </MySkeleton>
         </div>

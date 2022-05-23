@@ -26,7 +26,7 @@ const useChangeBa = (curBa) => {
   }
   const render = () => {
     return [
-      <div class={'fixed -right-2 top-48'} style={{
+      <div class={'fixed -right-6 top-48'} style={{
         transition: 'transform 0.1s ease-in-out', transform: `translate3d(
       ${xpos.value}px,0px,0px)`
       }}><NButton round type={'primary'} onClick={showDrawer} v-slots={{
