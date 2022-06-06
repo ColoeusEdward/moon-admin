@@ -21,12 +21,15 @@ const useReply = (curUrl, curBa, getDataFn, isLastPageFn, detailShow, curComment
     replyType.value = 0
     drawShow.value = true
   }
+  const processInput = () => {
+    return input.value.replaceAll('\n', '[br]')
+  }
   const submit = () => {
     let list = [submitTie, submitComment]
     list[replyType.value] && list[replyType.value]()
   }
   const submitTie = async () => {
-    let data = { fid: curBa.value.fid, fname: curBa.value.name, tid: curUrl.value.split('/')[2], content: input.value }
+    let data = { fid: curBa.value.fid, fname: curBa.value.name, tid: curUrl.value.split('/')[2], content: processInput() }
     loading.value = true
     let res = await replyTB(data)
     // console.log("🚀 ~ file: useReply.tsx ~ line 24 ~ submit ~ res", res)

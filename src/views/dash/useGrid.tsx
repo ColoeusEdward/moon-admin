@@ -50,6 +50,7 @@ export default function useGrid(gridLayoutR) {
     , { x: 1, y: 7, w: 1, h: 3, i: '24', type: 'icon', text: 'book', src: 'https://img.icons8.com/dusk/64/000000/literature.png', link: 'https://meamoe.ml/site/up/bookPage' }
     , { x: 6, y: 7, w: 1, h: 3, i: '25', type: 'upload', text: '上传book', src: 'https://img.icons8.com/color/96/000000/book-reading.png' }
     ,{ x: 7, y: 8, w: 4, h: 1.5, i: '26', type: 'google', text: '谷歌', expend: false, src: 'https://img.icons8.com/bubbles/100/000000/upload.png' }
+    ,{ x: 7, y: 9.5, w: 4, h: 1.5, i: '27', type: 'backImg', text: '保存涩图', expend: false, src: 'https://img.icons8.com/bubbles/100/000000/upload.png' }
     // { x: 8, y: 6, w: 2, h: 3, i: '4', type: 'syncToYou', text: '上传视频至youtube', expend: false, src: 'https://img.icons8.com/bubbles/100/000000/upload.png' },
     // { x: 8, y: 2, w: 2, h: 2, i: '12', type: 'input', text: '自由上传文件', expend: false }
   ])

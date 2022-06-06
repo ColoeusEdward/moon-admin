@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "vite --open",
     "eslint": "eslint --ext .ts,.tsx,.vue src --fix",
-    "format": "prettier --write src/**/*.{vue,ts,tsx}",
+    "format  prettier --write src/**/*.{vue,ts,tsx}": "",
     "build": "vue-tsc --noEmit --skipLibCheck && vite build --mode production",
     "builds": "vue-tsc --noEmit",
     "buildf": "vite build --mode production",
@@ -64,6 +64,7 @@
     "typescript": "^4.6.4",
     "typescript-plugin-css-modules": "^3.4.0",
     "vite": "2.9.9",
+    "vite-plugin-chunk-split": "^0.2.2",
     "vue-tsc": "^0.34.16"
   },
   "packageManager": "yarn@3.1.1"

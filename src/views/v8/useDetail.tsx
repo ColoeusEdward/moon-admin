@@ -4,7 +4,7 @@ import { ref, FunctionalComponent, reactive, watch, Ref, computed, nextTick } fr
 import { DomHandler, DomHandlerOptions, Element, Document } from "domhandler";
 import * as htmlparser2 from "htmlparser2";
 import { NButton, NIcon, NDropdown, NSpace, NImage, NDrawer, NDrawerContent, NPagination, NScrollbar } from 'naive-ui'
-import { ajaxPromiseAll, sleep } from '@/utils';
+import { ajaxPromiseAll, isLowResolution, sleep } from '@/utils';
 import useReply, { replyType } from './useReply';
 type postData = {
   content: string | any[]
@@ -303,7 +303,7 @@ const useDetail = (curUrl, curItem, curBa) => {
               }
               , face: () => <div class={'inline-block relative top-0.5'}><NImage width="30" src={ce.val} /></div>
               , br: () => <div></div>
-              , img: () => <div onContextmenu={(e) => {e.stopPropagation();}} ><NImage width="50" src={ce.val} /></div>
+              , img: () => <div onContextmenu={(e) => {e.stopPropagation();}} class={'inline-block mr-1'} ><NImage width="50" src={ce.val} /></div>
             }
             // console.log(`obj[ce.type]`,ce,obj[ce.type]);
             return obj[ce.type] && obj[ce.type]()
@@ -392,10 +392,9 @@ const useDetail = (curUrl, curItem, curBa) => {
       )
     })
   }
-
   const render = () => {
     return (
-      <NDrawer v-model:show={drawShow.value} width={700} >
+      <NDrawer v-model:show={drawShow.value} width={isLowResolution() ? '90vw' : 700} >
         <NDrawerContent title={curItem.value.title} bodyContentStyle={{ padding: 0, overflow: 'hidden' }} v-slots={{
           footer: () => <NPagination v-model:page={pn.value} pageSize={15} pageCount={pcount.value} onUpdatePage={getData} />
         }}>

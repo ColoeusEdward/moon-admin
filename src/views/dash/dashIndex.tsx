@@ -9,6 +9,7 @@ import useAccountList from '@/components/accountList/useAccountList'
 import useSyncToYou from '@/components/syncToYou/useSyncToYou'
 import useWeatherInfo from '@/components/weather/useWeather'
 import useGoogleSearch from './comp/googleSearch/useGoogleSearch'
+import useBackImg from './comp/googleSearch/useBackImg'
 interface Props {
   prog?: number,
   style?: CSSModuleClasses
@@ -21,6 +22,7 @@ const { AccountList } = useAccountList()
 const { SyncToYou } = useSyncToYou()
 const { WeatherInfo } = useWeatherInfo()
 const { GoogleSearch } = useGoogleSearch()
+const { BackImg } = useBackImg()
 const gridLayoutRef = ref<InstanceType<typeof GridLayout>>()
 const grid = useGrid(gridLayoutRef)
 const buildInput = (item, curClickBtnI) => {
@@ -51,6 +53,7 @@ const renderComp = (item, curClickBtnI) => {
     , google: () => {
       res = (<GoogleSearch item={item} />)
     }
+    , backImg: () => { res = (<BackImg item={item}></BackImg>) }
   }
   obj['btn'] = obj['icon']
   obj[item.type] && obj[item.type]()

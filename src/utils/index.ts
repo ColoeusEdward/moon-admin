@@ -292,6 +292,12 @@ function getRelativePosition(
   return relativePosition
 }
 
+export const isLowResolution = () => {
+  // console.log("🚀 ~ file: index.ts ~ line 297 ~ isLowResolution ~ screen.width", screen.width)
+  return screen.width < 1300
+  
+}
+
 
 
 export {

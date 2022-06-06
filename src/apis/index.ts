@@ -246,6 +246,14 @@ export function replyComment(data?) {
   })
 }
 
+export function backupImg(data?) {
+  return request<object>({
+    url: `/koa/newCen/free/backupImg`,
+    method: 'post',
+    data: data
+  })
+}
+
 
 
 

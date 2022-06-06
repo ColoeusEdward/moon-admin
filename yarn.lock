@@ -4871,6 +4871,7 @@ __metadata:
     uuid: ^8.3.2
     vfonts: ^0.1.0
     vite: 2.9.9
+    vite-plugin-chunk-split: ^0.2.2
     vue: 3.2.36
     vue-echarts: ^6.0.0
     vue-jsonp: ^2.0.0
@@ -5637,6 +5638,15 @@ __metadata:
   version: 0.1.0
   resolution: "vfonts@npm:0.1.0"
   checksum: 6a0cf0c4c98d27c18cc7e6d134615c4086c025d5a44cac5f5196cabd27f2ad7dee45e5f8034095f493a1bd8e5cb4a1b995644e55354fe2a9626c47ad1c2de608
+  languageName: node
+  linkType: hard
+
+"vite-plugin-chunk-split@npm:^0.2.2":
+  version: 0.2.2
+  resolution: "vite-plugin-chunk-split@npm:0.2.2"
+  peerDependencies:
+    vite: ">=2.0.0"
+  checksum: 597669f557098f365ec5bcef59c600924fdc0078184fc4ed63c20610bfb9c0bd8ddd197e878ec609eebfed058f85ff688610d8b7f7ebdf9a9a0bd52ea4b7e7d5
   languageName: node
   linkType: hard
 

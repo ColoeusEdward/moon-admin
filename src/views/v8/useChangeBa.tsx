@@ -2,10 +2,9 @@ import { getTBComment, getV8, getV8Comment, getV8Post, getTBPost } from '@/apis'
 import useMySkeleton from '@/components/mySkeleton/useMySkeleton'
 import { ref, FunctionalComponent, reactive, watch, Ref, computed, nextTick } from 'vue'
 import { NButton, NIcon, NDropdown, NSpace, NImage, NDrawer, NDrawerContent, NPagination, NSelect } from 'naive-ui'
-import { ajaxPromiseAll } from '@/utils';
+import { ajaxPromiseAll, isLowResolution } from '@/utils';
 import { Left } from '@icon-park/vue-next';
 import { TransitionPresets, useMouse, useTransition } from '@vueuse/core';
-
 const useChangeBa = (curBa) => {
   const { x, y } = useMouse()
   const innerWidth = window.innerWidth
@@ -32,7 +31,7 @@ const useChangeBa = (curBa) => {
       }}><NButton round type={'primary'} onClick={showDrawer} v-slots={{
         icon: () => <Left theme="outline" fill="#333" />
       }} >{`        `}</NButton></div>
-      , <NDrawer v-model:show={drawShow.value} width={400} >
+      , <NDrawer v-model:show={drawShow.value} width={isLowResolution() ? '70vw' : 400} >
         <NDrawerContent title={'切换'} >
           <NSelect v-model:value={curIdx.value} options={tbOption.value} onUpdateValue={changeB} ></NSelect>
         </NDrawerContent>
