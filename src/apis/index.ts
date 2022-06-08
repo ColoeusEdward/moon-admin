@@ -68,6 +68,15 @@ export function deploy(data?, handleUploadEvent?) {
   })
 }
 
+export function deploySun(data?, handleUploadEvent?) {
+  return request<string>({
+    url: '/koa/mv_upload/deploysun',
+    method: 'post',
+    data: data
+    , onUploadProgress: handleUploadEvent
+  })
+}
+
 export function memPercent(data?) {
   return request<string>({
     url: '/koa/mv_upload/memPercent',

@@ -1,5 +1,5 @@
 import { isLongPress } from '@/utils'
-import { NUpload, NUploadTrigger, } from 'naive-ui'
+import { NUpload, NUploadTrigger, UploadFileInfo, } from 'naive-ui'
 import { ref, FunctionalComponent, reactive, watch, Ref, computed, defineComponent } from 'vue'
 import useWaveProgress from '../waveProgress'
 import style from './index.module.scss'
@@ -17,6 +17,7 @@ type Emit = {
 const uploadRef:any = ref()
 const { submit } = useSubmit(uploadRef)
 const progObj: any = reactive({})
+const fileList = ref<Array<UploadFileInfo>>([])
 
 // let upLoadData
 const handleUploadUdpate = (list, item) => {
@@ -48,7 +49,7 @@ const gridUploader: FunctionalComponent<Props, Emit> =
     Object.assign(style, props.style)
 
     return (
-      <NUpload  ref={(e) => {uploadRef.value=e}} defaultUpload={false} abstract action="2" headers={{ 'naive-info': 'hello!' }} onUpdate:file-list={(list) => { handleUploadUdpate(list, props.item) }}>
+      <NUpload  ref={(e) => {uploadRef.value=e}} defaultUpload={false} abstract action="2" headers={{ 'naive-info': 'hello!' }} fileList={fileList.value} onUpdate:file-list={(list) => { handleUploadUdpate(list, props.item) }}>
         <NUploadTrigger v-slots={{ default: ({ handleClick }) => renderTriggerContent(handleClick, props.item, props.curClickBtnI) }} abstract>
         </NUploadTrigger>
       </NUpload>

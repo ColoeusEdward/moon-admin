@@ -1,11 +1,12 @@
 
-import { ref, reactive,nextTick } from 'vue';
-import {Refresh} from '@icon-park/vue-next'
+import { ref, reactive, nextTick } from 'vue';
+import { Refresh } from '@icon-park/vue-next'
 import { GridItem } from 'vue3-grid-layout'
 import useUi from './ui'
 import './grid.scss'
 import { useThemeStore } from '@/store/modules/theme';
 import { sleep } from '@/utils';
+import { iconUrl } from './icon';
 
 const themeStore = useThemeStore()
 const ui = useUi()
@@ -30,7 +31,7 @@ export default function useGrid(gridLayoutR) {
     { x: 6, y: 0, w: 2, h: 3, i: '3', type: 'syncToYou', text: '上传视频至youtube', src: 'https://img.icons8.com/fluency/96/000000/youtube-play.png' },
     { x: 7, y: 6, w: 2, h: 3, i: '4', type: 'input', text: '自由上传文件', expend: false, src: 'https://img.icons8.com/bubbles/100/000000/upload.png' },
     { x: 10, y: 0, w: 1, h: 3, i: '12', type: 'upload', text: '部署', src: 'https://cdn.iconscout.com/icon/premium/png-256-thumb/deployment-2369058-1978336.png' },
-    { x: 11, y: 0, w: 1, h: 3, i: '5', type: 'iconbtn', text: '复原', iconComp: ()=><Refresh /> },
+    { x: 11, y: 0, w: 1, h: 3, i: '5', type: 'iconbtn', text: '复原', iconComp: () => <Refresh /> },
     { x: 0, y: 3, w: 2, h: 4, i: '6', type: 'list', text: '查看剩余空间', src: 'https://icons-for-free.com/iconfiles/png/512/storage+dropbox+dropbox+logo+file+storage+file+transfer+upload-1320196083387888656.png' },
     { x: 2, y: 0, w: 2, h: 3, i: '7', type: 'input', text: '删除文件', expend: false, src: 'https://img.icons8.com/bubbles/100/000000/delete-sign.png' },
     { x: 4, y: 3, w: 2, h: 4, i: '8', type: 'list', text: '查看文件大小', src: 'https://icons-for-free.com/iconfiles/png/512/file+format+mp4+paper+icon-1320167130956649663.png' },
@@ -49,8 +50,9 @@ export default function useGrid(gridLayoutR) {
     { x: 9, y: 6, w: 2, h: 3, i: '23', type: 'weather', text: '天气', expend: false, src: 'https://img.icons8.com/bubbles/100/000000/upload.png' }
     , { x: 1, y: 7, w: 1, h: 3, i: '24', type: 'icon', text: 'book', src: 'https://img.icons8.com/dusk/64/000000/literature.png', link: 'https://meamoe.ml/site/up/bookPage' }
     , { x: 6, y: 7, w: 1, h: 3, i: '25', type: 'upload', text: '上传book', src: 'https://img.icons8.com/color/96/000000/book-reading.png' }
-    ,{ x: 7, y: 8, w: 4, h: 1.5, i: '26', type: 'google', text: '谷歌', expend: false, src: 'https://img.icons8.com/bubbles/100/000000/upload.png' }
-    ,{ x: 7, y: 9.5, w: 4, h: 1.5, i: '27', type: 'backImg', text: '保存涩图', expend: false, src: 'https://img.icons8.com/bubbles/100/000000/upload.png' }
+    , { x: 7, y: 8, w: 4, h: 1.5, i: '26', type: 'google', text: '谷歌', expend: false, src: 'https://img.icons8.com/bubbles/100/000000/upload.png' }
+    , { x: 7, y: 9.5, w: 4, h: 1.5, i: '27', type: 'backImg', text: '保存涩图', expend: false, src: 'https://img.icons8.com/bubbles/100/000000/upload.png' }
+    , { x: 11, y: 8, w: 1, h: 3, i: '28', type: 'upload', text: '部署sun', src: 'https://img.icons8.com/bubbles/100/undefined/react.png' }
     // { x: 8, y: 6, w: 2, h: 3, i: '4', type: 'syncToYou', text: '上传视频至youtube', expend: false, src: 'https://img.icons8.com/bubbles/100/000000/upload.png' },
     // { x: 8, y: 2, w: 2, h: 2, i: '12', type: 'input', text: '自由上传文件', expend: false }
   ])

@@ -9,7 +9,11 @@
           <moon-sider />
         </n-layout-sider>
         <n-layout-content>
-          <router-view />
+          <router-view v-slot="{Component}" >
+            <keep-alive max="10">
+              <component :is="Component" />
+            </keep-alive>
+          </router-view>
         </n-layout-content>
       </n-layout>
     </n-layout>

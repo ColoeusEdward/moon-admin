@@ -27,10 +27,12 @@ export default function useWaveProgress() {
     conStyle.top = '100%'
   }
   const showComplete = async () => {
+    // console.log(`shwocomplate`,);
     completeStyle.top = '-100%'
     await sleep(2000)
-    // completeStyle.top = '0'
+    completeStyle.top = '0'
     hideProgress()
+    pg.value = 0
   }
 
 
